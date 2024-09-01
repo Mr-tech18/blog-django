@@ -18,7 +18,7 @@ RATING=(
     
 
 def get_user_directory_path(user,filename):
-    return f"{0}/{1}".format(user.username,filename)
+    return f"{0}/{1}".format(user,filename)
 
 def uuid_id_generated(prefix='',lenght=10):
     str_uuid=str(uuid.uuid4()).replace('-','')
@@ -27,7 +27,7 @@ def uuid_id_generated(prefix='',lenght=10):
 
 
 class Category(models.Model):
-    cid=models.UUIDField(primary_key=True,default=uuid_id_generated('cat',10),unique=True)
+    cid=models.UUIDField(primary_key=True,default=uuid.uuid4,unique=True,editable=False)
     title=models.CharField(max_length=150)
     category_image=models.ImageField(upload_to=get_user_directory_path,default="./static/assets/images/1.jpg")
 
@@ -41,13 +41,13 @@ class Category(models.Model):
         return self.title
     
 class Author(models.Model):
-    cid=models.UUIDField(primary_key=True,default=uuid_id_generated('cat',10),unique=True)
+    aid=models.UUIDField(primary_key=True,default=uuid.uuid4,unique=True,editable=False)
     name=models.ForeignKey(User,on_delete=models.CASCADE)
     status=models.BooleanField(default=True)
-    rating=models.CharField(max_length=2,choices=RATING,default=RATING[0][0])
+    rating=models.CharField(max_length=2,choices=RATING,default=RATING[0][0],null=True,blank=True)
     bio=models.TextField(null=True,blank=True)
     author_image=models.ImageField(upload_to=get_user_directory_path,default="./static/assets/images/1.jpg")
-
+    email=models.EmailField()
     def get_cat_image(self):
         return f'<img src={self.author_image.url} width="50" height="50"'
          
@@ -67,18 +67,20 @@ class Post(models.Model):
             return super().get_queryset().filter(Post.StatusChoices.PUBLISH)
      
 
-    pid=models.UUIDField(primary_key=True,unique=True,default=uuid_id_generated('pos',15))
+    pid=models.UUIDField(primary_key=True,unique=True,default=uuid.uuid4,editable=False)
     title=models.CharField(max_length=150)
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
     description=models.CharField(max_length=150)
     slug=models.SlugField(max_length=150)
+    author=models.ForeignKey(Author,on_delete=models.CASCADE)
     profile_image=models.ImageField(upload_to=get_user_directory_path,default="./static/assets/images/2.jpg")
     content=models.TextField(null=True,blank=True)
     status=models.BooleanField(default=True)
+    #category=models.ForeignKey(Category,on_delete=models.CASCADE)
     publish=models.DateTimeField(default=timezone.now)
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now=True)
-    Rating=models.IntegerField(choices=RATING,default=RATING[0][0])
+    Rating=models.IntegerField(choices=RATING,default=RATING[0][0],null=True,blank=True)
     is_premium=models.BooleanField(default=False)
 
     objects=models.Manager()
@@ -90,3 +92,6 @@ class Post(models.Model):
     def __str__(self):
         return f'{self.title}'
      
+    def get_post_image(self):
+        return f'<img src={self.profile_image.url} width="50" height="50"'
+         
