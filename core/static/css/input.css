@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer utilities{
+    .input-btn-style{
+       @apply bg-purple-700 rounded-r p-1 w-32 text-white
+    }
+    .input-style:focus{
+       @apply border-purple-700 outline-none
+    }
+    .input-style{
+        @apply  p-1 rounded border border-purple-400  placeholder:text-gray-500;
+    }
+    .text-author{
+        @apply text-gray-400 max-md:text-[8px] text-[12px];
+    }
+    .btn-read-more{
+        @apply bg-purple-500 inline-block cursor-pointer rounded p-1;
+        transition: 0.3s ease-in-out;
+    }
+    .btn-read-more:hover{
+        @apply bg-purple-400 inline-block cursor-pointer rounded p-1;
+    }
+    .box-shadow{
+        @apply mb-5 shadow shadow-[#e7e7e7] p-1 rounded;
+    }
+    .btn-read-more-hover{
+        @apply bg-purple-200 inline-block cursor-pointer rounded p-1;
+        @apply text-[#2e2e2e];
+    }
+    .card-design{
+        @apply inline-flex  w-[60%] lg:w-52 lg:h-auto;
+    }
+    .btn-style,.tag{
+        @apply border w-12 rounded text-[12px] text-center bg-purple-300  p-1;
+    }
+    .btn-style:hover,.tag:hover{
+        @apply border w-12 rounded text-[12px] text-center text-white bg-purple-500  p-1;
+        @apply cursor-pointer;
+    }
+    .btn{
+        transition: 0.3s ease-in-out;
+    }
+    .centerChild{
+        top:40%;
+        left:50%;
+        transform: translate(-45%,-45%);
+    }
+    .centerChild1{
+        top:-20%;
+        left:30%;
+   }
+   .border-decoration::before{
+        content: '';
+        width: 100%;
+        z-index: -1;
+        height: 100%;
+        position: absolute;
+        @apply bg-purple-400;
+        padding: 10px;
+        border-radius: 10px;
+        top: 50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+   }
+    
+
+}
+
+@layer components{
+    p{
+        @apply my-1;
+    }
+    *{
+        -webkit-scroll: 15px;
+        scrollbar-color: rgb(185, 85, 185);
+    }
+}

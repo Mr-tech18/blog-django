@@ -1,0 +1,227 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+    <!-- header section end -->
+
+    <!-- main section begining -->
+{% block content %}
+<main class="relative top-16">
+    <!-- this section is about the author only -->
+    <section class="bg-purple-50  flex flex-wrap p-5 max-lg:items-center  tablet:flex-nowrap gap-4 lg:p-20">
+        <div class="xl:basis-1/3 flex-grow inline-flex max-lg:justify-center">
+            <img src="../../images/8.jpeg" class="max-lg:rounded-full rounded-md self-center max-lg:w-40" alt="image of franck detagne">
+        </div>
+        <div class="xl:basis-2/3 flex-grow xl:self-center text-center">
+            <h1 class="font-bold text-2xl mb-4">Hi I'm Franck Detagne</h1>
+            <p class="mb-4">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                Magnam praesentium ratione consequuntur sequi dolor quasi necessitatibus illo pariatur doloremqu
+                e perferendis. Porro esse nam inventore, error incidunt vel eos nihil autem?
+            </p>
+            <h2 class="text-xl font-bold mb-4">
+                The best idear can change who you're
+            </h2>
+            <p class="text-gray-500 text-sm mb-4">
+                Lorem ipsum dolor sit amet consectetur, 
+                adipisicing elit. Totam, deleniti obcaecati nesciunt earum quaerat porro 
+                
+            </p>
+            <h3 class="font-bold text-sm mb-4">Follow me on</h3>
+            <div>
+                <span class="inline-block h-12 w-6"><a href=""><img class="inline-block" src="../../images/face.png" alt="social media"></a></span>
+                <span class="inline-block h-12 w-6"><a href=""><img class="inline-block" src="../../images/youtube.png" alt="social media"></a></span>
+                <span class="inline-block h-12 w-6"><a href=""><img class="inline-block" src="../../images/linkedin.png" alt="social media"></a></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About articles writes by authors -->               
+
+    <section class="lg:px-24 p-5" >
+        <h1 class="my-6 text-2xl"><span class="bg-purple-600 p-1 text-white">Read Franck</span> Blog articles</h1>
+        <div class=" justify-center  grid grid-cols-2 text-xs grid-rows-2 lg:grid-cols-[repeat(4,1fr)] gap-2">
+            
+            <article class="inline-grid lg:w-64 max-md:text-xs  mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
+                <div class=""><img class="rounded-xl " src="../../images/2.jpeg" alt="banner image 1"></div>
+                <div>
+                    <p class="btn-style">Travel</p>
+                    <h2 class="max-md:text-sm m-1 font-bold">Set the video play back style with Javascript</h2>
+                    <div data-title="about-author " >
+                        <div class="flex gap-1 items-center my-2">
+                                <div class="w-5 h-5"><img class="rounded-full" src="../../images/3.jpeg" alt="author profile image"></div>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <h3 class="text-author">Joe Doe</h3>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"> <img src="../../images/fi-rr-calendar.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"><img src="../../images/fi-rr-clock-two-thirty.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+                        </div>
+                        <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
+                            rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="../../images/arrow-right.png" alt=""></span>
+                        </p>
+                        
+                    </div>
+                </div>
+            </article>
+            <article class="inline-grid lg:w-64 max-md:text-xs  mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
+                <div class=""><img class="rounded-xl " src="../../images/2.jpeg" alt="banner image 1"></div>
+                <div>
+                    <p class="btn-style">Travel</p>
+                    <h2 class="max-md:text-sm m-1 font-bold">Set the video play back style with Javascript</h2>
+                    <div data-title="about-author " >
+                        <div class="flex gap-1 items-center my-2">
+                                <div class="w-5 h-5"><img class="rounded-full" src="../../images/3.jpeg" alt="author profile image"></div>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <h3 class="text-author">Joe Doe</h3>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"> <img src="../../images/fi-rr-calendar.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"><img src="../../images/fi-rr-clock-two-thirty.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+                        </div>
+                        <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
+                            rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="../../images/arrow-right.png" alt=""></span>
+                        </p>
+                        
+                    </div>
+                </div>
+            </article>
+            <article class="inline-grid lg:w-64 max-md:text-xs  mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
+                <div class=""><img class="rounded-xl " src="../../images/2.jpeg" alt="banner image 1"></div>
+                <div>
+                    <p class="btn-style">Travel</p>
+                    <h2 class="max-md:text-sm m-1 font-bold">Set the video play back style with Javascript</h2>
+                    <div data-title="about-author " >
+                        <div class="flex gap-1 items-center my-2">
+                                <div class="w-5 h-5"><img class="rounded-full" src="../../images/3.jpeg" alt="author profile image"></div>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <h3 class="text-author">Joe Doe</h3>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"> <img src="../../images/fi-rr-calendar.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"><img src="../../images/fi-rr-clock-two-thirty.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+                        </div>
+                        <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
+                            rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="../../images/arrow-right.png" alt=""></span>
+                        </p>
+                        
+                    </div>
+                </div>
+            </article>
+            <article class="inline-grid lg:w-64 max-md:text-xs  mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
+                <div class=""><img class="rounded-xl " src="../../images/2.jpeg" alt="banner image 1"></div>
+                <div>
+                    <p class="btn-style">Travel</p>
+                    <h2 class="max-md:text-sm m-1 font-bold">Set the video play back style with Javascript</h2>
+                    <div data-title="about-author " >
+                        <div class="flex gap-1 items-center my-2">
+                                <div class="w-5 h-5"><img class="rounded-full" src="../../images/3.jpeg" alt="author profile image"></div>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <h3 class="text-author">Joe Doe</h3>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"> <img src="../../images/fi-rr-calendar.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"><img src="../../images/fi-rr-clock-two-thirty.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+                        </div>
+                        <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
+                            rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="../../images/arrow-right.png" alt=""></span>
+                        </p>
+                        
+                    </div>
+                </div>
+            </article>
+            <article class="inline-grid lg:w-64 max-md:text-xs  mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
+                <div class=""><img class="rounded-xl " src="../../images/2.jpeg" alt="banner image 1"></div>
+                <div>
+                    <p class="btn-style">Travel</p>
+                    <h2 class="max-md:text-sm m-1 font-bold">Set the video play back style with Javascript</h2>
+                    <div data-title="about-author " >
+                        <div class="flex gap-1 items-center my-2">
+                                <div class="w-5 h-5"><img class="rounded-full" src="../../images/3.jpeg" alt="author profile image"></div>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <h3 class="text-author">Joe Doe</h3>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"> <img src="../../images/fi-rr-calendar.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"><img src="../../images/fi-rr-clock-two-thirty.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+                        </div>
+                        <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
+                            rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="../../images/arrow-right.png" alt=""></span>
+                        </p>
+                        
+                    </div>
+                </div>
+            </article>
+            <article class="inline-grid lg:w-64 max-md:text-xs  mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
+                <div class=""><img class="rounded-xl " src="../../images/2.jpeg" alt="banner image 1"></div>
+                <div>
+                    <p class="btn-style">Travel</p>
+                    <h2 class="max-md:text-sm m-1 font-bold">Set the video play back style with Javascript</h2>
+                    <div data-title="about-author " >
+                        <div class="flex gap-1 items-center my-2">
+                                <div class="w-5 h-5"><img class="rounded-full" src="../../images/3.jpeg" alt="author profile image"></div>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <h3 class="text-author">Joe Doe</h3>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"> <img src="../../images/fi-rr-calendar.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"><img src="../../images/fi-rr-clock-two-thirty.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+                        </div>
+                        <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
+                            rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="../../images/arrow-right.png" alt=""></span>
+                        </p>
+                        
+                    </div>
+                </div>
+            </article>
+            <article class="inline-grid lg:w-64 max-md:text-xs  mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
+                <div class=""><img class="rounded-xl " src="../../images/2.jpeg" alt="banner image 1"></div>
+                <div>
+                    <p class="btn-style">Travel</p>
+                    <h2 class="max-md:text-sm m-1 font-bold">Set the video play back style with Javascript</h2>
+                    <div data-title="about-author " >
+                        <div class="flex gap-1 items-center my-2">
+                                <div class="w-5 h-5"><img class="rounded-full" src="../../images/3.jpeg" alt="author profile image"></div>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <h3 class="text-author">Joe Doe</h3>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"> <img src="../../images/fi-rr-calendar.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"><img src="../../images/fi-rr-clock-two-thirty.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+                        </div>
+                        <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
+                            rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="../../images/arrow-right.png" alt=""></span>
+                        </p>
+                        
+                    </div>
+                </div>
+            </article>
+            <article class="inline-grid lg:w-64 max-md:text-xs  mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
+                <div class=""><img class="rounded-xl " src="../../images/2.jpeg" alt="banner image 1"></div>
+                <div>
+                    <p class="btn-style">Travel</p>
+                    <h2 class="max-md:text-sm m-1 font-bold">Set the video play back style with Javascript</h2>
+                    <div data-title="about-author " >
+                        <div class="flex gap-1 items-center my-2">
+                                <div class="w-5 h-5"><img class="rounded-full" src="../../images/3.jpeg" alt="author profile image"></div>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <h3 class="text-author">Joe Doe</h3>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"> <img src="../../images/fi-rr-calendar.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"><img src="../../images/fi-rr-clock-two-thirty.svg" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+                        </div>
+                        <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
+                            rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="../../images/arrow-right.png" alt=""></span>
+                        </p>
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+</main>
+
+{% endblock content %}
+    <!-- end main section -->
+
+    <!-- footer begining -->
