@@ -29,9 +29,7 @@
         @apply bg-purple-200 inline-block cursor-pointer rounded p-1;
         @apply text-[#2e2e2e];
     }
-    .card-design{
-        @apply inline-flex  w-[60%] lg:w-52 lg:h-auto;
-    }
+   
     .btn-style,.tag{
         @apply border w-12 rounded text-[12px] text-center bg-purple-300  p-1;
     }
