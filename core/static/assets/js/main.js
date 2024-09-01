@@ -195,20 +195,24 @@ function displaySubList(){
     function popularPost(){
         let btnConatinercontainer=document.querySelector('[data-btn-container]');
         const ul=document.querySelector('[data-slide-container]');
-        console.log(btnConatinercontainer);
-        const liElements=ul.children; 
-        slider(ul,liElements,2,1,btnConatinercontainer);
+        //console.log(btnConatinercontainer);
+        if(ul){
+            const liElements=ul.children; 
+            slider(ul,liElements,2,1,btnConatinercontainer);
+        }
     }
     
     function featureThisMonth(){
         let btnConatinercontainer=document.querySelector('[data-btn-container-feature]');
 
         const ul=document.querySelector('[data-container-1]');
-        const liElements=ul.children; 
-        slider(ul,liElements,2,1,btnConatinercontainer);
+        if(ul){
+            const liElements=ul.children; 
+            slider(ul,liElements,2,1,btnConatinercontainer);
+        }
     }
-   // popularPost();
-    //featureThisMonth();
+    popularPost();
+    featureThisMonth();
     displaySubList();
 
 })

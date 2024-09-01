@@ -1,5 +1,7 @@
 {% extends "partials/base.html" %}
 {% load static %}
+
+{% block title %}{{post.title}}{% endblock title %}
 {% block content %}
 <main class="relative top-20">
     <!-- single blog post section -->
@@ -11,7 +13,7 @@
                     
                     <!-- about the author blog code -->
                     <div class="flex gap-1 items-center my-4">
-                        <div class="w-5 h-5"><img class="rounded-full" src="{{post.author.profile_image.url}}" alt="author profile image"></div>
+                        <div class="w-5 h-5"><img class="rounded-full" src="{{post.author.author_image.url}}" alt="author profile image"></div>
                         <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
                         <h3 class="text-author"><a href="../../html/blog/about_authors.html">{{post.author.name}}</a></h3>
                         <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
@@ -21,7 +23,7 @@
                     </div>
                     <div class="w-full max-lg:h-64  tablet:h-96 my-3"><img src="{{post.profile_image.url}}" class="w-full h-full  object-cover object-right-top rounded-xl" alt=""></div>
                     <!-- litle intrroduction about the text -->
-                   {{post.content|safe|linebreaks}}
+                   {{post.content|safe}}
                 </article>
                 <hr>
                 <!-- this section is different for the for the article blog it's the reason to why it's outside the article block -->

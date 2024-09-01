@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import uuid
 from django.utils import timezone
+from django.utils.safestring import mark_safe
 # Create your models here.
 
 #choices
@@ -17,8 +18,8 @@ RATING=(
 
     
 
-def get_user_directory_path(user,filename):
-    return f"{0}/{1}".format(user,filename)
+def get_user_directory_path(instance,filename):
+    return "{0}/{1}".format(instance.name,filename)
 
 def uuid_id_generated(prefix='',lenght=10):
     str_uuid=str(uuid.uuid4()).replace('-','')
@@ -29,13 +30,13 @@ def uuid_id_generated(prefix='',lenght=10):
 class Category(models.Model):
     cid=models.UUIDField(primary_key=True,default=uuid.uuid4,unique=True,editable=False)
     title=models.CharField(max_length=150)
-    category_image=models.ImageField(upload_to=get_user_directory_path,default="./static/assets/images/1.jpg")
+    category_image=models.ImageField(upload_to='category',default="./static/assets/images/1.jpg")
 
     class Meta:
         verbose_name_plural="categories"
 
     def get_cat_image(self):
-        return f'<img src={self.category_image.url} width="50" height="50"'
+        return mark_safe(f'<img src={self.category_image.url} width="50" height="50"')
     
     def __str__(self):
         return self.title
@@ -48,8 +49,9 @@ class Author(models.Model):
     bio=models.TextField(null=True,blank=True)
     author_image=models.ImageField(upload_to=get_user_directory_path,default="./static/assets/images/1.jpg")
     email=models.EmailField()
-    def get_cat_image(self):
-        return f'<img src={self.author_image.url} width="50" height="50"'
+
+    def get_aut_image(self):
+        return mark_safe(f"<img src='{self.author_image.url}' width='50px' height='50px'/>")
          
 
     def __str__(self):
@@ -64,7 +66,7 @@ class Post(models.Model):
 
     class PublishedManager(models.Manager):
         def get_queryset(self) :
-            return super().get_queryset().filter(Post.StatusChoices.PUBLISH)
+            return super().get_queryset().filter(status=Post.StatusChoices.PUBLISH)
      
 
     pid=models.UUIDField(primary_key=True,unique=True,default=uuid.uuid4,editable=False)
@@ -73,12 +75,13 @@ class Post(models.Model):
     description=models.CharField(max_length=150)
     slug=models.SlugField(max_length=150)
     author=models.ForeignKey(Author,on_delete=models.CASCADE)
-    profile_image=models.ImageField(upload_to=get_user_directory_path,default="./static/assets/images/2.jpg")
+    profile_image=models.ImageField(upload_to="post",default="./static/assets/images/2.jpg")
     content=models.TextField(null=True,blank=True)
-    status=models.BooleanField(default=True)
+    status=models.CharField(max_length=2,choices=StatusChoices,default=StatusChoices.DRAFT)
     #category=models.ForeignKey(Category,on_delete=models.CASCADE)
     publish=models.DateTimeField(default=timezone.now)
     created=models.DateTimeField(auto_now_add=True)
+    reading_time=models.CharField(max_length=5,default='0',null=True)
     updated=models.DateTimeField(auto_now=True)
     Rating=models.IntegerField(choices=RATING,default=RATING[0][0],null=True,blank=True)
     is_premium=models.BooleanField(default=False)
@@ -93,5 +96,5 @@ class Post(models.Model):
         return f'{self.title}'
      
     def get_post_image(self):
-        return f'<img src={self.profile_image.url} width="50" height="50"'
+        return mark_safe(f"<img src='{self.profile_image.url}' width='50px' height='50px'/>")
          
