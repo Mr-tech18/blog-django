@@ -10,6 +10,24 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields={'slug':['title',],}
     ordering=['status','-publish']
 
+    fieldsets=(
+        (
+            'General',{
+                'classes':['collapse',],
+                'fields':('title','author','status','category',
+                          'slug','description','publish','reading_time',
+                          'profile_image'
+                          )
+            }
+        ),
+        (
+            'Blog post',{
+                'description':"Post content",
+                'fields':('content',),
+            }
+        ),
+    )
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display=['cid','get_cat_image','title']
 
