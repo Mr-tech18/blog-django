@@ -5,6 +5,7 @@
 
 {% block content %}
 <main class="md:max-tablet:mx-20 relative top-16">
+    <h1 class="bg-black font-bold text-2xl">You have already visit that site "{{num_visits}}"  </h1>
     <section class="bg-purple-50 p-5 lg:p-0 tablet:flex lg:px-20 ">
         <div class="p-1" class="bg-purple-100 p-5 lg:p-0 lg:flex lg:px-[60px]">
             <h1 class="my-6 text-black text-2xl font-bold"><span class="bg-purple-600 p-1 text-white">Featured</span> this month</h1>
@@ -19,7 +20,7 @@
                         <div class="flex gap-1 items-center my-4">
                             <div class="w-5 h-5"><img class="rounded-full" src="{{post.author.author_image.url}}" alt="author profile image"></div>
                             <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                            <h3 class="text-author"><a href="../../html/blog/about_authors.html">{{post.author.name|truncatewords:1}}</a></h3>
+                            <h3 class="text-author"><a href="../../html/blog/about_authors.html">{{post.author.user|truncatewords:1}}</a></h3>
                             <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
                             <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.publish|date:"D,M Y"}}</p>
                             <span class="inline-block w-[1px] h-3 bg-slate-500"></span>

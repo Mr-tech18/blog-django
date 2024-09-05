@@ -29,11 +29,12 @@ class PostAdmin(admin.ModelAdmin):
     )
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display=['cid','get_cat_image','title']
+    list_display=['get_cat_image','title']
 
 class AuthorAdmin(admin.ModelAdmin):
-    list_display=['aid','name','email','status','get_aut_image']
-    search_fields=['name','email']
+    list_display=['user','email','status','get_aut_image']
+    search_fields=['user','email']
+
 
 admin.site.register(Post,PostAdmin)
 admin.site.register(Category,CategoryAdmin)

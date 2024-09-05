@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     #custom app
     'core',
+    'userauth',
     'taggit'
 ]
 
@@ -130,6 +131,8 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"media")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#custom user models
+AUTH_USER_MODEL='userauth.CustomUser'
 
 #jazzmin
 
@@ -137,5 +140,5 @@ JAZZMIN_SETTINGS={
     "site_brand":'Hold the vision',
     'copyright':'Mr-Tech18 dev',
     'site_header':'TG-18 BLOG',
-    'site_logo':''
+    'site_logo':'static/assets/images/10.jpg'
 }

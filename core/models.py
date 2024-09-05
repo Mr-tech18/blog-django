@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from userauth.models import CustomUser
 import uuid
 from django.utils import timezone
 from django.utils.safestring import mark_safe
@@ -19,7 +19,7 @@ RATING=(
     
 
 def get_user_directory_path(instance,filename):
-    return "{0}/{1}".format(instance.name,filename)
+    return "{0}/{1}".format(instance.user,filename)
 
 def uuid_id_generated(prefix='',lenght=10):
     str_uuid=str(uuid.uuid4()).replace('-','')
@@ -43,7 +43,7 @@ class Category(models.Model):
     
 class Author(models.Model):
     aid=models.UUIDField(primary_key=True,default=uuid.uuid4,unique=True,editable=False)
-    name=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
     status=models.BooleanField(default=True)
     rating=models.CharField(max_length=2,choices=RATING,default=RATING[0][0],null=True,blank=True)
     bio=models.TextField(null=True,blank=True)
@@ -55,7 +55,7 @@ class Author(models.Model):
          
 
     def __str__(self):
-         return "{}".format(self.name)
+         return "{}".format(self.user)
 
     
 class Post(models.Model):
