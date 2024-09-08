@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     function popularPost(){
         let btnConatinercontainer=document.querySelector('[data-btn-container]');
         const ul=document.querySelector('[data-slide-container]');
-        console.log(btnConatinercontainer);
+        console.log("yo");
         if(ul){
             const liElements=ul.children; 
             slider(ul,liElements,2,1,btnConatinercontainer);
@@ -211,6 +211,16 @@ document.addEventListener('DOMContentLoaded',()=>{
             slider(ul,liElements,2,1,btnConatinercontainer);
         }
     }
+
+    //code to close the messages framwork
+    function closesMessage(){
+        let messageContainer=document.querySelector('.messages');
+        setTimeout(()=>{
+            messageContainer.classList.add('hidden');
+        },5000);
+        console.log('mince');
+    }
+    closesMessage();
     popularPost();
     featureThisMonth();
     displaySubList();

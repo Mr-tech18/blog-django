@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}tg-18{% endblock title %}</title> 
     <link rel="stylesheet" href="{% static "css/output.css" %}">
+    <link rel="stylesheet" href="{% static "css/messages.css" %}">
 </head>
 <body>
     <header class=" fixed top-0  z-[100] w-[100%] h-[70px] py-[10px]  lg:px-[80px] bg-purple-200">
@@ -55,18 +56,29 @@
                     <div class="pt-3 lg:pt-0"><a href="#">En<img src="{% static 'assets/images/angle-small-down.png' %}" class="inline w-4 h-4" alt=""></a></div>
                     </div>
                 </div>
-                <div class="mt-5 lg:mt-0">
+                <div class="flex items-center justify-center gap-2 mt-5 lg:mt-0">
                     <img src="{% static 'assets/images/fi-rr-settings.svg' %}" class="h-4 w-4 inline" alt="">
+                    {% if  request.user.is_authenticated %}
+                        <p> <a href="{% url "userauths:logout" %}">Logout</a></p>
+                    {% else %}
+                        <p> <a href="{% url "userauths:login" %}">Login</a></p>
+                    {% endif %}
                 </div>
             </div>
          </div>
     </div>
     </header>
+    <ul class="messages relative top-16">
+        {% for message in messages %}
+        
+        <li class="{{message.tags}} message"> {{message|safe}}</li>
+        {% endfor %}
+    </ul>
     {% block content %}
 
     
     {% endblock content %}
-    <footer class="bg-purple-100 relative px-5 lg:px-[80px] mt-28" >
+    <footer class="bg-purple-100 relative top-0 px-5 lg:px-[80px] mt-28" >
        <div class="  justify-between flex flex-wrap py-10 lg:flex-nowrap gap-6">
             <div class="basis-1/4 max-sm:basis-1/2">
                 <div class="mb-5">
@@ -118,8 +130,8 @@
             <div class="py-4">
                 Copyrigth © Franck Detagne 2024
             </div>
-    </div>
+    </div>j
     </footer>
-    <script src="{% static "assets/js/test.js" %}"></script>
+    <script src="{% static "js/test.js" %}"></script>
 </body>
 </html>

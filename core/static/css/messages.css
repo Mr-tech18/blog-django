@@ -1,0 +1,21 @@
+li.error{
+    background-color: rgb(218, 43, 43);
+}
+li.success{
+    background-color: rgb(43, 218, 116);
+}
+li.warning{
+    background-color: rgb(218, 157, 43);
+}
+li.message{
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+ul.messages{
+    margin: 10px 0;
+    text-align: center;
+}
+ 

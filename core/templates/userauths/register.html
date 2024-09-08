@@ -1,0 +1,19 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block title %}User registration{% endblock title %}
+
+{% block content %}
+
+<div class="top-20 relative">
+    <form method="post" class="">
+        {% csrf_token %}
+        <p>{{form.username}}</p>
+        <p>{{form.email}}</p>
+        <p>{{form.password1}}</p>
+        <p>{{form.password2}}</p>
+        <button class="bg-purple-400 p-2 rounded cursor-pointer" typr="submit">submit </button>
+    </form>
+</div>
+
+{% endblock content %}
