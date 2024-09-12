@@ -15,7 +15,7 @@
                     <div class="flex gap-1 items-center my-4">
                         <div class="w-5 h-5"><img class="rounded-full" src="{{post.author.author_image.url}}" alt="author profile image"></div>
                         <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                        <h3 class="text-author"><a href="../../html/blog/about_authors.html">{{post.author.name}}</a></h3>
+                        <h3 class="text-author"><a href="../../html/blog/about_authors.html">{{post.author.user}}</a></h3>
                         <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
                         <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.publish|date:"D,M Y"}}</p>
                         <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
@@ -91,18 +91,75 @@
                 -->
                 <div class="">
                   <div class="flex gap-3">
-                    <div data-btn-slide class="bg-purple-50">
+                    <div data-btn-slide class="">
                         <button class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >0 comment</button>
                         <button class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >themfisher</button>
                         <button class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" ><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" class="inline-block h-3 w-3" alt=""> discuss prvacy</button>
                     
-                        <div class="descrpiton bg-purple-300 mt-0 p-4 hidden">
-                            <h4 class="text-black font-bold text-sm">Add a title here 1</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt alias maxime aperiam soluta, 
-                                molestiae aliquam illo vel? Eos, 
-                                tenetur velit minus deleniti rem quam eaque nihil id? Reprehenderit, enim. Consectetur.
-                            </p>
+                        <div class="descrpiton mt-2  hidden">
+                            <div class="max-lg:text-xs border shadow rounded-xl mb-3 p-1">
+                                <div class="flex items-center gap-3">
+                                    <div class="h-12 ">
+                                        <img class=" rounded-full h-full w-full object-cover" src="{% static "assets/images/3.jpeg" %}">
+                                    </div>
+                                    <div class="">
+                                       <div class="flex gap-4">
+                                        <p class="font-bold">Franck Detagne</p>
+                                        <p>20h ago</p>
+                                       </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="comment ml-14">
+                                    <!--content of the comment-->
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi dolorem porro labore eos earum omnis autem esse ducimus est 
+                                        velit amet,
+                                         quis impedit rem officiis ipsam nam veniam! Voluptate, quisquam!
+                                    </p>
+                                    <div class="">
+                                        <button class="bg-gray-500 rounded-xl p-1 w-20 hover:bg-gray-300">Like 12</button>
+                                        <button class="bg-gray-500 rounded-xl p-1 w-20 hover:bg-gray-300">Dislike 1</button>
+                                        <button class="bg-gray-500 rounded-xl p-1 w-20 hover:bg-gray-300">reply 30</button>
+                    
+                                    </div>
+                                    <!--Comment reply-->
+                                    <div class="mt-3 border shadow rounded-xl p-2">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-12 h-12 ">
+                                                <img class=" rounded-full h-full w-full object-cover" src="{% static "assets/images/3.jpeg" %}">
+                                            </div>
+                                            <div class="">
+                                               <div class="flex gap-4">
+                                                <p class="font-bold">Mr tech</p>
+                                                <p>20h ago</p>
+                                               </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="ml-14 relative">
+                                            <!--content of the comment-->
+                                            <p>
+                                                <span class="font-bold">Franck Detagne</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi dolorem porro labore eos earum omnis autem esse ducimus est 
+                                                velit amet,
+                                                 quis impedit rem officiis ipsam nam veniam! Voluptate, quisquam!
+                                            </p>
+                                            <div class="">
+                                                <button class="bg-gray-100 rounded-xl p-1 w-20 hover:bg-gray-200">Like 12</button>
+                                                <button class="bg-gray-100 rounded-xl p-1 w-20 hover:bg-gray-200">Dislike 1</button>
+                                                <button class="bg-gray-100 rounded-xl p-1 w-20 hover:bg-gray-200">reply 30</button>
+                                                
+                                            </div>
+                                           </div>
+                                        
+                                
+                                
+                                    </div>
+                                   </div>
+                                
+                        
+                        
+                            </div>
                         </div>
                         <div class="descrpiton bg-purple-300 mt-0 p-4 hidden">
                             <h4 class="text-black font-bold text-sm">Add a title here 2</h4>
@@ -122,7 +179,7 @@
                         </div>
                     </div>
                     
-                    <div><a href="#login">login</a></div>
+                 
                   </div>
                   <div class="flex justify-between">
                     <div class="flex gap-10" >
@@ -138,147 +195,7 @@
                   </div>
                 </div>
          </section>
-         <aside data-title="" class="tablet:ml-10 max-tablet:flex-grow xl:basis-1/3">
-            <h3 class="my-6 text-2xl font-bold"><span class="bg-purple-600 p-1 text-white text-2xl font-bold">Top</span> Authors</h3>
-            <div data-title="author-and-ads">
-                <div class="flex gap-5 mb-5">
-                    <div class="h-16 w-16"><img src="{% static 'assets/images/3.jpeg' %}" class="rounded-full" alt="profile picture of franck detagne"></div>
-                    <div data-title="author-info">
-                        <h4 class="text-sm font-bold"><a href="../../html/blog/about_authors.html">Joe Doe</a></h4>
-                        <div class="text-gray-400 text-sm mb-1">Fashion,Designer,Blogger,Activist</div>
-                        <div class="">
-                            <button class="mr-3 border border-purple-400 rounded hover:bg-purple-300 hover:text-yellow-50"><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" alt="" class="w-4 h-auto"></button>
-                            <button class="mr-3 border border-purple-400 rounded hover:bg-purple-300 hover:text-yellow-50"><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" alt="" class="w-4 h-auto"></button>
-                            <button class="mr-3 border border-purple-400 rounded hover:bg-purple-300 hover:text-yellow-50"><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" alt="" class="w-4 h-auto"></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex gap-5 mb-5">
-                        <div class="h-16 w-16"><img src="{% static 'assets/images/3.jpeg' %}" class="rounded-full" alt="profile picture of franck detagne"></div>
-                        <div data-title="author-info">
-                            <h4 class="text-sm font-bold"><a href="../../html/blog/about_authors.html">Joe Doe</a></h4>
-                            <div class="text-gray-400 text-sm mb-1">Fashion,Designer,Blogger,Activist</div>
-                            <div class="">
-                                <button class="mr-3 border border-purple-400 rounded hover:bg-purple-300 hover:text-yellow-50"><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" alt="" class="w-4 h-auto"></button>
-                                <button class="mr-3 border border-purple-400 rounded hover:bg-purple-300 hover:text-yellow-50"><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" alt="" class="w-4 h-auto"></button>
-                                <button class="mr-3 border border-purple-400 rounded hover:bg-purple-300 hover:text-yellow-50"><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" alt="" class="w-4 h-auto"></button>
-                            </div>
-                        </div>
-                </div>
-                <div class="flex gap-5 mb-5">
-                        <div class="h-16 w-16"><img src="{% static 'assets/images/3.jpeg' %}" class="rounded-full" alt="profile picture of franck detagne"></div>
-                        <div data-title="author-info">
-                            <h4 class="text-sm font-bold"><a href="../../html/blog/about_authors.html">Joe Doe</a></h4>
-                            <div class="text-gray-400 text-sm mb-1">Fashion,Designer,Blogger,Activist</div>
-                            <div class="">
-                                <button class="mr-3 border border-purple-400 rounded hover:bg-purple-300 hover:text-yellow-50"><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" alt="" class="w-4 h-auto"></button>
-                                <button class="mr-3 border border-purple-400 rounded hover:bg-purple-300 hover:text-yellow-50"><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" alt="" class="w-4 h-auto"></button>
-                                <button class="mr-3 border border-purple-400 rounded hover:bg-purple-300 hover:text-yellow-50"><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" alt="" class="w-4 h-auto"></button>
-                            </div>
-                        </div>
-                </div>
-            
-                <div data-title="add"  class=" bg-purple-700 w-auto lg:w-96 p-10 rounded-xl text-white relative">
-                    <h3 class="mb-3 font-bold text-xl ">Want to visit Cameroun?</h3> <span class="absolute right-0 mr-3 top-4">Ad</span>
-                    <p class="mb-3 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod praesentium tempore,
-                        
-                    </p>
-                    <div>
-                        <span class="bg-white text-purple-600 p-2 rounded"><a href="../blog/contact.html"></a></span>
-                    </div>
-    
-                </div>
-            </div>
-            <div data-title="Categories" class="mt-5">
-                <h2 class="text-2xl"><span class="font-medium text-white bg-purple-600">Categories</span></h2>
-               <div>
-                    <div data-title="Categories-detail " class="flex justify-between my-3">
-                        <h3>Lifestyle</h3>
-                        <p>04</p>
-                    </div>
-                    <hr>
-               </div>
-               <div>
-                    <div data-title="Categories-detail " class="flex justify-between my-3">
-                        <h3>Travel</h3>
-                        <p>05</p>
-                    </div>
-                    <hr>
-               </div>
-               <div>
-                    <div data-title="Categories-detail " class="flex justify-between my-3">
-                        <h3>Food</h3>
-                        <p>09</p>
-                    </div>
-                    <hr>
-               </div>
-               <div>
-                    <div data-title="Categories-detail " class="flex justify-between my-3">
-                        <h3>Healtcare</h3>
-                        <p>10</p>
-                    </div>
-                    <hr>
-               </div>
-               <div>
-                    <div data-title="Categories-detail " class="flex justify-between my-3">
-                        <h3>Technologie</h3>
-                        <p>03</p>
-                    </div>
-                    <hr>
-               </div>
-            </div>
-            <div data-title="updates">
-                <h3 class="my-6 text-2xl font-bold"><span class="bg-purple-600 p-1 text-white text-2xl font-bold">Today's</span> Updates</h3>
-                <div data-title=" updates-grid" class=" grid grid-cols-2   gap-2">
-                    <div class="bg-purple-200 rounded text-center align-middle text-sm  font-bold py-4" >
-                        <h4 class="font-extrabold text-purple-700 text-xl mb-1">14</h4>
-                        <p class="text-xs">New Posts</p>
-                    </div>
-                    <div class="bg-purple-200 rounded text-center align-middle text-sm  font-bold py-4">
-                        <h4 class="font-extrabold text-purple-700 text-xl mb-1">480</h4>
-                        <p class="text-xs">News visitors</p>
-                    </div>
-                    <div class="bg-purple-200 rounded text-center align-middle text-sm  font-bold py-4">
-                        <h4 class="font-extrabold text-purple-700 text-xl mb-1">29</h4>
-                        <p class="text-xs">News suscribers</p>
-                    </div>
-                    <div class="bg-purple-200 rounded text-center align-middle text-sm  font-bold py-4">
-                        <h4 class="font-extrabold text-purple-700 text-xl mb-1">138</h4>
-                        <p class="text-xs">Blog Read</p>
-                    </div>
-                   
-                </div>
-            </div>
-            <div data-title="insta-post" class="">
-                <h3 class="my-6 text-2xl font-bold"><span class="bg-purple-600 p-1 text-white text-2xl font-bold">Instagram</span> Posts</h3>
-                <div  class="grid grid-cols-4 gap-3">
-                    <div class="w-16 lg:w-24 bg-green-200 inline-grid rounded"><img src="{% static 'assets/images/2.jpeg' %}" class="rounded" alt=""></div>
-                    <div class="w-16 lg:w-24 bg-green-200 inline-grid rounded"><img src="{% static 'assets/images/2.jpeg' %}" class="rounded" alt=""></div>
-                    <div class="w-16 lg:w-24 bg-green-200 inline-grid rounded"><img src="{% static 'assets/images/2.jpeg' %}" class="rounded" alt=""></div>
-                    <div class="w-16 lg:w-24 bg-green-200 inline-grid rounded"><img src="{% static 'assets/images/2.jpeg' %}" class="rounded" alt=""></div>
-                    <div class="w-16 lg:w-24 bg-green-200 inline-grid rounded"><img src="{% static 'assets/images/2.jpeg' %}" class="rounded" alt=""></div>
-                    <div class="w-16 lg:w-24 bg-green-200 inline-grid rounded"><img src="{% static 'assets/images/2.jpeg' %}" class="rounded" alt=""></div>
-                    <div class="w-16 lg:w-24 bg-green-200 inline-grid rounded"><img src="{% static 'assets/images/2.jpeg' %}" class="rounded" alt=""></div>
-                    <div class="w-16 lg:w-24 bg-green-200 inline-grid rounded"><img src="{% static 'assets/images/2.jpeg' %}" class="rounded" alt=""></div>
-                    <div class="w-16 lg:w-24 bg-green-200 inline-grid rounded"><img src="{% static 'assets/images/2.jpeg' %}" class="rounded" alt=""></div>
-                </div>
-            </div>
-            <div class="Search-tags">
-                <h3 class="my-6 text-2xl font-bold capitalize"><span class="bg-purple-600 p-1 text-white text-2xl font-bold">search</span> With Tags</h3>
-                <div>
-                    <button class="border m-1 border-purple-300 rounded p-2 transition ease-in-out delay-[0.2s] hover:bg-purple-200 text-gray-400 text-xs">Fashion</button>
-                    <button class="border m-1 border-purple-300 rounded p-2 transition ease-in-out delay-[0.2s] hover:bg-purple-200 text-gray-400 text-xs">Travel</button>
-                    <button class="border m-1 border-purple-300 rounded p-2 transition ease-in-out delay-[0.2s] hover:bg-purple-200 text-gray-400 text-xs">Lifestyle</button>
-                    <button class="border m-1 border-purple-300 rounded p-2 transition ease-in-out delay-[0.2s] hover:bg-purple-200 text-gray-400 text-xs">Technology</button>
-                    <button class="border m-1 border-purple-300 rounded p-2 transition ease-in-out delay-[0.2s] hover:bg-purple-200 text-gray-400 text-xs">Business</button>
-                    <br>
-                    <button class="border m-1 border-purple-300 rounded  transition ease-in-out delay-[0.2s] p-2 hover:bg-purple-200  text-gray-400 text-xs">Design</button>
-                    <button class="border m-1 border-purple-300 rounded  transition ease-in-out delay-[0.2s] p-2 hover:bg-purple-200  text-gray-400 text-xs">Art</button>
-                    <button class="border m-1 border-purple-300 rounded  transition ease-in-out delay-[0.2s] p-2 hover:bg-purple-200  text-gray-400 text-xs">Healt</button>
-                    <button class="border m-1 border-purple-300 rounded  transition ease-in-out delay-[0.2s] p-2 hover:bg-purple-200  text-gray-400 text-xs">Sport</button>
-                </div>
-            </div>
-         </aside>
+         {% include "partials/aside.html" %}
 
     </div>
 </main>

@@ -17,7 +17,7 @@
                         <div class="flex gap-1 items-center">
                             <div class="w-5 h-5"><img class="rounded-full" src="{{post.author.author_image.url}}" alt="author profile image"></div>
                             <span class="inline-block w-px h-3 bg-slate-500"></span>
-                            <h3 class="text-author">{{post.author.name}}</h3>
+                            <h3 class="text-author">{{post.author.user}}</h3>
                             <span class="inline-block w-px h-3 bg-slate-500"></span>
                             <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.publish|date:"D M Y"}}</p>
                             <span class="inline-block w-px h-3 bg-slate-500"></span>
