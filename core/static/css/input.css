@@ -16,7 +16,7 @@
         @apply text-gray-400 max-md:text-[8px] text-[12px];
     }
     .btn-read-more{
-        @apply bg-purple-500 inline-block cursor-pointer rounded p-1;
+        @apply bg-purple-500 inline-block cursor-pointer rounded p-1 text-white;
         transition: 0.3s ease-in-out;
     }
     .btn-read-more:hover{
@@ -71,7 +71,7 @@
         @apply my-1;
     }
     input{
-        @apply  border border-purple-400 p-1 rounded w-[20%];
+        @apply  border border-purple-400 p-1 rounded lg:w-[80%] w-[100%];
     }
 
 }

@@ -1,0 +1,18 @@
+{% load static %}
+
+<ul data-title="author-and-ads">
+    {% for author in authors %}
+        <li class="flex gap-5 mb-5">
+            <div class="h-16 w-16"><img src="{{author.author_image.url}}" class="rounded-full" alt="profile picture of franck detagne"></div>
+            <div data-title="author-info">
+                <h4 class="text-sm font-bold"><a href="../../html/blog/about_authors.html">{{author.user}}</a></h4>
+                <div class="text-gray-400 text-sm mb-1">Fashion,Designer,Blogger,Activist</div>
+                <div class="">
+                    <button class="mr-3  hover:text-yellow-50"><img src="{% static 'assets/images/face.png' %}" alt="" class="w-4 h-auto"></button>
+                    <button class="mr-3  hover:text-yellow-50"><img src="{% static 'assets/images/youtube.png' %}" alt="" class="w-4 h-auto"></button>
+                    <button class="mr-3  hover:text-yellow-50"><img src="{% static 'assets/images/wha.png' %}" alt="" class="w-4 h-auto"></button>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>

@@ -6,13 +6,15 @@
 {% block content %}
 
 <div class="top-20 relative">
-    <form method="post" class="">
+    <form method="post" class="mx-6 lg:mx-96 space-y-2">
+        <h1 class="text-2xl text-purple-400 font-bold">Register Page </h1>
         {% csrf_token %}
         <p>{{form.username}}</p>
         <p>{{form.email}}</p>
         <p>{{form.password1}}</p>
         <p>{{form.password2}}</p>
-        <button class="bg-purple-400 p-2 rounded cursor-pointer" typr="submit">submit </button>
+        <button class="bg-purple-400 p-2 text-white rounded cursor-pointer lg:w-[80%] w-[100%]" typr="submit">Register </button>
+        <p> Already have an account  ? <a class="text-purple-400 hover:text-purple-300" href="{% url "userauths:login" %}"> Login </a></p>
     </form>
 </div>
 

@@ -2,6 +2,7 @@
 module.exports = {
   content: ["./core/templates/**/*.html",
     "./core/templates/partials/**/*.html",
+    "./core/templates/userauths/**/*.html",
     "./core/templates/templates_tags/**/*.html"
   
   ],

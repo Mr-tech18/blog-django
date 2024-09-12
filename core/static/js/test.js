@@ -217,8 +217,8 @@ document.addEventListener('DOMContentLoaded',()=>{
         let messageContainer=document.querySelector('.messages');
         setTimeout(()=>{
             messageContainer.classList.add('hidden');
-        },5000);
-        console.log('mince');
+        },10000);
+        console.log('top');
     }
     closesMessage();
     popularPost();

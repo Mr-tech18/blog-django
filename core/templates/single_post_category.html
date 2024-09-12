@@ -1,0 +1,43 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block content %}
+<main class="lg:mx-20 m-5 lg:my-10 relative top-16">
+    {% if posts %}
+    <h1 class="text-xl font-bold  text-black mb-4">There is no post for <span class="bg-purple-500 text-white p-1">{{category.title}}</span></h1>
+    <section class="md:grid-cols-2 grid grid-cols-1 gap-2 text-gray-500 text-xs lg:text-sm">  
+        
+        
+            {% for post in posts %}
+            
+            <article class="rounded-xl flex gap-2 items-center p-2 flex-wrap lg:flex-nowrap shadow shadow-purple-400 max-md:p-2">  
+                <div class="max-lg:hidden w-40"><img src="{{post.profile_image.url}}" alt="main image for the search of travel"></div>
+                <div class="self-center">
+                    <p class="tag">Travel</p>
+                    <h1 class="lg:text-sm text-black font-bold capitalize"> {{post.title}}</h1>
+                    <div class="flex gap-1 items-center my-2">
+                        <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
+                        <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
+                        <h3 class="text-author"><a href="../../html/blog/about_authors.html">{{post.author.user}}</a></h3>
+                        <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
+                        <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.publish|date:'d M Y'}}</p>
+                        <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
+                        <p class="text-author"><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt="">{{post.reading_time}}</p>
+                        
+                    </div>
+                    <p class="text-[0.75rem] ">{{post.description}}
+                        .<a href="{% url "core:details" post.slug post.pid %}" class="btn-read-more text-white">Read More <img class="inline-block w-3 h-3 " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
+                    </p>
+                </div>
+            </article>
+            {% endfor %}
+        
+    </section>
+    {% else %}
+
+    <h1 class="text-xl font-bold  text-black mb-4">There is no post for <span class="bg-purple-500 text-white p-1">{{category.title}}</span></h1>
+    {% endif %}
+</main>
+
+
+{% endblock content %}

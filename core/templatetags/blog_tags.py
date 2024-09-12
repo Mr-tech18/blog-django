@@ -1,5 +1,5 @@
 from django import template
-from core.models import Post
+from core.models import *
 
 
 register=template.Library()
@@ -11,3 +11,14 @@ def show_latest_post(count=10):
     return {
         "posts": posts,
     }
+
+
+@register.inclusion_tag('templates_tags/show_authors.html')
+def show_author(count=3):
+    authors=Author.objects.all()[:count]
+    context={
+        'authors':authors
+    }
+
+    return context
+

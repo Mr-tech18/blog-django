@@ -200,44 +200,7 @@
         {% show_latest_post 10 %}
         <aside data-title="" class="tablet:ml-10 max-lg:m-5 ">
             <h3 class="my-6 text-2xl font-bold"><span class="bg-purple-600 p-1 text-white text-2xl font-bold">Top</span> Authors</h3>
-            <ul data-title="author-and-ads">
-                <li class="flex gap-5 mb-5">
-                    <div class="h-16 w-16"><img src="{% static 'assets/images/3.jpeg' %}" class="rounded-full" alt="profile picture of franck detagne"></div>
-                    <div data-title="author-info">
-                        <h4 class="text-sm font-bold"><a href="../../html/blog/about_authors.html">Joe Doe</a></h4>
-                        <div class="text-gray-400 text-sm mb-1">Fashion,Designer,Blogger,Activist</div>
-                        <div class="">
-                            <button class="mr-3  hover:text-yellow-50"><img src="{% static 'assets/images/face.png' %}" alt="" class="w-4 h-auto"></button>
-                            <button class="mr-3  hover:text-yellow-50"><img src="{% static 'assets/images/youtube.png' %}" alt="" class="w-4 h-auto"></button>
-                            <button class="mr-3  hover:text-yellow-50"><img src="{% static 'assets/images/wha.png' %}" alt="" class="w-4 h-auto"></button>
-                        </div>
-                    </div>
-                </li>
-                <li class="flex gap-5 mb-5">
-                        <div class="h-16 w-16"><img src="{% static 'assets/images/3.jpeg' %}" class="rounded-full" alt="profile picture of franck detagne"></div>
-                        <div data-title="author-info">
-                            <h4 class="text-sm font-bold"><a href="../../html/blog/about_authors.html">Joe Doe</a></h4>
-                            <div class="text-gray-400 text-sm mb-1">Fashion,Designer,Blogger,Activist</div>
-                            <div class="">
-                                <button class="mr-3 border  hover:text-yellow-50"><img src="{% static 'assets/images/face.png' %}" alt="" class="w-4 h-auto"></button>
-                                <button class="mr-3 border  hover:text-yellow-50"><img src="{% static 'assets/images/youtube.png' %}" alt="" class="w-4 h-auto"></button>
-                                <button class="mr-3 border  hover:text-yellow-50"><img src="{% static 'assets/images/wha.png' %}" alt="" class="w-4 h-auto"></button>
-                            </div>
-                        </div>
-                </li>
-                <li class="flex gap-5 mb-5">
-                        <div class="h-16 w-16"><img src="{% static 'assets/images/3.jpeg' %}" class="rounded-full" alt="profile picture of franck detagne"></div>
-                        <div data-title="author-info">
-                            <h4 class="text-sm font-bold"><a href="../../html/blog/about_authors.html">Joe Doe</a></h4>
-                            <div class="text-gray-400 text-sm mb-1">Fashion,Designer,Blogger,Activist</div>
-                            <div class="">
-                                <button class="mr-3 border  hover:text-yellow-50"><img src="{% static 'assets/images/face.png' %}" alt="" class="w-4 h-auto"></button>
-                                <button class="mr-3 border  hover:text-yellow-50"><img src="{% static 'assets/images/youtube.png' %}" alt="" class="w-4 h-auto"></button>
-                                <button class="mr-3 border  hover:text-yellow-50"><img src="{% static 'assets/images/wha.png' %}" alt="" class="w-4 h-auto"></button>
-                            </div>
-                        </div>
-                </li>
-            </ul>
+            {% show_author %}
             <div data-title="add"  class=" bg-purple-700 w-auto lg:w-96 p-10 rounded-xl text-white relative">
                 <h3 class="mb-3 font-bold text-xl ">Want to visit Cameroun?</h3> <span class="absolute right-0 mr-3 top-4">Ad</span>
                 <p class="mb-3 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod praesentium tempore,
