@@ -70,7 +70,8 @@
     p{
         @apply my-1;
     }
-    input{
+    input,
+    #content_id{
         @apply  border border-purple-400 p-1 rounded lg:w-[80%] w-[100%];
     }
 

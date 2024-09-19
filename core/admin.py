@@ -1,8 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
-from django.contrib import admin
-from .models import Post,Author,Category
+
+from .models import *
 # Register your models here.
 class PostAdmin(admin.ModelAdmin):
     list_display=['title','author','get_post_image','status','category']
@@ -35,7 +34,10 @@ class AuthorAdmin(admin.ModelAdmin):
     list_display=['user','email','status','get_aut_image']
     search_fields=['user','email']
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display=['name','post','email']
 
+admin.site.register(Comment,CommentAdmin)
 admin.site.register(Post,PostAdmin)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Author,AuthorAdmin)

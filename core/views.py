@@ -1,5 +1,6 @@
-from django.shortcuts import render,get_object_or_404
-from .models import Post,Author,Category
+from django.shortcuts import render,get_object_or_404,redirect
+from .models import Post,Author,Category,Comment
+from .forms import CommentForm
 # Create your views here.
 def home(request):
     posts=Post.published.all()
@@ -27,14 +28,43 @@ def index2(request):
     return render(request,'index2.html',context)
 
 
-def post_details(request,post_id,slug):
-    post=get_object_or_404(Post,pid=post_id)
+def post_details(request, post_id, slug):
+    post = get_object_or_404(Post, pid=post_id)
+    comment=None
+    if request.method == "POST":
+            if request.user.is_authenticated:
+                print(f"User is authenticated: {request.user.username}")  # Debug print
+                # Use authenticated user's data
+                name = request.user.username
+                email = request.user.email
+            else:
+                # Use the form's data for anonymous users
+                print("Anonymous user!")  # Debug print
+                name = request.POST['name']
+                email = request.POST['email']
+            
+            content =request.POST['content']
+            
+            # Save the comment
+            comment=Comment.objects.create(
+                name=name,
+                email=email,
+                content=content,
+                post=post
+            )
+            print("Comment saved!")  # Debug print
+            return redirect("core:details", post.slug, post.pid)
+        
 
-    context={
-        'post':post
+    comments = Comment.objects.filter(post=post)
+    context = {
+        'post': post,
+        'comments': comments,
+        "comment":comment
+      
     }
 
-    return render(request,'single.html',context)
+    return render(request, 'single.html', context)
 
 def contact(request):
     return render(request,"contact.html")

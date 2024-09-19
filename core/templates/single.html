@@ -5,8 +5,8 @@
 {% block content %}
 <main class="relative top-20">
     <!-- single blog post section -->
-    <div class="flex lg:px-32 lg:py-5 p-5 md:max-tablet:px-60  flex-wrap xl:flex-nowrap xl:gap-4">
-        <section class="xl:basis-2/3 max-tablet:flex-grow text-justify ">
+    <div class="lg:px-32 lg:py-5 p-5   tablet:flex gap-4">
+        <section class="xl:basis-2/3 max-tablet:flex-grow  ">
             <!-- the main articles -->
                 <h1 class="my-6 text-black font-bold text-2xl text-start capitalize">{{post.title}} </h1>
                 <article class="text-xl text-black ">
@@ -23,10 +23,149 @@
                     </div>
                     <div class="w-full max-lg:h-64  tablet:h-96 my-3"><img src="{{post.profile_image.url}}" class="w-full h-full  object-cover object-right-top rounded-xl" alt=""></div>
                     <!-- litle intrroduction about the text -->
-                   {{post.content|safe}}
+                   <div>
+                        {{post.content|safe}}
+                   </div>
                 </article>
                 <hr>
                 <!-- this section is different for the for the article blog it's the reason to why it's outside the article block -->
+                <form method="POST" action='{% url "core:details" post.slug post.pid %}' class="my-3">
+                    {% csrf_token %}
+                    {% if request.user.is_authenticated %}
+                        <div class="border  rounded  flex justify-between items-center p-2">
+                            <p class="basis-4/5">
+                                <input class="border-none outline-none" name="content" placeholder=" Comment as {{request.user.username|title}}">
+                            </p>
+                            <button type="submit" class="p-1  rounded bg-purple-500 text-white hover:bg-purple-300 hover:text-gray-400">Comment</button> 
+                        </div>
+                    {% else %}
+                        <p>
+                            <input type="email" name="email" required placeholder="  Your email">
+                        </p>
+                        <p>
+                            <input type="text" name="name" required placeholder="  Your name">
+                        </p>
+                        <p>
+                            <textarea name="content" id="content_id" rows="5" placeholder="  comment"></textarea>
+                        </p>
+                        <button type="submit" class="p-1  rounded bg-purple-500 text-white hover:bg-purple-300 hover:text-gray-400">Comment</button> 
+                    {% endif %}
+                </form>
+                <!-- this div here is the footer part of the main section it contain comment privacy policy and link of social media
+                    we'll design it using tailwind css 'tailwind with flexbox' 
+                -->
+                <div class="">
+                  <div class="flex gap-3">
+                    <div data-btn-slide class="">
+                        <button type="text" class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >{{comments.count}} comment</button>
+                        <button type="text" class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >themfisher</button>
+                        <button type="text" class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" ><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" class="inline-block h-3 w-3" alt=""> discuss prvacy</button>
+                    
+                        <div class="descrpiton mt-2  hidden max-h-72 overflow-auto ">
+                            {% if comments %}
+                                {% for comment in comments %}
+                                
+                                <div class="max-lg:text-xs border shadow rounded-xl mb-3 p-1 w-[50%]">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-12 ">
+                                            <img class=" rounded-full h-full w-full object-cover" src="{{request.user.profile_image.url|default:"no image"}}">
+                                        </div>
+                                        <div class="">
+                                           <div class="flex gap-4">
+                                            <p class="font-bold">{{post.author.user}}</p>
+                                            <p>{{comment.comment_date|timesince}}</p>
+                                           </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="relative ml-14">
+                                        <!--content of the comment-->
+                                        
+                                            {{comment.content|safe}}
+                                        
+                                        <div class="">
+                                            <button class="bg-gray-300 rounded-xl p-1 w-20 hover:bg-gray-300">Like 12</button>
+                                            <button class="bg-gray-300 rounded-xl p-1 w-20 hover:bg-gray-300">Dislike 1</button>
+                                            <button class="bg-gray-300 rounded-xl p-1 w-20 hover:bg-gray-300">reply 30</button>
+                        
+                                        </div>
+                                        <!--Comment reply-->
+                                        <div class="mt-3 border shadow rounded-xl p-2 hidden">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-12 h-12 ">
+                                                    <img class=" rounded-full h-full w-full object-cover" src="{% static "assets/images/3.jpeg" %}">
+                                                </div>
+                                                <div class="">
+                                                   <div class="flex gap-4">
+                                                    <p class="font-bold">{{comment.name}}</p>
+                                                    <p>{{comment.comment_date|timesince}}</p>
+                                                   </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="ml-14 relative">
+                                                <!--content of the comment-->
+                                                <p>
+                                                    <span class="font-bold">Franck Detagne</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi dolorem porro labore eos earum omnis autem esse ducimus est 
+                                                    velit amet,
+                                                     quis impedit rem officiis ipsam nam veniam! Voluptate, quisquam!
+                                                </p>
+                                                <div class="">
+                                                    <button class="bg-gray-100 rounded-xl p-1 w-20 hover:bg-gray-200">Like 12</button>
+                                                    <button class="bg-gray-100 rounded-xl p-1 w-20 hover:bg-gray-200">Dislike 1</button>
+                                                    <button class="bg-gray-100 rounded-xl p-1 w-20 hover:bg-gray-200">reply 30</button>
+                                                    
+                                                </div>
+                                               </div>
+                                            
+                                    
+                                    
+                                        </div>
+                                       </div>
+                                    
+                            
+                            
+                                </div>
+                                
+                                {% endfor %}
+                            
+                            {% endif %}
+                        </div>
+                        <div class="descrpiton bg-purple-300 mt-0 p-4 hidden">
+                            <h4 class="text-black font-bold text-sm">Add a title here 2</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt alias maxime aperiam soluta, 
+                                molestiae aliquam illo vel? Eos, 
+                                tenetur velit minus deleniti rem quam eaque nihil id? Reprehenderit, enim. Consectetur.
+                            </p>
+                        </div>
+                        <div class="descrpiton bg-purple-300 mt-0 p-4 hidden">
+                            <h4 class="text-black font-bold text-sm">Add a title here 3</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt alias maxime aperiam soluta, 
+                                molestiae aliquam illo vel? Eos, 
+                                tenetur velit minus deleniti rem quam eaque nihil id? Reprehenderit, enim. Consectetur.
+                            </p>
+                        </div>
+                    </div>
+                    
+                 
+                  </div>
+                 {% comment %}
+                     <div class="flex justify-between ">
+                    <div class="flex gap-10" >
+                        <button class="block "><img class="h-5 w-5 inline" src="{% static 'assets/images/angle-small-down.png' %}" alt=""> favorite</button>
+                        <button class="block "><img class="h-5 w-5 inline" src="{% static 'assets/images/face.png' %}" alt=""> facebook</button>
+                        <button class="block "><img class="h-5 w-5 inline" src="{% static 'assets/images/youtube.png' %}" alt=""> twiter</button>
+                        
+                    </div>
+                    <div>
+                        Sort by <span class="inline-block h-12 w-6"><a href="#"><img class="inline-block" src="{% static 'assets/images/angle-small-down.png' %}" alt="social media"></a></span>
+    
+                    </div>
+                  </div>
+                 {% endcomment %}
+                </div>
                 <section>
                         <div class="flex justify-between mt-4 items-center text-center">
                             <div class="h-px w-1/3 bg-gray-500"></div>
@@ -42,7 +181,7 @@
                             <button title="share the post" class="inline-block h-12 w-6 "><a href=""><img class="inline-block" src="{% static 'assets/images/fi-rr-share.svg' %}" alt="social media"></a></button>
                         </div>
                         <article class="">
-                            <h1 class="my-6 text-2xl font-bold"><span class="bg-purple-600 p-1 text-white text-2xl font-bold">Recently</span> Posted</h1>
+                            <h1 class="my-6 text-2xl font-bold"><span class="bg-purple-600 p-1 text-white text-2xl font-bold">Similar</span> Post</h1>
                             <div class="flex flex-wrap  lg:flex-nowrap gap-3 justify-between">
                                 <article class="max-lg:shadow shadow-purple-300 inline-flex h-auto  max-md:text-xs  flex-col  mb-5 shadow  p-5 rounded">
                                     <p class="btn-style order-2 my-1">Travel</p>
@@ -66,7 +205,7 @@
                             
                                 <article class="max-lg:shadow shadow-purple-300 inline-flex  max-md:text-xs  flex-col  mb-5 shadow  p-5 rounded">
                                     <p class="btn-style order-2 my-1">Travel</p>
-                                    <h2 class="text-[1.1rem] font-bold order-3">Set the video play back style with Javascript</h2>
+                                    <h2 class="text-sm font-bold order-3">Set the video play back style with Javascript</h2>
                                     <div class="max-lg:hidden self-center w-full h-40 mb-2 order-1"><img class="rounded-xl w-full h-full object-cover object-center " src="{% static 'assets/images/11.jpg' %}" alt="banner image 1"></div>
                                     <div data-title="about-author" class="order-4" >
                                         <div class="flex gap-1 items-center my-1">
@@ -85,102 +224,14 @@
                                 </article>
                             </div>
                         </article>
-                </section>
+                 </section>
+       
+                
                 <!-- this div here is the footer part of the main section it contain comment privacy policy and link of social media
                     we'll design it using tailwind css 'tailwind with flexbox' 
                 -->
                 <div class="">
-                  <div class="flex gap-3">
-                    <div data-btn-slide class="">
-                        <button class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >0 comment</button>
-                        <button class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >themfisher</button>
-                        <button class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" ><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" class="inline-block h-3 w-3" alt=""> discuss prvacy</button>
-                    
-                        <div class="descrpiton mt-2  hidden">
-                            <div class="max-lg:text-xs border shadow rounded-xl mb-3 p-1">
-                                <div class="flex items-center gap-3">
-                                    <div class="h-12 ">
-                                        <img class=" rounded-full h-full w-full object-cover" src="{% static "assets/images/3.jpeg" %}">
-                                    </div>
-                                    <div class="">
-                                       <div class="flex gap-4">
-                                        <p class="font-bold">Franck Detagne</p>
-                                        <p>20h ago</p>
-                                       </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="comment ml-14">
-                                    <!--content of the comment-->
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi dolorem porro labore eos earum omnis autem esse ducimus est 
-                                        velit amet,
-                                         quis impedit rem officiis ipsam nam veniam! Voluptate, quisquam!
-                                    </p>
-                                    <div class="">
-                                        <button class="bg-gray-500 rounded-xl p-1 w-20 hover:bg-gray-300">Like 12</button>
-                                        <button class="bg-gray-500 rounded-xl p-1 w-20 hover:bg-gray-300">Dislike 1</button>
-                                        <button class="bg-gray-500 rounded-xl p-1 w-20 hover:bg-gray-300">reply 30</button>
-                    
-                                    </div>
-                                    <!--Comment reply-->
-                                    <div class="mt-3 border shadow rounded-xl p-2">
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-12 h-12 ">
-                                                <img class=" rounded-full h-full w-full object-cover" src="{% static "assets/images/3.jpeg" %}">
-                                            </div>
-                                            <div class="">
-                                               <div class="flex gap-4">
-                                                <p class="font-bold">Mr tech</p>
-                                                <p>20h ago</p>
-                                               </div>
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="ml-14 relative">
-                                            <!--content of the comment-->
-                                            <p>
-                                                <span class="font-bold">Franck Detagne</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi dolorem porro labore eos earum omnis autem esse ducimus est 
-                                                velit amet,
-                                                 quis impedit rem officiis ipsam nam veniam! Voluptate, quisquam!
-                                            </p>
-                                            <div class="">
-                                                <button class="bg-gray-100 rounded-xl p-1 w-20 hover:bg-gray-200">Like 12</button>
-                                                <button class="bg-gray-100 rounded-xl p-1 w-20 hover:bg-gray-200">Dislike 1</button>
-                                                <button class="bg-gray-100 rounded-xl p-1 w-20 hover:bg-gray-200">reply 30</button>
-                                                
-                                            </div>
-                                           </div>
-                                        
-                                
-                                
-                                    </div>
-                                   </div>
-                                
-                        
-                        
-                            </div>
-                        </div>
-                        <div class="descrpiton bg-purple-300 mt-0 p-4 hidden">
-                            <h4 class="text-black font-bold text-sm">Add a title here 2</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt alias maxime aperiam soluta, 
-                                molestiae aliquam illo vel? Eos, 
-                                tenetur velit minus deleniti rem quam eaque nihil id? Reprehenderit, enim. Consectetur.
-                            </p>
-                        </div>
-                        <div class="descrpiton bg-purple-300 mt-0 p-4 hidden">
-                            <h4 class="text-black font-bold text-sm">Add a title here 3</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt alias maxime aperiam soluta, 
-                                molestiae aliquam illo vel? Eos, 
-                                tenetur velit minus deleniti rem quam eaque nihil id? Reprehenderit, enim. Consectetur.
-                            </p>
-                        </div>
-                    </div>
-                    
                  
-                  </div>
                   <div class="flex justify-between">
                     <div class="flex gap-10" >
                         <button class="block "><img class="h-5 w-5 inline" src="{% static 'assets/images/angle-small-down.png' %}" alt=""> favorite</button>
@@ -194,7 +245,7 @@
                     </div>
                   </div>
                 </div>
-         </section>
+        </section>
          {% include "partials/aside.html" %}
 
     </div>

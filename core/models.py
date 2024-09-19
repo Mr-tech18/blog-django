@@ -98,3 +98,17 @@ class Post(models.Model):
     def get_post_image(self):
         return mark_safe(f"<img src='{self.profile_image.url}' width='50px' height='50px'/>")
          
+class Comment(models.Model):
+    post=models.ForeignKey(Post,on_delete=models.CASCADE)
+    name=models.CharField(max_length=90,null=False,blank=True)
+    email=models.EmailField(null=False,blank=True)
+    content=models.TextField(null=True,blank=True)
+    status=models.BooleanField(default=True)
+    comment_date=models.DateTimeField(auto_now_add=True)
+
+
+    class Meta:
+        ordering=['-comment_date']
+    
+    def __str__(self):
+        return f'{self.content} by {self.name}'
