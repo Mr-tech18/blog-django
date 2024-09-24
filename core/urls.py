@@ -10,4 +10,7 @@ urlpatterns = [
     path('contact/',views.contact,name="contact"),
     path('category/',views.all_category,name="categories"),
     path('category/<cid>/',views.category_posts,name="posts_per_category"),
+
+    #ajax
+    path('ajax_comment/<post_id>/',views.ajax_comment,name="ajax_comment"),
 ]

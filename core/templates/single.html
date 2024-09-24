@@ -3,7 +3,7 @@
 
 {% block title %}{{post.title}}{% endblock title %}
 {% block content %}
-<main class="relative top-20">
+<main class="relative top-16">
     <!-- single blog post section -->
     <div class="lg:px-32 lg:py-5 p-5   tablet:flex gap-4">
         <section class="xl:basis-2/3 max-tablet:flex-grow  ">
@@ -29,14 +29,14 @@
                 </article>
                 <hr>
                 <!-- this section is different for the for the article blog it's the reason to why it's outside the article block -->
-                <form method="POST" action='{% url "core:details" post.slug post.pid %}' class="my-3">
+                <form method="POST" id='myForm' action='{% url "core:ajax_comment" post.pid %}' class="my-3">
                     {% csrf_token %}
                     {% if request.user.is_authenticated %}
                         <div class="border  rounded  flex justify-between items-center p-2">
                             <p class="basis-4/5">
                                 <input class="border-none outline-none" name="content" placeholder=" Comment as {{request.user.username|title}}">
                             </p>
-                            <button type="submit" class="p-1  rounded bg-purple-500 text-white hover:bg-purple-300 hover:text-gray-400">Comment</button> 
+                            <button type="submit" id='btnSubmit1' class="p-1  rounded bg-purple-500 text-white hover:bg-purple-300 hover:text-gray-400">Comment</button> 
                         </div>
                     {% else %}
                         <p>
@@ -48,7 +48,7 @@
                         <p>
                             <textarea name="content" id="content_id" rows="5" placeholder="  comment"></textarea>
                         </p>
-                        <button type="submit" class="p-1  rounded bg-purple-500 text-white hover:bg-purple-300 hover:text-gray-400">Comment</button> 
+                        <button type="submit" id='btnSubmit1' class="p-1  rounded bg-purple-500 text-white hover:bg-purple-300 hover:text-gray-400">Comment</button> 
                     {% endif %}
                 </form>
                 <!-- this div here is the footer part of the main section it contain comment privacy policy and link of social media

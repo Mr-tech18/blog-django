@@ -30,38 +30,9 @@ def index2(request):
 
 def post_details(request, post_id, slug):
     post = get_object_or_404(Post, pid=post_id)
-    comment=None
-    if request.method == "POST":
-            if request.user.is_authenticated:
-                print(f"User is authenticated: {request.user.username}")  # Debug print
-                # Use authenticated user's data
-                name = request.user.username
-                email = request.user.email
-            else:
-                # Use the form's data for anonymous users
-                print("Anonymous user!")  # Debug print
-                name = request.POST['name']
-                email = request.POST['email']
-            
-            content =request.POST['content']
-            
-            # Save the comment
-            comment=Comment.objects.create(
-                name=name,
-                email=email,
-                content=content,
-                post=post
-            )
-            print("Comment saved!")  # Debug print
-            return redirect("core:details", post.slug, post.pid)
-        
 
-    comments = Comment.objects.filter(post=post)
-    context = {
-        'post': post,
-        'comments': comments,
-        "comment":comment
-      
+    context={
+        "post":post
     }
 
     return render(request, 'single.html', context)
@@ -88,3 +59,40 @@ def category_posts(request,cid):
     }
 
     return render(request,"single_post_category.html",context)
+
+
+def ajax_comment(request,post_id):
+    post = get_object_or_404(Post, pid=post_id)
+    comment=None
+    if request.method == "POST":
+         if request.user.is_authenticated:
+             print(f"User is authenticated: {request.user.username}")  # Debug print
+             # Use authenticated user's data
+             name = request.user.username
+             email = request.user.email
+         else:
+             # Use the form's data for anonymous users
+             print("Anonymous user!")  # Debug print
+             name = request.POST['name']
+             email = request.POST['email']
+         
+         content =request.POST['content']
+         
+         # Save the comment
+         comment=Comment.objects.create(
+             name=name,
+             email=email,
+             content=content,
+             post=post
+         )
+         print("Comment saved!")  # Debug print
+         return redirect("core:details", post.slug, post.pid)
+        
+
+    comments = Comment.objects.filter(post=post)
+    context = {
+        'post': post,
+        'comments': comments,
+        "comment":comment
+      
+    }
