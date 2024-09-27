@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Post,Author,Category,Comment
 from .forms import CommentForm
+from django.http import JsonResponse
 # Create your views here.
 def home(request):
     posts=Post.published.all()
@@ -30,9 +31,11 @@ def index2(request):
 
 def post_details(request, post_id, slug):
     post = get_object_or_404(Post, pid=post_id)
+    comments= Comment.objects.filter(post=post)
 
     context={
-        "post":post
+        "post":post,
+        "comments":comments,
     }
 
     return render(request, 'single.html', context)
@@ -85,14 +88,17 @@ def ajax_comment(request,post_id):
              content=content,
              post=post
          )
-         print("Comment saved!")  # Debug print
-         return redirect("core:details", post.slug, post.pid)
-        
 
-    comments = Comment.objects.filter(post=post)
+    comments_count = Comment.objects.filter(post=post).count()
     context = {
-        'post': post,
-        'comments': comments,
-        "comment":comment
-      
+        'comments_count':comments_count,
+        'content':request.POST['content'],
+        'user':comment.name,
+
     }
+    
+    return JsonResponse(
+        {
+            "context":context
+        }
+    )

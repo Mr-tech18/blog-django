@@ -163,11 +163,14 @@ document.addEventListener('DOMContentLoaded',()=>{
     
     
     function displaySubList(){
+        let form=document.getElementById('myForm');
         let subliLists=document.querySelectorAll('.sub-list');
         let subliListContainers=document.querySelectorAll('.sublist-container');
     
         //let subliListContainerArray=Array.from(subliListContainer);
-    
+        form.addEventListener('click',(e)=>{
+            subliLists[0].classList.remove('hidden');
+        });
         subliListContainers.forEach((item,index)=>{
             item.addEventListener('mouseover',()=>{
                 subliLists[index].classList.remove('hidden');
@@ -195,7 +198,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     function popularPost(){
         let btnConatinercontainer=document.querySelector('[data-btn-container]');
         const ul=document.querySelector('[data-slide-container]');
-        console.log("yo");
+        console.log("top");
         if(ul){
             const liElements=ul.children; 
             slider(ul,liElements,2,1,btnConatinercontainer);

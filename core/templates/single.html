@@ -29,14 +29,14 @@
                 </article>
                 <hr>
                 <!-- this section is different for the for the article blog it's the reason to why it's outside the article block -->
-                <form method="POST" id='myForm' action='{% url "core:ajax_comment" post.pid %}' class="my-3">
+                <form method="POST"  id='myForm' action='{% url "core:ajax_comment" post.pid %}' class="my-3 lg:w-[80%]">
                     {% csrf_token %}
                     {% if request.user.is_authenticated %}
-                        <div class="border  rounded  flex justify-between items-center p-2">
+                        <div class="border  rounded  flex  items-center p-2 gap-1 justify-center">
                             <p class="basis-4/5">
-                                <input class="border-none outline-none" name="content" placeholder=" Comment as {{request.user.username|title}}">
+                                <textarea rows="2" id="comment_input" class="border-none outline-none w-[100%]" name="content" placeholder=" Comment as {{request.user.username|title}}"></textarea>
                             </p>
-                            <button type="submit" id='btnSubmit1' class="p-1  rounded bg-purple-500 text-white hover:bg-purple-300 hover:text-gray-400">Comment</button> 
+                            <button type="submit" id='btnSubmit1' class="basis-1/5 p-1  rounded bg-purple-500 text-white hover:bg-purple-300 hover:text-gray-400">Comment</button> 
                         </div>
                     {% else %}
                         <p>
@@ -57,23 +57,24 @@
                 <div class="">
                   <div class="flex gap-3">
                     <div data-btn-slide class="">
-                        <button type="text" class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >{{comments.count}} comment</button>
-                        <button type="text" class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >themfisher</button>
-                        <button type="text" class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" ><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" class="inline-block h-3 w-3" alt=""> discuss prvacy</button>
-                    
-                        <div class="descrpiton mt-2  hidden max-h-72 overflow-auto ">
+                       <div id="btn_container">
+                            <button type="button" class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >( {{comments.count}} ) comment{{comments.count|pluralize}}</button>
+                            <button type="button" class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >themfisher</button>
+                            <button type="button" class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" ><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" class="inline-block h-3 w-3" alt=""> discuss prvacy</button>
+                       </div>
+                        <div id="comment_container" class="descrpiton mt-2  hidden max-h-72 overflow-auto  break-words">
                             {% if comments %}
                                 {% for comment in comments %}
                                 
-                                <div class="max-lg:text-xs border shadow rounded-xl mb-3 p-1 w-[50%]">
+                                <div class="max-lg:text-xs border shadow rounded-xl mb-3 p-1 ">
                                     <div class="flex items-center gap-3">
                                         <div class="h-12 ">
-                                            <img class=" rounded-full h-full w-full object-cover" src="{{request.user.profile_image.url|default:"no image"}}">
+                                            <img class=" rounded-full h-full w-full object-cover" src="{{request.user.profile_image.url}}">
                                         </div>
                                         <div class="">
                                            <div class="flex gap-4">
-                                            <p class="font-bold">{{post.author.user}}</p>
-                                            <p>{{comment.comment_date|timesince}}</p>
+                                            <p class="font-bold">{{comment.name}}</p>
+                                            <p>{{comment.comment_date|timesince}} ago </p>
                                            </div>
                                         </div>
                                         
@@ -81,16 +82,18 @@
                                     <div class="relative ml-14">
                                         <!--content of the comment-->
                                         
-                                            {{comment.content|safe}}
-                                        
                                         <div class="">
+                                            {{comment.content|safe}}
+                                        </div>
+                                        
+                                        <div class="mt-2">
                                             <button class="bg-gray-300 rounded-xl p-1 w-20 hover:bg-gray-300">Like 12</button>
                                             <button class="bg-gray-300 rounded-xl p-1 w-20 hover:bg-gray-300">Dislike 1</button>
                                             <button class="bg-gray-300 rounded-xl p-1 w-20 hover:bg-gray-300">reply 30</button>
                         
                                         </div>
                                         <!--Comment reply-->
-                                        <div class="mt-3 border shadow rounded-xl p-2 hidden">
+                                        {% comment %} <div class="mt-3 border shadow rounded-xl p-2 hidden">
                                             <div class="flex items-center gap-3">
                                                 <div class="w-12 h-12 ">
                                                     <img class=" rounded-full h-full w-full object-cover" src="{% static "assets/images/3.jpeg" %}">
@@ -110,7 +113,7 @@
                                                     velit amet,
                                                      quis impedit rem officiis ipsam nam veniam! Voluptate, quisquam!
                                                 </p>
-                                                <div class="">
+                                                <div class="mt-2">
                                                     <button class="bg-gray-100 rounded-xl p-1 w-20 hover:bg-gray-200">Like 12</button>
                                                     <button class="bg-gray-100 rounded-xl p-1 w-20 hover:bg-gray-200">Dislike 1</button>
                                                     <button class="bg-gray-100 rounded-xl p-1 w-20 hover:bg-gray-200">reply 30</button>
@@ -120,7 +123,7 @@
                                             
                                     
                                     
-                                        </div>
+                                        </div> {% endcomment %}
                                        </div>
                                     
                             
