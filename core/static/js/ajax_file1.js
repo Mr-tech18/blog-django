@@ -30,16 +30,20 @@ document.addEventListener('DOMContentLoaded',()=>{
                         
                         let data=JSON.parse(this.responseText);
                         let comment_container=document.getElementById('comment_block');
-                        let btnContainer=document.getElementById('btn_container');
-                        let firstChildr=btnContainer.firstElementChild;
+                        let btnContainer=document.getElementById('btn_btn_comment');
+                        //let firstChildr=btnContainer.firstElementChild;
                         let text=null;
                         if (data.context.comments_count>1){
-                            text=document.createTextNode(`( ${data.context.comments_count} ) comments`)
+                            text=document.createTextNode(`( ${data.context.comments_count} )`)
                         }
                         else{
-                            text=document.createTextNode(`( ${data.context.comments_count} ) comment`)
+                            text=document.createTextNode(`( ${data.context.comments_count} )`)
                         }
-                        firstChildr.replaceChild(text,btnContainer.firstElementChild.firstChild);
+                        let span=document.createElement('span');
+                        
+                        span.appendChild(text);
+                        span.setAttribute('class',"font-bold");
+                        btnContainer.replaceChild(span,btnContainer.firstElementChild);
                        
                         //displaying the comment section dynamically
 
@@ -74,7 +78,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                         tempDiv.innerHTML = _html;
                         
                         // Prepend the new element to the container
-                        document.getElementById('comment_container').prepend(tempDiv.firstChild);
+                        document.getElementById('comment_container').insertBefore(tempDiv.firstChild,myForm.nextElementSibling);
                         
                         myForm.reset();
 

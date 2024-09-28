@@ -9,7 +9,7 @@
         <section class="xl:basis-2/3 max-tablet:flex-grow  ">
             <!-- the main articles -->
                 <h1 class="my-6 text-black font-bold text-2xl text-start capitalize">{{post.title}} </h1>
-                <article class="text-xl text-black ">
+                <article class="text-xl text-black mb-4">
                     
                     <!-- about the author blog code -->
                     <div class="flex gap-1 items-center my-4">
@@ -28,41 +28,57 @@
                    </div>
                 </article>
                 <hr>
+                <div class="bg-gray-200 shadow py-3 rounded flex justify-between items-center text-xl">
+                    <button type="button" class="inline px-2 text-center mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >
+                        <span class="material-symbols-outlined">thumb_up</span> 
+                    </button>
+                    <button type="button" class="inline px-2 text-center mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >
+                        <span class="material-symbols-outlined">
+                            thumb_down
+                            </span>
+                    </button>
+                    <button type="button" class="inline px-2 text-center mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >
+                        <span class="material-symbols-outlined">
+                            share
+                            </span>
+                    </button>
+                    <button type="button" id="btn_btn_comment" class="inline-flex gap-1 shown-description  text-center mr-4 " >
+                        <span class="font bold">{{comments.count}}</span>
+                        <span class="material-symbols-outlined">comment</span>
+                    </button>
+                </div>
                 <!-- this section is different for the for the article blog it's the reason to why it's outside the article block -->
-                <form method="POST"  id='myForm' action='{% url "core:ajax_comment" post.pid %}' class="my-3 lg:w-[80%]">
-                    {% csrf_token %}
-                    {% if request.user.is_authenticated %}
-                        <div class="border  rounded  flex  items-center p-2 gap-1 justify-center">
-                            <p class="basis-4/5">
-                                <textarea rows="2" id="comment_input" class="border-none outline-none w-[100%]" name="content" placeholder=" Comment as {{request.user.username|title}}"></textarea>
-                            </p>
-                            <button type="submit" id='btnSubmit1' class="basis-1/5 p-1  rounded bg-purple-500 text-white hover:bg-purple-300 hover:text-gray-400">Comment</button> 
-                        </div>
-                    {% else %}
-                        <p>
-                            <input type="email" name="email" required placeholder="  Your email">
-                        </p>
-                        <p>
-                            <input type="text" name="name" required placeholder="  Your name">
-                        </p>
-                        <p>
-                            <textarea name="content" id="content_id" rows="5" placeholder="  comment"></textarea>
-                        </p>
-                        <button type="submit" id='btnSubmit1' class="p-1  rounded bg-purple-500 text-white hover:bg-purple-300 hover:text-gray-400">Comment</button> 
-                    {% endif %}
-                </form>
+                
                 <!-- this div here is the footer part of the main section it contain comment privacy policy and link of social media
                     we'll design it using tailwind css 'tailwind with flexbox' 
                 -->
                 <div class="">
                   <div class="flex gap-3">
-                    <div data-btn-slide class="">
-                       <div id="btn_container">
-                            <button type="button" class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >( {{comments.count}} ) comment{{comments.count|pluralize}}</button>
-                            <button type="button" class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >themfisher</button>
-                            <button type="button" class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" ><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" class="inline-block h-3 w-3" alt=""> discuss prvacy</button>
-                       </div>
+                    <div data-btn-slide class="w-[100%]">
+                       
                         <div id="comment_container" class="descrpiton mt-2  hidden max-h-72 overflow-auto  break-words">
+                            <form method="POST"  id='myForm' action='{% url "core:ajax_comment" post.pid %}' class="my-3 lg:w-[80%]">
+                                {% csrf_token %}
+                                {% if request.user.is_authenticated %}
+                                    <div class="border  rounded  flex  items-center p-2 gap-1 justify-center">
+                                        <p class="basis-4/5">
+                                            <textarea rows="2" id="comment_input" class="border-none outline-none w-[100%]" name="content" placeholder=" Comment as {{request.user.username|title}}"></textarea>
+                                        </p>
+                                        <button type="submit" id='btnSubmit1' class="basis-1/5 p-1  rounded bg-purple-500 text-white hover:bg-purple-300 hover:text-gray-400">Comment</button> 
+                                    </div>
+                                {% else %}
+                                    <p>
+                                        <input type="email" name="email" required placeholder="  Your email">
+                                    </p>
+                                    <p>
+                                        <input type="text" name="name" required placeholder="  Your name">
+                                    </p>
+                                    <p>
+                                        <textarea name="content" id="content_id" rows="5" placeholder="  comment"></textarea>
+                                    </p>
+                                    <button type="submit" id='btnSubmit1' class="p-1  rounded bg-purple-500 text-white hover:bg-purple-300 hover:text-gray-400">Comment</button> 
+                                {% endif %}
+                            </form>
                             {% if comments %}
                                 {% for comment in comments %}
                                 
@@ -129,7 +145,8 @@
                             
                             
                                 </div>
-                                
+                                {% empty %}
+                                <p class="text-gray-500"> Be the first to comment </p>
                                 {% endfor %}
                             
                             {% endif %}
@@ -152,7 +169,6 @@
                         </div>
                     </div>
                     
-                 
                   </div>
                  {% comment %}
                      <div class="flex justify-between ">
@@ -169,6 +185,11 @@
                   </div>
                  {% endcomment %}
                 </div>
+                <div id="btn_container">
+                    <button type="button" class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" >themfisher</button>
+                    <button type="button" class="shown-description inline px-2 text-center pb-3 mr-4 hover:bg-purple-100 hover:rounded-t focus:bg-purple-300" ><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" class="inline-block h-3 w-3" alt=""> discuss prvacy</button>
+               </div>
+             
                 <section>
                         <div class="flex justify-between mt-4 items-center text-center">
                             <div class="h-px w-1/3 bg-gray-500"></div>

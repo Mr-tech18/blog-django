@@ -158,19 +158,26 @@ document.addEventListener('DOMContentLoaded',()=>{
         let menu=document.querySelectorAll('.descrpiton');
         openCloseElement(menu,btns);
     }
+    /* function displayComment(){
+        let btn=document.getElementById('btnSubmit1');
+        
+        btn.addEventListener('click',(e)=>{
+            let btns=document.querySelectorAll('.shown-description')[0].click();
+        })
+        
+    } */
     openCloseDescription();
     openCloseFaq();
+    //displayComment();
     
     
     function displaySubList(){
-        let form=document.getElementById('myForm');
+        
         let subliLists=document.querySelectorAll('.sub-list');
         let subliListContainers=document.querySelectorAll('.sublist-container');
     
         //let subliListContainerArray=Array.from(subliListContainer);
-        form.addEventListener('click',(e)=>{
-            subliLists[0].classList.remove('hidden');
-        });
+        
         subliListContainers.forEach((item,index)=>{
             item.addEventListener('mouseover',()=>{
                 subliLists[index].classList.remove('hidden');
