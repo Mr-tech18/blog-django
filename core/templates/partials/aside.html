@@ -16,41 +16,17 @@
     </div>
     <div data-title="Categories" class="mt-5">
         <h2 class="text-2xl"><span class="font-medium text-white bg-purple-600">Categories</span></h2>
-       <div>
+        {% for category in categories %}
+        <div>
             <div data-title="Categories-detail " class="flex justify-between my-3">
-                <h3>Lifestyle</h3>
-                <p>04</p>
+                <h3><a class="hover:text-gray-950 text-gray-700" href="{% url "core:posts_per_category" category.cid %}">{{category.title|title}}</a></h3>
+                <p>{{category.post_set.count}}</p>
             </div>
             <hr>
        </div>
-       <div>
-            <div data-title="Categories-detail " class="flex justify-between my-3">
-                <h3>Travel</h3>
-                <p>05</p>
-            </div>
-            <hr>
-       </div>
-       <div>
-            <div data-title="Categories-detail " class="flex justify-between my-3">
-                <h3>Food</h3>
-                <p>09</p>
-            </div>
-            <hr>
-       </div>
-       <div>
-            <div data-title="Categories-detail " class="flex justify-between my-3">
-                <h3>Healtcare</h3>
-                <p>10</p>
-            </div>
-            <hr>
-       </div>
-       <div>
-            <div data-title="Categories-detail " class="flex justify-between my-3">
-                <h3>Technologie</h3>
-                <p>03</p>
-            </div>
-            <hr>
-       </div>
+        
+        {% endfor %}
+       
     </div>
     <div data-title="updates">
         <h3 class="my-6 text-2xl font-bold"><span class="bg-purple-600 p-1 text-white text-2xl font-bold">Today's</span> Updates</h3>

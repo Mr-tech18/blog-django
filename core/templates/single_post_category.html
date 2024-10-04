@@ -4,7 +4,7 @@
 {% block content %}
 <main class="lg:mx-20 m-5 lg:my-10 relative top-16">
     {% if posts %}
-    <h1 class="text-xl font-bold  text-black mb-4">There is no post for <span class="bg-purple-500 text-white p-1">{{category.title}}</span></h1>
+    
     <section class="md:grid-cols-2 grid grid-cols-1 gap-2 text-gray-500 text-xs lg:text-sm">  
         
         
@@ -30,11 +30,11 @@
                     </p>
                 </div>
             </article>
+       
             {% endfor %}
         
     </section>
     {% else %}
-
     <h1 class="text-xl font-bold  text-black mb-4">There is no post for <span class="bg-purple-500 text-white p-1">{{category.title}}</span></h1>
     {% endif %}
 </main>

@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                     menu[index].classList.add('hidden');
                 }
             })
-        })
+        });
       
      }
     function slider(container,listArray,itemsPerPage,currentPage,btnConatiner){
@@ -180,6 +180,9 @@ document.addEventListener('DOMContentLoaded',()=>{
         
         subliListContainers.forEach((item,index)=>{
             item.addEventListener('mouseover',()=>{
+                subliLists[index].classList.remove('hidden');
+            });
+            item.addEventListener('click',()=>{
                 subliLists[index].classList.remove('hidden');
             });
            
