@@ -32,10 +32,18 @@ def index2(request):
 def post_details(request, post_id, slug):
     post = get_object_or_404(Post, pid=post_id)
     comments= Comment.objects.filter(post=post)
-
+    msg=False
+    
+    if request.method=="GET":
+        if request.user.is_authenticated:
+            user=request.user
+            if post.likes.filter(id=user.id).exists():
+                msg=True
+                print(msg)
     context={
         "post":post,
         "comments":comments,
+        "msg":msg
     }
 
     return render(request, 'single.html', context)
@@ -43,8 +51,6 @@ def post_details(request, post_id, slug):
 def contact(request):
     return render(request,"contact.html")
 
-def all_category(request):
-    render(request,"category.html")
 
 def category_posts(request,cid):
     """
@@ -102,3 +108,50 @@ def ajax_comment(request,post_id):
             "context":context
         }
     )
+
+def author_views(request,auth_id):
+    author=get_object_or_404(Author,aid=auth_id)
+    posts=Post.published.filter(author__aid=author.aid)
+    context={
+        'posts':posts,
+        'author':author,
+    }
+
+    return render(request,"about_authors.html",context)
+
+def all_category(request):
+    categories=Category.objects.all()
+
+    return render(request,'category.html',{"categories":categories})
+
+
+def about_us(request):
+    return render(request,'about_us.html')
+
+
+
+
+def post_reaction_views_ajax(request,post_id):
+    post=get_object_or_404(Post,pid=post_id)
+
+    msg=False
+    
+    if request.method=="POST":
+
+        if request.user.is_authenticated:
+            user=request.user
+            if post.likes.filter(id=user.id).exists():
+                post.likes.remove(user)
+                msg=False
+                print(msg)
+            else:
+                post.likes.add(user)
+                msg=True
+    
+    context={
+        'like_number':post.likes.count(),
+        "msg":msg,
+    }
+    return JsonResponse({
+        'context':context,
+    })

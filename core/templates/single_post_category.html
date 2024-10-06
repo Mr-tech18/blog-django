@@ -4,15 +4,16 @@
 {% block content %}
 <main class="lg:mx-20 m-5 lg:my-10 relative top-16">
     {% if posts %}
-    
+    <h1 class="font-bold text-2xl uppercase my-2 ">category: <span class="bg-purple-600 text-white">{{category.title}}</h1>
+    <h1 class="text-gray-500 my-2 ">We found "{{posts.count}}"" post{{posts.count|pluralize}} for this category</h1>
     <section class="md:grid-cols-2 grid grid-cols-1 gap-2 text-gray-500 text-xs lg:text-sm">  
         
-        
+            
             {% for post in posts %}
             
-            <article class="rounded-xl flex gap-2 items-center p-2 flex-wrap lg:flex-nowrap shadow shadow-purple-400 max-md:p-2">  
-                <div class="max-lg:hidden w-40"><img src="{{post.profile_image.url}}" alt="main image for the search of travel"></div>
-                <div class="self-center">
+            <article class="rounded-xl lg:flex gap-2 items-center p-2  shadow shadow-purple-400 max-md:p-2">  
+                <div class="max-lg:hidden w-2/5"><img src="{{post.profile_image.url}}" alt="main image for the search of travel"></div>
+                <div class="self-center w-3/5">
                     <p class="tag">Travel</p>
                     <h1 class="lg:text-sm text-black font-bold capitalize"> {{post.title}}</h1>
                     <div class="flex gap-1 items-center my-2">

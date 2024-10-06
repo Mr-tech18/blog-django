@@ -15,7 +15,7 @@ class PostAdmin(admin.ModelAdmin):
                 'classes':['collapse',],
                 'fields':('title','author','status','category',
                           'slug','description','publish','reading_time',
-                          'profile_image'
+                          'profile_image','likes'
                           )
             }
         ),
