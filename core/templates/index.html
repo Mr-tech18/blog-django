@@ -19,11 +19,11 @@
                     <div data-title="about-author " >
                         <div class="flex gap-1 items-center my-4">
                             <div class="w-5 h-5"><img class="rounded-full" src="{{post.author.author_image.url}}" alt="author profile image"></div>
-                            <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
+                            <span class="inline-block w-px h-3 bg-slate-500"></span>
                             <h3 class="text-author"><a href="{% url "core:author" post.author.aid %}">{{post.author.user|truncatewords:1}}</a></h3>
-                            <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
+                            <span class="inline-block w-px h-3 bg-slate-500"></span>
                             <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.publish|date:"D,M Y"}}</p>
-                            <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
+                            <span class="inline-block w-px h-3 bg-slate-500"></span>
                             <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.reading_time}} to read</p>
                         </div>
                         <p class="text-[0.75rem] font-semibold">{{post.description|truncatechars:50|safe}}  <a class="text-purple-400 hover:text-purple-500 cursor-pointer" href="{% url "core:details" post.slug post.pid %}" >Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
@@ -46,146 +46,28 @@
         </div>
         <aside class=" mb-5">
             <h1 class="my-6 text-2xl font-bold"><span class="bg-purple-600 p-1 text-white">Popular</span>post</h1>
+            {% popular_post as p_posts %}
               <ul data-slide-container class="relative border-decoration">
+                    {% for post in p_posts %}
                     <li data-slide-items class="mb-4 shadow shadow-[#8f8080] p-1 rounded">
                         <p class="btn-style">Travel</p>
-                        <h2>Trip  to wexes 1</h2>
+                        <h2>{{post.title}}</h2>
                         <div data-title="about-author " >
                             <div class="flex gap-1 items-center my-6">
-                                <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/10.jpeg' %}" alt="author profile image"></div>
+                                <div class="w-5 h-5"><img class="rounded-full" src="{{post.author.author_image.url}}" alt="author profile image"></div>
                                 <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <h3 class="text-author"><a href="../../html/blog/about_authors.html">Joe Doe</a></h3>
+                                <h3 class="text-author"><a href="{% url "core:author" post.author.aid %}">{{post.author.user}}</a></h3>
                                 <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+                                <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt="">{{post.publish|date:"d M Y"}}</p>
                                 <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+                                <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.reading_time}} to read</p>
                             </div>
-                            <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
-                                rerum! Vitae dolorum maiores dicta iure quae, consectetur labore! 
-                                .<span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
+                            <p class="text-[0.75rem]">{{post.description}}
+                                .<a href="{% url "core:details" post.slug post.pid %}" class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
                             </p>
                         </div>
                     </li>
-                    <li data-slide-items class="mb-4 shadow shadow-[#8f8080] p-1 rounded">
-                        <p class="btn-style">Travel </p>
-                        <h2>Trip  to wexes 2</h2>
-                        <div data-title="about-author " >
-                            <div class="flex gap-1 items-center my-6">
-                                <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/11.jpg' %}" alt="author profile image"></div>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <h3 class="text-author"><a href="../../html/blog/about_authors.html">Joe Doe</a></h3>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
-                            </div>
-                            <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
-                                rerum! Vitae dolorum maiores dicta iure quae, consectetur labore! 
-                                .<span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
-                            </p>
-                        </div>
-                    </li>
-                    <li data-slide-items class="mb-4 shadow shadow-[#8f8080] p-1 rounded">
-                        <p class="btn-style">Travel</p>
-                        <h2>Trip  to wexes 3</h2>
-                        <div data-title="about-author " >
-                            <div class="flex gap-1 items-center my-6">
-                                <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <h3 class="text-author"><a href="../../html/blog/about_authors.html">Joe Doe</a></h3>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
-                            </div>
-                            <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
-                                rerum! Vitae dolorum maiores dicta iure quae, consectetur labore! 
-                                .<span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
-                            </p>
-                        
-                        </div>
-                    </li>
-                    <li data-slide-items class="mb-4 shadow shadow-[#8f8080] p-1 rounded">
-                        <p class="btn-style">Travel</p>
-                        <h2>Trip  to wexes 4</h2>
-                        <div data-title="about-author " >
-                            <div class="flex gap-1 items-center my-6">
-                                <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <h3 class="text-author"><a href="../../html/blog/about_authors.html">Joe Doe</a></h3>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
-                            </div>
-                            <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
-                                rerum! Vitae dolorum maiores dicta iure quae, consectetur labore! 
-                                .<span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
-                            </p>
-                        
-                        </div>
-                    </li>
-                    <li data-slide-items class="mb-4 shadow shadow-[#8f8080] p-1 rounded">
-                        <p class="btn-style">Travel</p>
-                        <h2>Trip  to wexes 5</h2>
-                        <div data-title="about-author " >
-                            <div class="flex gap-1 items-center my-6">
-                                <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <h3 class="text-author"><a href="../../html/blog/about_authors.html">Joe Doe</a></h3>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
-                            </div>
-                            <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
-                                rerum! Vitae dolorum maiores dicta iure quae, consectetur labore! 
-                                .<span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
-                            </p>
-                        
-                        </div>
-                    </li>
-                    <li data-slide-items class="mb-4 shadow shadow-[#8f8080] p-1 rounded">
-                        <p class="btn-style">Travel</p>
-                        <h2>Trip  to wexes 6</h2>
-                        <div data-title="about-author " >
-                            <div class="flex gap-1 items-center my-6">
-                                <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <h3 class="text-author"><a href="../../html/blog/about_authors.html">Joe Doe</a></h3>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
-                            </div>
-                            <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
-                                rerum! Vitae dolorum maiores dicta iure quae, consectetur labore! 
-                                .<span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
-                            </p>
-                        
-                        </div>
-                    </li>
-                    <li data-slide-items class="mb-4 shadow shadow-[#8f8080] p-1 rounded">
-                        <p class="btn-style">Travel</p>
-                        <h2>Trip  to wexes 7</h2>
-                        <div data-title="about-author " >
-                            <div class="flex gap-1 items-center my-6">
-                                <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <h3 class="text-author"><a href="../../html/blog/about_authors.html">Joe Doe</a></h3>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
-                                <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                                <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
-                            </div>
-                            <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
-                                rerum! Vitae dolorum maiores dicta iure quae, consectetur labore! 
-                                .<span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
-                            </p>
-                        
-                        </div>
-                    </li>
-                    
+                    {% endfor %}
                 </ul>
             <div data-btn-container class="pagination">
                 <span class="mr-1 rounded-full inline-block w-[15px] h-2 bg-purple-500"></span>

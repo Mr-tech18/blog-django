@@ -1,7 +1,8 @@
 {% load static %}
-
+{% load blog_tags %}
+{% top_author as t_authors %}
 <ul data-title="author-and-ads">
-    {% for author in authors %}
+    {% for author in t_authors %}
         <li class="flex gap-5 mb-5">
             <div class="h-16 w-16"><img src="{{author.author_image.url}}" class="rounded-full" alt="profile picture of franck detagne"></div>
             <div data-title="author-info">

@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
             document.addEventListener('click',(e)=>{
                 if(document.getElementById('btn_like').contains(e.target)){
+                    let like=true;
                     e.preventDefault();
                     console.log('you clicked...');
                     //-------------------------------------------- ajax code goes down here...
@@ -162,7 +163,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 
                     xhr.send(formData);
                 }
-               
                 
             });
             

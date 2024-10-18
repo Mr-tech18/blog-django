@@ -46,7 +46,8 @@ class Author(models.Model):
     user=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
     status=models.BooleanField(default=True)
     rating=models.CharField(max_length=2,choices=RATING,default=RATING[0][0],null=True,blank=True)
-    bio=models.TextField(null=True,blank=True)
+    description=models.TextField(null=True,blank=True,default="Amazing writer")
+    agency_descript=models.TextField(max_length=300,default='Let the world know what is in your mind')
     author_image=models.ImageField(upload_to=get_user_directory_path,default="./static/assets/images/1.jpg")
     email=models.EmailField()
 
@@ -78,8 +79,8 @@ class Post(models.Model):
     profile_image=models.ImageField(upload_to="post",default="./static/assets/images/2.jpg")
     content=models.TextField(null=True,blank=True)
     status=models.CharField(max_length=2,choices=StatusChoices,default=StatusChoices.DRAFT)
-    likes=models.ManyToManyField(CustomUser,related_name='post_like')
-    dislike=models.ManyToManyField(CustomUser,related_name='post_dislike')
+    likes=models.ManyToManyField(CustomUser,related_name='post_like',blank=True)
+    #dislike=models.ManyToManyField(CustomUser,related_name='post_dislike')
     publish=models.DateTimeField(default=timezone.now)
     created=models.DateTimeField(auto_now_add=True)
     reading_time=models.CharField(max_length=5,default='3 min',null=True)
@@ -100,7 +101,7 @@ class Post(models.Model):
         return mark_safe(f"<img src='{self.profile_image.url}' width='50px' height='50px'/>")
          
 class Comment(models.Model):
-    post=models.ForeignKey(Post,on_delete=models.CASCADE)
+    post=models.ForeignKey(Post,on_delete=models.CASCADE,related_name="comment")
     name=models.CharField(max_length=90,null=False,blank=True)
     email=models.EmailField(null=False,blank=True)
     content=models.TextField(null=True,blank=True)

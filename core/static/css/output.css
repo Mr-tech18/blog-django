@@ -2104,6 +2104,14 @@ input,
     width: auto;
   }
 
+  .lg\:w-2\/5 {
+    width: 40%;
+  }
+
+  .lg\:w-3\/5 {
+    width: 60%;
+  }
+
   .lg\:basis-1\/5 {
     flex-basis: 20%;
   }

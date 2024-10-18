@@ -12,8 +12,8 @@
             {% for post in posts %}
             
             <article class="rounded-xl lg:flex gap-2 items-center p-2  shadow shadow-purple-400 max-md:p-2">  
-                <div class="max-lg:hidden w-2/5"><img src="{{post.profile_image.url}}" alt="main image for the search of travel"></div>
-                <div class="self-center w-3/5">
+                <div class="max-lg:hidden lg:w-2/5"><img src="{{post.profile_image.url}}" alt="main image for the search of travel"></div>
+                <div class="self-center lg:w-3/5">
                     <p class="tag">Travel</p>
                     <h1 class="lg:text-sm text-black font-bold capitalize"> {{post.title}}</h1>
                     <div class="flex gap-1 items-center my-2">

@@ -47,9 +47,11 @@ document.addEventListener('DOMContentLoaded',()=>{
                 const buttonElement=document.createElement('button');
                 buttonElement.textContent=i;
                 buttonElement.className='w-10 border m-1 border-purple-300 rounded p-2 hover:bg-purple-200 text-gray-400 text-xs';
-    
+
                 buttonElement.addEventListener('click',()=>{
+                    
                     currentPage=i;
+                    
                     renderData();
                 });
                 btnConatiner.appendChild(buttonElement);

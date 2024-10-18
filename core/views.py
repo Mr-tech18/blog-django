@@ -1,10 +1,12 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Post,Author,Category,Comment
 from .forms import CommentForm
+from django.db.models import Count
 from django.http import JsonResponse
 # Create your views here.
 def home(request):
     posts=Post.published.all()
+    #p_posts=Post.published.annotate(total_likes=Count('likes')).order_by('-total_likes',"-publish")
     """    num_author=Author.objects.count()
     num_visits=request.session.get("num_visits",0)
     num_visits+=1
@@ -32,8 +34,9 @@ def index2(request):
 def post_details(request, post_id, slug):
     post = get_object_or_404(Post, pid=post_id)
     comments= Comment.objects.filter(post=post)
-    msg=False
     
+    msg=False
+    similar_posts=Post.published.filter(category=post.category).annotate(post_count=Count('likes')).order_by('-post_count','-publish').exclude(pid=post_id)[:5]
     if request.method=="GET":
         if request.user.is_authenticated:
             user=request.user
@@ -43,7 +46,8 @@ def post_details(request, post_id, slug):
     context={
         "post":post,
         "comments":comments,
-        "msg":msg
+        "msg":msg,
+        "similar_posts":similar_posts,
     }
 
     return render(request, 'single.html', context)
