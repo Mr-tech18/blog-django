@@ -1,13 +1,18 @@
 {% extends "partials/base.html" %}
 {% load static %}
 
-{% block title %}User registration{% endblock title %}
+{% block title %}User login{% endblock title %}
 
 {% block content %}
 
 <div class="top-20 relative">
     <form method="post" class="mx-6 lg:mx-96 space-y-2">
-        <h1 class="text-2xl text-purple-400 font-bold">Login Page </h1>
+        <div class="flex flex-col gap-2 justify-center items-center">
+            <h1 class="text-2xl text-purple-400 font-bold">Login Page </h1>
+            <div class="w-32 h-32">
+                <img class="rounded-full" src="{% static "assets/images/logo.webp" %}" alt="">
+            </div>
+        </div>
         {% csrf_token %}
         <p class="w-full">
             <label class="text-black" for="id_email">Email</label><br>

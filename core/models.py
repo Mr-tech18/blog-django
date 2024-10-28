@@ -114,3 +114,15 @@ class Comment(models.Model):
     
     def __str__(self):
         return f'{self.content} by {self.name}'
+    
+
+class ContactUs(models.Model):
+    name=models.CharField(max_length=250)
+    email=models.EmailField()
+    whatsapp_number=models.CharField(max_length=25)
+    subject=models.CharField(max_length=200)
+    message=models.TextField()
+    date=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "message from %s" %(self.name)

@@ -6,14 +6,32 @@
 {% block content %}
 
 <div class="top-20 relative">
-    <form method="post" class="mx-6 lg:mx-96 space-y-2">
+    <div class="flex flex-col gap-2 justify-center items-center">
+        
         <h1 class="text-2xl text-purple-400 font-bold">Register Page </h1>
+        <div class="w-32 h-32">
+            <img class="rounded-full" src="{% static "assets/images/logo.webp" %}" alt="">
+        </div>
+    </div>
+    <form method="post" class="mx-6 lg:mx-96 space-y-2 text-gray- font-semibold">
         {% csrf_token %}
-        <p>{{form.username}}</p>
-        <p>{{form.email}}</p>
-        <p>{{form.password1}}</p>
-        <p>{{form.password2}}</p>
-        <button class="bg-purple-400 p-2 text-white rounded cursor-pointer lg:w-[80%] w-[100%]" typr="submit">Register </button>
+        <p>
+            <label for="username_id">Enter your username</label><br>
+            {{form.username}}
+        </p>
+        <p>
+            <label for="email_id">Enter your email</label><br>
+            {{form.email}}
+        </p>
+        <p>
+            <label for="password_id">Enter your password</label><br>
+            {{form.password1}}
+        </p>
+        <p>
+            <label for="password2_id">Confirm password</label><br>
+            {{form.password2}}
+        </p>
+        <button class="bg-purple-400 p-2 text-white rounded cursor-pointer w-full" typr="submit">Register </button>
         <p> Already have an account  ? <a class="text-purple-400 hover:text-purple-300" href="{% url "userauths:login" %}"> Login </a></p>
     </form>
 </div>

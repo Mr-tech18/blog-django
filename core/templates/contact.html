@@ -8,18 +8,32 @@
     <h1 class="my-6 text-2xl"><span class="bg-purple-600 p-1 text-white">Contact</span>Us</h1>
     <div class="flex gap-5 flex-wrap lg:flex-nowrap ">
         <!-- that is for the form section -->
-        <div class="basis-2/3 flex-grow">
-            <form action="" method="post" class="w-full p-4  " >
+        
+        <div class="basis-2/3 flex-grow ">
+            <form action="{% url "core:contact" %}" method="post" class="w-full p-4  " >
+                {% csrf_token%}
+                
                 <div class="w-full grid grid-cols-2 gap-4">
                     <div class="w-full col-span-2 sm:col-span-1">
-                        <input type="text" placeholder="Name" class="w-full input-style ">
+                        <label for="name_id">Enter you name:</label><br>
+                        {{form.name}}
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <input type="email" placeholder="Email" class="input-style w-full ">
+                        <label for="email_id">Enter you email:</label><br>
+                        {{form.email}}
                     </div>
-                    <div class="col-span-2"><input type="text" placeholder="subject" class="input-style w-full"></div>
+                    <div class="col-span-2 sm:col-span-1">
+                        <label for="whatsapp_number_id">Enter you whathsapp Number:</label><br>
+                        {{form.whatsapp_number}}
+                    </div>
+                   
+                    <div class="col-span-2 sm:col-span-1">
+                        <label for="subject_id">On which topic:</label><br>
+                        {{form.subject}}
+                    </div>
                     <div class="col-span-2" >
-                        <textarea name="" id="" placeholder="Type your message" class="input-style w-full" rows="5" ></textarea>
+                        <label for="subject_id">Write your message:</label><br>
+                        {{form.message}}
                     </div>
                     <div class="col-span-2">
                         <button type="submit" class="input-style w-full bg-purple-800 text-white">Send message</button>

@@ -1,4 +1,4 @@
-from .models import Comment
+from .models import Comment,ContactUs
 from django import forms
 
 class CommentForm(forms.ModelForm):
@@ -12,5 +12,8 @@ class CommentForm(forms.ModelForm):
         fields=['name','email','content']
 
  
-
+class ContactUsForm(forms.ModelForm):
+    class Meta:
+        model=ContactUs
+        exclude=['date']
      

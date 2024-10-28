@@ -962,6 +962,10 @@ video {
   height: 1px;
 }
 
+.h-32 {
+  height: 8rem;
+}
+
 .max-h-72 {
   max-height: 18rem;
 }
@@ -1096,6 +1100,10 @@ video {
 
 .w-px {
   width: 1px;
+}
+
+.w-52 {
+  width: 13rem;
 }
 
 .max-w-72 {

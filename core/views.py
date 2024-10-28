@@ -1,8 +1,10 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Post,Author,Category,Comment
-from .forms import CommentForm
+from .forms import CommentForm,ContactUsForm
+from django.contrib import messages
 from django.db.models import Count
 from django.http import JsonResponse
+from django.views import View
 # Create your views here.
 def home(request):
     posts=Post.published.all()
@@ -51,9 +53,6 @@ def post_details(request, post_id, slug):
     }
 
     return render(request, 'single.html', context)
-
-def contact(request):
-    return render(request,"contact.html")
 
 
 def category_posts(request,cid):
@@ -159,3 +158,23 @@ def post_reaction_views_ajax(request,post_id):
     return JsonResponse({
         'context':context,
     })
+
+def contact_us_view(request):
+
+    if request.method=="POST":
+        print("post method...")
+        form=ContactUsForm(data=request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Your messages have been successfully send")
+            return redirect('core:home')
+        else:
+            print(form.errors)
+
+    print('get method..')
+    form=ContactUsForm()
+
+    return render(request,"contact.html",{"form":form})
+
+

@@ -37,7 +37,12 @@ class AuthorAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     list_display=['name','post','email']
 
+
+class AdminContactUs(admin.ModelAdmin):
+    list_display=['name','subject','date']
+
 admin.site.register(Comment,CommentAdmin)
 admin.site.register(Post,PostAdmin)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Author,AuthorAdmin)
+admin.site.register(ContactUs,AdminContactUs)
