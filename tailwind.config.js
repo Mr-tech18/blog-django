@@ -3,7 +3,9 @@ module.exports = {
   content: ["./core/templates/**/*.html",
     "./core/templates/partials/**/*.html",
     "./core/templates/userauths/**/*.html",
-    "./core/templates/templates_tags/**/*.html"
+    "./core/templates/templates_tags/**/*.html",
+    "./author_page/templates/author_partial/**/*.html",
+    "./author_page/templates/**/*.html",
   
   ],
   theme: {

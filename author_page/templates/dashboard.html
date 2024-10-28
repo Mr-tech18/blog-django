@@ -1,0 +1,246 @@
+{% extends "author_partial/base.html" %}
+{% load static %}
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+
+<h1 class="text-2xl font-bold text-purple-700">
+        
+    Dashboard
+  </h1>
+  <p>Dashboard/<span class="text-purple-400"> Home</span> </p>
+
+  <!-- Reaction and workflow -->
+ <div class="lg:flex justify-between flex-wrap max-md:space-x-4  items-center font-semibold">
+  <div class="bg-white p-2 rounded-md ">
+    <p class="text-2xl font-bold mb-0">100</p>
+    <p class="mt-0">New readers</p>
+    <progress value="35" max="100"></progress>
+  </div>
+  <div class="bg-white p-2 rounded-md ">
+    <p class="text-2xl font-bold mb-0">1500</p>
+    <p class="mt-0">Trafic</p>
+    <progress value="35" max="100"></progress>
+  </div>
+  <div class="bg-white p-2 rounded-md ">
+    <p class="text-2xl font-bold mb-0">90</p>
+    <p class="mt-0">New Blog</p>
+    <progress value="35" max="100"></progress>
+  </div>
+  <div class="bg-white p-2 rounded-md ">
+    <p class="text-2xl font-bold mb-0">1000</p>
+    <p class="mt-0">Likes</p>
+    <progress value="35" max="100"></progress>
+  </div>
+  <div class="bg-white p-2 rounded-md ">
+    <p class="text-2xl font-bold mb-0">1500</p>
+    <p class="mt-0">Trafic</p>
+    <progress value="35" max="100"></progress>
+  </div>
+  
+</div>
+
+ <!-- content for the followers -->
+<div class="bg-white p-2 rounded-md mt-5 space-y-5 ">
+  <h2 class="font-bold text-2xl">New followers </h2>
+  <div class="flex justify-between">
+    <div class="flex  items-center gap-3">
+      <div class="h-10 w-10 "><img class="h-full w-full rounded-full object-cover" src="{% static 'assets/images/3.jpeg' %}" alt=""></div>
+        <div class="flex justify-between">
+          <div>
+            <p class="my-0 text-sm">Franck Detagne</p>
+            <p class="my-0 text-gray-400 text-xs">Cameroun</p>
+          </div>
+        </div>
+      </div>
+    <button class="block basis-1/12 bg-purple-500 text-white rounded-md text-sm">
+      Add
+    </button>
+  </div>
+  <div class="flex justify-between">
+    <div class="flex  items-center gap-3">
+      <div class="h-10 w-10 "><img class="h-full w-full rounded-full object-cover" src="{% static 'assets/images/3.jpeg' %}" alt=""></div>
+        <div class="flex justify-between">
+          <div>
+            <p class="my-0 text-sm">Franck Detagne</p>
+            <p class="my-0 text-gray-400 text-xs">Cameroun</p>
+          </div>
+        </div>
+      </div>
+    <button class="block  basis-1/12 bg-purple-500 text-white rounded-md">
+      Add
+    </button>
+  </div>
+  <div class="flex justify-between">
+    <div class="flex  items-center gap-3">
+      <div class="h-10 w-10 "><img class="h-full w-full rounded-full object-cover" src="{% static 'assets/images/3.jpeg' %}" alt=""></div>
+        <div class="flex justify-between">
+          <div>
+            <p class="my-0 text-sm">Franck Detagne</p>
+            <p class="my-0 text-gray-400 text-xs">Cameroun</p>
+          </div>
+        </div>
+      </div>
+    <button class="block  basis-1/12 bg-purple-500 text-white rounded-md">
+      Add
+    </button>
+  </div>
+ 
+  <div class="flex justify-between">
+    <div class="flex  items-center gap-3">
+      <div class="h-10 w-10 "><img class="h-full w-full rounded-full object-cover" src="{% static 'assets/images/3.jpeg' %}" alt=""></div>
+        <div class="flex justify-between">
+          <div>
+            <p class="my-0 text-sm">Franck Detagne</p>
+            <p class="my-0 text-gray-400 text-xs">Cameroun</p>
+          </div>
+        </div>
+      </div>
+    <button class="block  basis-1/12 bg-purple-500 text-white rounded-md">
+      Add
+    </button>
+  </div>
+ 
+</div>
+
+<!-- recent action section -->
+ <div class="p-2 mt-5 bg-white space-y-4 rounded-md">
+  <h1 class="text-2xl font-bold ">Recent Actions</h1>
+  <div class="rounded-md bg-white ">
+    <div class="lg:flex gap-3 items-center">
+      <img src="{% static 'assets/images/fi-rr-arrow-circle-right.svg' %}" alt="" class="w-6 h-6">
+      <p>Today</p>
+      <img src="{% static 'assets/images/icons8-right-94.png' %}" alt="" class="w-6 h-6">
+      <p>You have remove the comment of Mr tech</p>
+    </div>
+  </div>
+  <div class="rounded-md ">
+    <div class="lg:flex gap-3 items-center">
+      <img src="{% static 'assets/images/fi-rr-arrow-circle-right.svg' %}" alt="" class="w-6 h-6">
+      <p>27 MAY</p>
+      <img src="{% static 'assets/images/icons8-right-94.png' %}" alt="" class="w-6 h-6">
+      <p>You have remove the comment of Mr tech</p>
+    </div>
+  </div>
+  <div class="rounded-md ">
+    <div class="lg:flex gap-3 items-center">
+      <img src="{% static 'assets/images/fi-rr-arrow-circle-right.svg' %}" alt="" class="w-6 h-6">
+      <p>Today</p>
+      <img src="{% static 'assets/images/icons8-right-94.png' %}" alt="" class="w-6 h-6">
+      <p>You have remove the comment of Mr tech</p>
+    </div>
+  </div>
+  <div class="rounded-md ">
+    <div class="lg:flex gap-3 items-center">
+      <img src="{% static 'assets/images/fi-rr-arrow-circle-right.svg' %}" alt="" class="w-6 h-6">
+      <p>17 June</p>
+      <img src="{% static 'assets/images/icons8-right-94.png' %}" alt="" class="w-6 h-6">
+      <p>You have remove the comment of Mr tech</p>
+    </div>
+  </div>
+ </div>
+
+ <!-- Marketing channel we will write this section later-->
+
+<!-- Latest post section -->
+<div class="bg-white rounded-md mt-5 p-2">
+  <h1 class="font-bold text-2xl">Latest Posts</h1>
+  <ul class="lg:flex flex-wrap items-center">
+    <li class="hover:translate-y-1 w-64 max-md:text-xs flex-grow flex-col lg:w-72 mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
+      <p class="btn-style">Travel</p>
+      <h2 class="text-[1.1rem] font-bold my-1">Set the video play back style with Javascript</h2>
+      <div class=" mb-4 lg:w-auto h-52 w-full"><img class="rounded-xl w-full h-full object-cover object-center " src="{% static 'assets/images/11.jpg' %}" alt="banner image 1"></div>
+      <div data-title="about-author " >
+          <div class="flex gap-1 items-center my-4">
+              <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <h3 class="text-author"><a href="assets/html/blog/about_authors.html">Joe Doe</a></h3>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+          </div>
+          <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
+              rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
+          </p>
+      </div>
+    </li>
+    <li class="hover:translate-y-1 w-64 max-md:text-xs flex-grow flex-col lg:w-72 mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
+      <p class="btn-style">Travel</p>
+      <h2 class="text-[1.1rem] font-bold my-1">Set the video play back style with Javascript</h2>
+      <div class=" mb-4 lg:w-auto h-52 w-full"><img class="rounded-xl w-full h-full object-cover object-center " src="{% static 'assets/images/11.jpg' %}" alt="banner image 1"></div>
+      <div data-title="about-author " >
+          <div class="flex gap-1 items-center my-4">
+              <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <h3 class="text-author"><a href="assets/html/blog/about_authors.html">Joe Doe</a></h3>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+          </div>
+          <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
+              rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
+          </p>
+      </div>
+    </li>
+    <li class="hover:translate-y-1 w-64 max-md:text-xs flex-grow flex-col lg:w-72 mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
+      <p class="btn-style">Travel</p>
+      <h2 class="text-[1.1rem] font-bold my-1">Set the video play back style with Javascript</h2>
+      <div class=" mb-4 lg:w-auto h-52 w-full"><img class="rounded-xl w-full h-full object-cover object-center " src="{% static 'assets/images/11.jpg' %}" alt="banner image 1"></div>
+      <div data-title="about-author " >
+          <div class="flex gap-1 items-center my-4">
+              <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <h3 class="text-author"><a href="assets/html/blog/about_authors.html">Joe Doe</a></h3>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+          </div>
+          <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
+              rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
+          </p>
+      </div>
+    </li>
+    <li class="hover:translate-y-1 w-64 max-md:text-xs flex-grow flex-col lg:w-72 mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
+      <p class="btn-style">Travel</p>
+      <h2 class="text-[1.1rem] font-bold my-1">Set the video play back style with Javascript</h2>
+      <div class=" mb-4 lg:w-auto h-52 w-full"><img class="rounded-xl w-full h-full object-cover object-center " src="{% static 'assets/images/11.jpg' %}" alt="banner image 1"></div>
+      <div data-title="about-author " >
+          <div class="flex gap-1 items-center my-4">
+              <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <h3 class="text-author"><a href="assets/html/blog/about_authors.html">Joe Doe</a></h3>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+          </div>
+          <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
+              rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
+          </p>
+      </div>
+    </li>
+    <li class="hover:translate-y-1 w-64 max-md:text-xs flex-grow flex-col lg:w-72 mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
+      <p class="btn-style">Travel</p>
+      <h2 class="text-[1.1rem] font-bold my-1">Set the video play back style with Javascript</h2>
+      <div class=" mb-4 lg:w-auto h-52 w-full"><img class="rounded-xl w-full h-full object-cover object-center " src="{% static 'assets/images/11.jpg' %}" alt="banner image 1"></div>
+      <div data-title="about-author " >
+          <div class="flex gap-1 items-center my-4">
+              <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <h3 class="text-author"><a href="assets/html/blog/about_authors.html">Joe Doe</a></h3>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+              <span class="inline-block w-px h-3 bg-slate-500"></span>
+              <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+          </div>
+          <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
+              rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
+          </p>
+      </div>
+    </li>
+  </ul>
+</div>
+{% endblock content %}

@@ -31,7 +31,7 @@ def register(request):
                 password=password1
             )
             messages.success(request,"your account have been successfully created")
-            return redirect('core:home')
+            return redirect('userauths:login')
     else:
         form=RegisterForm()
 

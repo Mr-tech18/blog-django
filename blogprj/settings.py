@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     #custom app
     'core',
     'userauth',
-    'taggit'
+    'taggit',
+    'author_page',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,10 @@ ROOT_URLCONF = 'blogprj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,"templates")],
+        'DIRS': [
+                    os.path.join(BASE_DIR,"templates"),
+                    os.path.join(BASE_DIR,"author_page/templates"),
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,0 +1,108 @@
+{% load static %}
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %}{% endblock title %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static "css/output.css" %}">
+    </head>
+    <body>
+        <section id="sidebar" class="fixed top-0 left-0 max-h-[100vh]  max-w-72 p-6 overflow-y-auto scrollbar-width-2">
+            <div class="flex gap-3">
+              <img src="../../images/11.jpg" alt="" class="w-8 h-8 rounded">
+              <p class="text-purple-600 text-xl font-bold text-center">Author Site</p>
+            </div>
+            <button id="dashboard_btn_id" class="p-2 bg-purple-600 text-white rounded mt-5 text-center block">
+              Dashboard
+            </button>
+            <div class=" mt-5">
+              <p class="uppercase text-sm text-gray-400">main</p>
+              <ul class=" cursor-pointer">
+                <li class="">
+                  <a href="#" data-subtlistDisplayer="list-displayer" class="hover:bg-purple-200 py-2 pl-2  rounded block ">Element</a>
+                  <ul data-sublist="subtitle"  class="hidden ml-10 space-y-3 ">
+                    <li class="hover:text-purple-400">Alert</li>
+                    <li class="hover:text-purple-400">Badge</li>
+                    <li class="hover:text-purple-400">Breathcoms</li>
+                    <li class="hover:text-purple-400">Button</li>
+                  </ul>
+                </li>
+                
+                  <button type="click" id='post_btn_id' class="hover:bg-gray-200 p-2 rounded">Add Post </button>
+                
+                <li class="hover:bg-gray-200 p-2 rounded">Widget</li>
+              </ul>
+              <p class="uppercase text-sm text-gray-400">Table and rows</p>
+              <ul class=" cursor-pointer">
+                <li class="hover:bg-gray-200 p-2 rounded-md">Charts</li>
+                <li class=""> 
+        
+                
+                  <a href="#" data-subtlistDisplayer="list-displayer" class="block hover:bg-purple-400 p-2 rounded-md">Element</a>
+                  <ul data-sublist="subtitle" class="hidden ml-10 space-y-3">
+                    <li class="hover:text-purple-400">Alert</li>
+                    <li class="hover:text-purple-400">Badge</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div  class="p-4 space-y-2 bg-gray-100 mt-10 rounded-md">
+              <button class="bg-purple-500 rounded-md font-semibold text-white font-body block px-[3.75rem] py-2 capitalize">
+                upgrade
+              </button>
+              <p class="text-gray-400 text-xs text-center">
+                Become a pro members. And enjoy All the Features
+              </p>
+            </div>
+        </section>
+        <section class="relative top-0 pt-6 left-[288px] w-[calc(100%-288px)]">
+            <nav class="flex justify-between items-center mr-3">
+              <div class="basis-1/5">
+                <input type="text" class="bg-gray-200 rounded  inline-block w-96 p-1" placeholder="Search...">
+              </div>
+              <div class="flex space-x-4 text-[10px] text-white justify-center items-center">
+                <div class="relative ">
+                  <span class="cursor-pointer z-30 right-3 top--7 absolute w-4 h-4 flex justify-center items-center bg-red-500 rounded-full p-1 ">12</span>
+                  <div class="h-6 w-6 rounded-full bg-gray-500"></div>
+                </div>
+                <div class="relative ">
+                  <span class="cursor-pointer z-30 right-3 top--7 absolute w-4 h-4 flex justify-center items-center bg-red-500 rounded-full p-1 ">12</span>
+                  <div class="h-6 w-6 rounded-full bg-gray-500 "></div>
+                </div>
+                <img src="../../images/2.jpeg" class="cursor-pointer h-10 w-10 rounded-full" alt="">
+              </div>
+            </nav>
+
+            {% comment %} thtat is our blog container right here {% endcomment %}
+            <main class="bg-gray-200 p-6 mt-6 rounded-md" data-title="element_container">
+                {% block content %}button
+                    <div class="flex gap-5">
+                        <h1 class="text-2xl font-bold text-purple-700">
+                        
+                            Add Post
+                        </h1>
+                        <div class="flex gap-4">
+                            <div class="text-white">
+                                <button class="hover:bg-purple-500 p-1 hover:transition-all duration-100 rounded border border-purple-600 transition-all text-purple-500 hover:text-white">Save as Draft</button>
+                            </div>
+                            <div class="text-white">
+                                <button class="bg-purple-500 p-1 rounded hover:translate-y-1 hover:bg-purple-900">Publish</button>
+                            </div>
+                        </div>
+                    </div>
+        
+            <!-- post form creation -->
+   
+               {% endblock content %}
+            </main>
+            
+        </section>
+        
+        
+        <script src="{% static "js/authors1.js" %}"></script>
+    </body>
+</html>
