@@ -15,11 +15,12 @@
 <body>
     <header class=" fixed top-0  z-[100] w-[100%] h-16 py-3  lg:px-20 bg-purple-200">
         <div class=" lg:hidden mx-8 flex justify-between items-center">
-            <div data-name="logo" class="h-8 w-[80px] self-center"><img id="profile" src="{% static 'assets/images/log1.png' %}" alt="logo"></div>
-            <div data-name="menu" class="h-[15px] w-[20px] self-end"><img src="{% static 'assets/images/menu.png' %}" alt="hamburger menu"></div>
+            <div data-name="logo" class="h-8 w-20 self-center"><img id="profile" src="{% static 'assets/images/log1.png' %}" alt="logo"></div>
+            <button title="click to make a research " class="block pt-3 lg:pt-0 search_box" ><img src="{% static 'assets/images/fi-rr-search.svg ' %}" class="h-4 w-4 inline" alt=""> Search</button>
+            <div data-name="menu" class="h-6 w-6 self-end"><img src="{% static 'assets/images/menu.png' %}" alt="hamburger menu"></div>
         </div>
      <div class="transition ease-in-out delay-75 duration-75 hidden  max-lg:bg-purple-300 m-auto lg:block"   id="hamburger-menu">
-        <div class=" z-[100] px-[30px] py-[30px] lg:py-0 my-[25px] lg:my-0 lg:flex justify-between items-center">
+        <div class=" z-[100] px-8 py-8 lg:py-0 my-[25px] lg:my-0 lg:flex justify-between items-center">
             <nav>
                 <ul class="mb-4 lg:inline-flex gap-6">
                     <li class="sublist-container pt-4 lg:relative  ">
@@ -49,7 +50,7 @@
            
             <div class="mt-3 lg:mt-0 lg:inline-flex self-center">
                 <div class="lg:inline-flex gap-6 self-center">
-                    <div class="pt-3 lg:pt-0"><img src="{% static 'assets/images/fi-rr-search.svg ' %}" class="h-4 w-4 inline" alt=""> Search</div>
+                    <button title="click to make a research " class="hidden lg:block pt-3 lg:pt-0 search_box" ><img src="{% static 'assets/images/fi-rr-search.svg ' %}" class="h-4 w-4 inline" alt=""> Search</button>
                     <div class="pt-3 lg:pt-0"><img src="{% static 'assets/images/edit.png ' %}" class="h-4 w-4 inline" alt="">
                         {% if request.user.is_authenticated %}
                             <a href="{% url "core:author-register-form" %}">Write</a>
@@ -73,6 +74,20 @@
          </div>
     </div>
     </header>
+    <div class="z-50 w-full h-full absolute  top-16 hidden" id="Search-tags">
+        <div class="bg-white w-full h-full p-8 lg:p-20 gap-2  bg-opacity-50 border border-r-gray-200  backdrop-filter backdrop-blur-sm ">
+           <div class="bg-purple-200 opacity-60  w-full h-1/2 mt-8 rounded-lg space-y-9 p-4">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-3xl text-black uppercase"> Search </h1>
+                    <button type="button"><img class="w-4 h-4 inline-block close_menu" src="{% static "assets/images/cross.png" %}"></button>
+                </div>
+                <div class=" bg-purple-50 flex gap-4 p-3 w-full rounded-md backdrop-blur-xl backdrop-filter opacity-70 ">
+                    <input type="text"  class="bg-none" placeholder="What are you looking for ..?? "> 
+                    <button type="submit" id='search_btn'> <img class="w-6 h-6" src="{% static "assets/images/search.png" %}"></button>
+                </div>
+           </div>
+        </div>
+    </div>
     <ul class="messages  relative top-16 bg-purple-200">
         {% for message in messages %}
         
@@ -137,7 +152,7 @@
             </div>
     </div>
     </footer>
-    <script src="{% static "js/test.js" %}"></script>
+    <script src="{% static "js/test1.js" %}"></script>
     <script src="{% static "js/ajax_file1.js" %}"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

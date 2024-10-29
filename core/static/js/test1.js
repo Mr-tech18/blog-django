@@ -235,9 +235,27 @@ document.addEventListener('DOMContentLoaded',()=>{
         },10000);
         console.log('top');
     }
+
+    //this code use for the search functionnality
+    (()=>{
+        document.addEventListener('click',(e)=>{
+            document.querySelectorAll('.search_box').forEach((btn,index)=>{
+                if(btn.contains(e.target)){
+                    let menu=document.getElementById('Search-tags');
+                    menu.classList.toggle('hidden');
+                    document.querySelector('.close_menu').addEventListener('click',(e)=>{
+                        menu.classList.add('hidden');
+                    });
+                    console.log('it work well..');
+                }
+            });
+            
+           
+        });
+    })();
     closesMessage();
     popularPost();
     featureThisMonth();
     displaySubList();
     
-    })
+    });
