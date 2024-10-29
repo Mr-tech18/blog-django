@@ -1,4 +1,4 @@
-from .models import Comment,ContactUs
+from .models import Comment,ContactUs,Author
 from django import forms
 
 class CommentForm(forms.ModelForm):
@@ -13,7 +13,13 @@ class CommentForm(forms.ModelForm):
 
  
 class ContactUsForm(forms.ModelForm):
+    whatsapp_number=forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Enter your phone number ex:+237692109697"}))
+    subject=forms.CharField(max_length=300)
     class Meta:
         model=ContactUs
         exclude=['date']
-     
+
+class AuthorForm(forms.ModelForm):
+    class Meta:
+        model=Author
+        exclude=('agency_descript','rating','aid','author_image','status','user')

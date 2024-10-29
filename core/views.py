@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Post,Author,Category,Comment
-from .forms import CommentForm,ContactUsForm
+from .forms import CommentForm,ContactUsForm,AuthorForm
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Count
 from django.http import JsonResponse
@@ -166,15 +167,39 @@ def contact_us_view(request):
         form=ContactUsForm(data=request.POST)
 
         if form.is_valid():
-            form.save()
-            messages.success(request,"Your messages have been successfully send")
-            return redirect('core:home')
-        else:
-            print(form.errors)
+            cd=form.cleaned_data
+            if cd['whatsapp_number'].startswith('+'):
+                phone_num=cd['whatsapp_number'].removeprefix('+')
 
-    print('get method..')
+                if not phone_num.isdigit():
+                    messages.error(request,'Invalide phone number make sure to wirite it without space between number')
+                    return redirect('core:contact')
+                form.save()
+                messages.success(request,"Your messages have been successfully send")
+                return redirect('core:contact')
+            elif not cd['whatsapp_number'].isdigit():
+                    messages.error(request,'The phone number you enter is not valid')
+                    return redirect('core:contact')
+            else:
+                form.save()
     form=ContactUsForm()
 
     return render(request,"contact.html",{"form":form})
 
+@login_required
+def become_author_view(request):
+    form=AuthorForm(data=request.POST)
+    if form.is_valid():
+        if request.method=='POST':
+            if Author.objects.filter(user=request.user).exists():
+                messages.error(request,"You're already a writer")
+                return redirect('core:home')
+            instance=form.save(commit=False)
+            instance.user=request.user
+            instance.save()
+            form=AuthorForm()
 
+    return render(request,'userauths/become_writer.html',{"form":form})
+
+def redirection_page(request):
+    return render(request,"redirection.html")

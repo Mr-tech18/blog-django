@@ -147,3 +147,5 @@ JAZZMIN_SETTINGS={
     'site_header':'TG-18 BLOG',
     'site_logo':'static/assets/images/10.jpg'
 }
+
+LOGIN_REDIRECT_URL='core:redirection'

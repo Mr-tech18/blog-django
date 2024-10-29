@@ -1,0 +1,18 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<main>
+    <section class="text-center p-10 lg:p-20 space-y-4">
+        <h1 class="text-purple-600 text-5xl font-bold ">
+            Login failled
+        </h1>
+        
+        <p class="mb-2font-extralight">You saw this page because you're not a valid user </p> <br>
+
+        <button class="capitalize text-purple-600 p-2 hover:text-purple-400 rounded font-bold"><img src=" {% static "assets/images/icons8-left-94.png" %}" class="inline-block h-3 w-3" alt=""><a href="{% url "userauths:login" %}"> Back to Homepage</a></button>
+    </section>
+</main>
+{% endblock content %}

@@ -43,14 +43,19 @@ class Category(models.Model):
     
 class Author(models.Model):
     aid=models.UUIDField(primary_key=True,default=uuid.uuid4,unique=True,editable=False)
-    user=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
-    status=models.BooleanField(default=True)
+    user=models.OneToOneField(CustomUser,on_delete=models.CASCADE,blank=True)
+    status=models.BooleanField(default=False)
     rating=models.CharField(max_length=2,choices=RATING,default=RATING[0][0],null=True,blank=True)
-    description=models.TextField(null=True,blank=True,default="Amazing writer")
     agency_descript=models.TextField(max_length=300,default='Let the world know what is in your mind')
     author_image=models.ImageField(upload_to=get_user_directory_path,default="./static/assets/images/1.jpg")
     email=models.EmailField()
-
+    whatsapp=models.CharField(max_length=25,default='+237692109697')
+    telegram=models.CharField(max_length=25,null=True,blank=True)
+    website_link=models.URLField(blank=True,null=True)
+    facebook=models.URLField(blank=True,null=True)
+    tiktok=models.URLField(blank=True,null=True)
+    x=models.URLField(blank=True,null=True)
+    description=models.TextField(null=True,blank=True,default="Amazing writer")
     def get_aut_image(self):
         return mark_safe(f"<img src='{self.author_image.url}' width='50px' height='50px'/>")
          

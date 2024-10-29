@@ -50,7 +50,13 @@
             <div class="mt-3 lg:mt-0 lg:inline-flex self-center">
                 <div class="lg:inline-flex gap-6 self-center">
                     <div class="pt-3 lg:pt-0"><img src="{% static 'assets/images/fi-rr-search.svg ' %}" class="h-4 w-4 inline" alt=""> Search</div>
-                    <div class="pt-3 lg:pt-0"><img src="{% static 'assets/images/edit.png ' %}" class="h-4 w-4 inline" alt=""> Edit</div>
+                    <div class="pt-3 lg:pt-0"><img src="{% static 'assets/images/edit.png ' %}" class="h-4 w-4 inline" alt="">
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url "core:author-register-form" %}">Write</a>
+                            {% else %}
+                            <a href="{% url "core:redirection" %}" class="writer">Write </a>
+                        {% endif %}
+                    </div>
                     <div class="pt-3 lg:pt-0"><a  href="{% url "core:contact" %}" target="_blank">Contact</a></div>
                     <div class="pt-3 lg:pt-0"><a href="#">En<img src="{% static 'assets/images/angle-small-down.png' %}" class="inline w-4 h-4" alt=""></a></div>
                     </div>

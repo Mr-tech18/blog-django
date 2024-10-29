@@ -1,0 +1,23 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block title %}User registration{% endblock title %}
+
+{% block content %}
+
+<div class="top-20 relative">
+    <div class="flex flex-col gap-2 justify-center items-center">
+        
+        <h1 class="text-2xl text-purple-400 font-bold">Become a writer on Innoval Blogging Agency </h1>
+        <div class="w-32 h-32">
+            <img class="rounded-full" src="{% static "assets/images/logo.webp" %}" alt="">
+        </div>
+    </div>
+    <form method="post" class="mx-6 lg:mx-96 space-y-2 text-gray- font-semibold">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="bg-purple-400 p-2 text-white rounded cursor-pointer w-full" typr="submit">Register </button>
+    </form>
+</div>
+
+{% endblock content %}

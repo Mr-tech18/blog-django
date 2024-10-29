@@ -12,6 +12,8 @@ urlpatterns = [
     path('category/<cid>/',views.category_posts,name="posts_per_category"),
     path('author/<auth_id>/',views.author_views,name="author"),
     path('AboutUs/',views.about_us,name="about"),
+    path('login-reauired/',views.redirection_page,name="redirection"),
+    path('Become-writer/',views.become_author_view,name="author-register-form"),
 
     #ajax
     path('reaxtion/<post_id>/',views.post_reaction_views_ajax,name="reaction_view"),
