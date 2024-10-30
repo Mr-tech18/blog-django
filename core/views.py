@@ -203,3 +203,14 @@ def become_author_view(request):
 
 def redirection_page(request):
     return render(request,"redirection.html")
+
+def search_view(request):
+    query=request.GET.get('q')
+    products=Post.published.filter(title__icontains=query)
+
+    context={
+        "query":query,
+        "products":products
+    }
+
+    return render(request,"search.html",context)

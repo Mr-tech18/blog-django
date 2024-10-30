@@ -1480,6 +1480,11 @@ video {
   --tw-gradient-to: #faf5ff var(--tw-gradient-to-position);
 }
 
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
