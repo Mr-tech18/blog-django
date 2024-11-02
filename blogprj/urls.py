@@ -22,8 +22,10 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('core.urls')),
-    path('account/',include('userauth.urls')),
+    path('accounts/',include('userauth.urls')),
     path('authors/',include('author_page.urls')),
+    path('account/', include('django.contrib.auth.urls')),  # Adds the authentication views
+
 ]
 
 if settings.DEBUG:

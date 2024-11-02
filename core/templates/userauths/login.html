@@ -22,7 +22,7 @@
             <label class="text-black" for="password_id">Password</label><br>
             {{form.password}}
         </p>
-        <p>Forgetten password ? <a href="#" class="text-purple-600 hover:text-purple-200">Rest it</a></p>
+        <p>Forgetten password ? <a href="{% url "userauths:password-reset" %}" class="text-purple-600 hover:text-purple-200">Rest it</a></p>
         <div> <button class="bg-purple-400 p-2 rounded cursor-pointer  w-[100%] text-center text-white" typr="submit">Login </button>
         <p> Not having an account ? <a class="text-purple-500 hover:text-purple-300"  href="{% url "userauths:register" %}">Register</a></p>
     </form>

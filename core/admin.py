@@ -46,3 +46,6 @@ admin.site.register(Post,PostAdmin)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Author,AuthorAdmin)
 admin.site.register(ContactUs,AdminContactUs)
+
+
+# admin.py

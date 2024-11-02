@@ -1,0 +1,13 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>Hello, {{ user.username }}!</h1>
+    <p>Welcome to our site. We’re excited to have you with us.</p>
+    <img class="rounded-full w-10 h-10" src="{{user.profile_image.url}}" alt="Logo" style="width: 150px; height: auto;">
+</body>
+</html>

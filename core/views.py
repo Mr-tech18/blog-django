@@ -3,10 +3,10 @@ from .models import Post,Author,Category,Comment
 from .forms import CommentForm,ContactUsForm,AuthorForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.db.models import Count
+from django.db.models import Count,Value
 from django.http import JsonResponse
 from django.views import View
-# Create your views here.
+from django.contrib.postgres.search import SearchVector,SearchQuery,SearchRank,TrigramSimilarity
 def home(request):
     posts=Post.published.all()
     #p_posts=Post.published.annotate(total_likes=Count('likes')).order_by('-total_likes',"-publish")
@@ -206,11 +206,18 @@ def redirection_page(request):
 
 def search_view(request):
     query=request.GET.get('q')
-    products=Post.published.filter(title__icontains=query)
-
+    vector=SearchVector("content",weight="A")+SearchVector("title",weight="B")
+    search_query=SearchQuery(query)
+    if not query or query.strip()=='':
+        posts=None
+    else:
+        posts=Post.published.annotate(
+            rank=SearchRank(vector,search_query,normalization=Value(4)),
+        ).filter(rank__gte=0.3).order_by('-rank')
+        #posts=Post.published.annotate(similarity=TrigramSimilarity('content',query)).filter(similarity__gt=0.).order_by('-similarity')
     context={
         "query":query,
-        "products":products
+        "posts":posts,
     }
 
     return render(request,"search.html",context)
