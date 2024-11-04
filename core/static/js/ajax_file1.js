@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded',()=>{
         
         ()=>{
          
-            document.getElementById('btnSubmit1').addEventListener('click', function (e) {
+            let btn=document.getElementById('btnSubmit1');
+            btn.addEventListener('click', function (e) {
                 e.preventDefault();
                 
                 // Retrieve the form
@@ -163,4 +164,6 @@ document.addEventListener('DOMContentLoaded',()=>{
             
         }
     )();
+
+
 })

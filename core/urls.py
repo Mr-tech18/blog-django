@@ -19,4 +19,5 @@ urlpatterns = [
     #ajax
     path('reaxtion/<post_id>/',views.post_reaction_views_ajax,name="reaction_view"),
     path('ajax_comment/<post_id>/',views.ajax_comment,name="ajax_comment"),
+    path('ajax_author_views/<auth_id>/',views.ajax_author_views,name="ajax-author"),
 ]

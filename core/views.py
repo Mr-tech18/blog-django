@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Count,Value
 from django.http import JsonResponse
-from django.views import View
+from django.template.loader import render_to_string
 from django.contrib.postgres.search import SearchVector,SearchQuery,SearchRank,TrigramSimilarity
 
 def home(request):
@@ -123,24 +123,12 @@ def ajax_comment(request,post_id):
 
 def author_views(request,auth_id):
     author=get_object_or_404(Author,aid=auth_id)
-    categories=Category.objects.all()
-    category_ids=request.GET.getlist('categorie')
+    
+    posts=Post.published.filter(author__aid=author.aid)
 
-    if category_ids:
-        posts=Post.published.filter(author__aid=author.aid,category__cid__in=category_ids)
-    else:
-        posts=Post.published.filter(author__aid=author.aid)
+    category_ids_per_author=posts.values_list('category_id',flat=True)
+    categories=Category.objects.filter(cid__in=category_ids_per_author)
 
-    if is_ajax(request):
-        posts_data=[
-            {
-                'title':post.title,
-                'content':post.content,
-                'description':post.desciption,
-            }
-            for post in posts
-        ]
-        return JsonResponse({"posts":posts_data})
     
     context={
         'posts':posts,
@@ -150,11 +138,21 @@ def author_views(request,auth_id):
 
     return render(request,"about_authors.html",context)
 
-#this function is to check wheter the incomming is an ajax request or not
-def is_ajax(request):
-    return request.headers.get('X-requested-with')=='XMLHttpRequest'
+def ajax_author_views(request,auth_id):
+    author=get_object_or_404(Author,aid=auth_id)
+    posts=Post.published.filter(author__aid=author.aid)
+    categories=request.GET.getlist('category[]')
+    print('category value: '+str(categories))
+    if len(categories)>0:
+        posts=posts.filter(category__cid__in=categories)
+    else:
+        print('probelm')
+    context=render_to_string('async/posts-filter.html',{'posts':posts})
 
-
+    return JsonResponse({
+        'context':context,
+    })
+ 
 def all_category(request):
     categories=Category.objects.all()
 

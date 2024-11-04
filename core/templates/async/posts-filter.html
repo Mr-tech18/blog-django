@@ -1,0 +1,26 @@
+{% load static %}
+
+{% for post in posts%}
+<article class="inline-grid lg:w-72 max-md:text-xs  mb-5 shadow shadow-purple-300 p-1 rounded">
+    <div class="h-44 w-full hidden lg:block"><img class="rounded w-full  h-full object-cover object-top" src="{{post.profile_image.url}}" alt="banner image 1"></div>
+    <div>
+        <p class="btn-style">Travel</p>
+        <h2 class="max-md:text-sm m-1 font-bold">{{post.title}}</h2>
+        <div data-title="about-author " >
+            <div class="flex gap-1 items-center my-2">
+                    <div class="w-5 h-5"><img class="rounded-full" src="{{post.author.author_image.url}}" alt="author profile image"></div>
+                    <span class="inline-block w-px h-3 bg-slate-500"></span>
+                    <h3 class="text-author">{{post.author.user}}</h3>
+                    <span class="inline-block w-px h-3 bg-slate-500"></span>
+                    <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.publish|date:"d M Y"}}</p>
+                    <span class="inline-block w-px h-3 bg-slate-500"></span>
+                    <p class="text-author"><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.reading_time}}</p>
+            </div>
+            <p class="text-[0.75rem]">{{post.description}}  <a href="{% url "core:details" post.slug post.pid %}" class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
+            </p>
+            
+        </div>
+    </div>
+</article>
+
+{% endfor %}
