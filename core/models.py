@@ -47,7 +47,7 @@ class Author(models.Model):
     status=models.BooleanField(default=False)
     rating=models.CharField(max_length=2,choices=RATING,default=RATING[0][0],null=True,blank=True)
     agency_descript=models.TextField(max_length=300,default='Let the world know what is in your mind')
-    author_image=models.ImageField(upload_to=get_user_directory_path,default="./static/assets/images/1.jpg")
+    author_image=models.ImageField(upload_to=get_user_directory_path,default="defaults/default.webp")
     email=models.EmailField()
     whatsapp=models.CharField(max_length=25,default='+237692109697')
     telegram=models.CharField(max_length=25,null=True,blank=True)
@@ -106,6 +106,7 @@ class Post(models.Model):
         return mark_safe(f"<img src='{self.profile_image.url}' width='50px' height='50px'/>")
          
 class Comment(models.Model):
+    user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True,blank=True)
     post=models.ForeignKey(Post,on_delete=models.CASCADE,related_name="comment")
     name=models.CharField(max_length=90,null=False,blank=True)
     email=models.EmailField(null=False,blank=True)

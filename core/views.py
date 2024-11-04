@@ -7,6 +7,7 @@ from django.db.models import Count,Value
 from django.http import JsonResponse
 from django.views import View
 from django.contrib.postgres.search import SearchVector,SearchQuery,SearchRank,TrigramSimilarity
+
 def home(request):
     posts=Post.published.all()
     #p_posts=Post.published.annotate(total_likes=Count('likes')).order_by('-total_likes',"-publish")
@@ -79,31 +80,38 @@ def ajax_comment(request,post_id):
     comment=None
     if request.method == "POST":
          if request.user.is_authenticated:
-             print(f"User is authenticated: {request.user.username}")  # Debug print
+            
              # Use authenticated user's data
              name = request.user.username
              email = request.user.email
+             content =request.POST['content']
+             username=name
+             user_val=request.user
+             profile_image_value=user_val.profile_image.url    
          else:
              # Use the form's data for anonymous users
-             print("Anonymous user!")  # Debug print
+            
              name = request.POST['name']
              email = request.POST['email']
-         
-         content =request.POST['content']
-         
+             content =request.POST['content']
+             username=name
+             user_val=None
+             profile_image_value="data:image/jpeg;base64,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"
          # Save the comment
-         comment=Comment.objects.create(
-             name=name,
+         
+             comment=Comment.objects.create(
+             user=user_val,
+             name=username,
              email=email,
              content=content,
              post=post
-         )
-
+                )
     comments_count = Comment.objects.filter(post=post).count()
     context = {
         'comments_count':comments_count,
         'content':request.POST['content'],
-        'user':comment.name,
+        'user':username,
+        'profile_image':profile_image_value
 
     }
     
@@ -115,13 +123,37 @@ def ajax_comment(request,post_id):
 
 def author_views(request,auth_id):
     author=get_object_or_404(Author,aid=auth_id)
-    posts=Post.published.filter(author__aid=author.aid)
+    categories=Category.objects.all()
+    category_ids=request.GET.getlist('categorie')
+
+    if category_ids:
+        posts=Post.published.filter(author__aid=author.aid,category__cid__in=category_ids)
+    else:
+        posts=Post.published.filter(author__aid=author.aid)
+
+    if is_ajax(request):
+        posts_data=[
+            {
+                'title':post.title,
+                'content':post.content,
+                'description':post.desciption,
+            }
+            for post in posts
+        ]
+        return JsonResponse({"posts":posts_data})
+    
     context={
         'posts':posts,
         'author':author,
+        'categories':categories,
     }
 
     return render(request,"about_authors.html",context)
+
+#this function is to check wheter the incomming is an ajax request or not
+def is_ajax(request):
+    return request.headers.get('X-requested-with')=='XMLHttpRequest'
+
 
 def all_category(request):
     categories=Category.objects.all()

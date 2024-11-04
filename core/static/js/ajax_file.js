@@ -27,43 +27,35 @@ document.addEventListener('DOMContentLoaded',()=>{
                     }
 
                     if (this.readyState == 4 && this.status == 200) {
-                        
-                        let data=JSON.parse(this.responseText);
-                        let comment_container=document.getElementById('comment_block');
-                        let btnContainer=document.getElementById('btn_btn_comment');
-                        //let firstChildr=btnContainer.firstElementChild;
-                        let text=null;
-                        if (data.context.comments_count>1){
-                            text=document.createTextNode(`( ${data.context.comments_count} )`)
-                        }
-                        else{
-                            text=document.createTextNode(`( ${data.context.comments_count} )`)
-                        }
-                        let span=document.createElement('span');
-                        
+                        let data = JSON.parse(this.responseText);
+                    
+                        // Updating the comment count in the button container
+                        let btnContainer = document.getElementById('btn_btn_comment');
+                        let text = document.createTextNode(`( ${data.context.comments_count} )`);
+                        let span = document.createElement('span');
                         span.appendChild(text);
-                        span.setAttribute('class',"font-bold");
-                        btnContainer.replaceChild(span,btnContainer.firstElementChild);
-                       
-                        //displaying the comment section dynamically
-
-                        let date=new Date();
-                        
+                        span.setAttribute('class', "font-bold");
+                        btnContainer.replaceChild(span, btnContainer.firstElementChild);
+                    
+                        // Displaying the comment section dynamically
+                        let date = new Date();
+                    
                         let _html = ''; // Initialize as an empty string
                         _html += '<div class="max-lg:text-xs border shadow rounded-xl mb-3 p-1 ">';
                         _html += '<div class="flex items-center gap-3">';
                         _html += '<div class="h-12 ">';
-                        _html += '<img class=" rounded-full h-full w-full object-cover" src="{{request.user.profile_image.url}}">';
+                        // Set profile_image src with proper template literal
+                        _html += `<img class='rounded-full h-full w-full object-cover' src='${data.context.profile_image}' >`;
                         _html += '</div>';
                         _html += '<div class="">';
                         _html += '<div class="flex gap-4">';
                         _html += '<p class="font-bold">' + data.context.user + '</p>';
-                        _html += '<p>' + date.getMinutes() + ' ago </p>';
+                        _html += '<p>' + date.getMinutes() + ' minutes ago </p>'; // Adjusted time display
                         _html += '</div>';
                         _html += '</div>';
                         _html += '</div>';
                         _html += '<div class="relative ml-14">';
-                        _html += '<!--content of the comment-->';
+                        _html += '<!-- content of the comment -->';
                         _html += '<div class="">' + data.context.content + '</div>';
                         _html += '<div class="mt-2">';
                         _html += '<button class="bg-gray-300 rounded-xl p-1 w-20 hover:bg-gray-300">Like 12</button>';
@@ -72,18 +64,21 @@ document.addEventListener('DOMContentLoaded',()=>{
                         _html += '</div>';
                         _html += '</div>';
                         _html += '</div>';
-                        
+                    
                         // Create a temporary container to insert the HTML as an element
                         let tempDiv = document.createElement('div');
                         tempDiv.innerHTML = _html;
-                        
-                        // Prepend the new element to the container
-                        document.getElementById('comment_container').insertBefore(tempDiv.firstChild,myForm.nextElementSibling);
-                        
+                    
+                        // Prepend the new element to the comment container
+                        let commentContainer = document.getElementById('comment_container');
+                        commentContainer.insertBefore(tempDiv.firstChild, myForm.nextElementSibling);
+                    
+                        // Reset the form after adding the comment
                         myForm.reset();
-
+                    
                         console.log('The request was successful');
-                    } 
+                    }
+                    
                     
                     xhr.onerror=function(){
                         console.log('an error occur...');

@@ -37,7 +37,40 @@
 
     <section class="lg:px-24 p-5" >
         <h1 class="my-6 text-2xl"><span class="bg-purple-600 p-1 text-white">Read {{author.user}}</span> Blog articles</h1>
-        <div class=" justify-center  grid grid-cols-1 text-xs  lg:grid-cols-[repeat(4,1fr)] gap-2">
+
+        <div class="flex justify-between ">
+            <div>
+                <h2>filter by <span>posts</span> <img class="w-5 h-2 inline-block"  src="{% static "assets/images/angle-small-down.png" %}" alt=""></h2>
+                <form action="" method="get" id="category-form">
+                    {% for category in categories %}
+                      
+                          <label class="" for="{{category.cid}}">
+                              <input class="inline w-10 focus:border-none focus:outline-none" type="checkbox" value="{{category.cid}}" id="{{category.cid}}" name="{{category.title}}">
+                              {{category.title}}
+                          </label><br>
+                    
+                      
+                    {% endfor %}
+                </form>
+            </div>
+            {% comment %}
+               <div>
+                <h2>filter by <span>authors</span> <img class="w-5 h-2 inline-block"  src="{% static "assets/images/angle-small-down.png" %}" alt=""></h2>
+                <form action="" method="get" id="category-form">
+                    {% for author in authors %}
+                      
+                          <label class="" for="{{author.aid}}">
+                              <input class="inline w-10 focus:border-none focus:outline-none" type="checkbox" value="{{author.cid}}" id="{{author.cid}}" name="{{author.title}}">
+                              {{author.user}}
+                          </label><br>
+                    
+                      
+                    {% endfor %}
+                </form>
+            </div> 
+            {% endcomment %}
+        </div>
+        <div class=" justify-center  grid grid-cols-1 text-xs  lg:grid-cols-[repeat(4,1fr)] gap-2" id="post_container">
             {% for post in posts%}
                 <article class="inline-grid lg:w-72 max-md:text-xs  mb-5 shadow shadow-purple-300 p-1 rounded">
                     <div class="h-44 w-full"><img class="rounded w-full  h-full object-cover object-top" src="{{post.profile_image.url}}" alt="banner image 1"></div>

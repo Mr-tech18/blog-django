@@ -9,7 +9,7 @@ def get_user_directory_path(instance,filename):
 class CustomUser(AbstractUser):
     email=models.EmailField(unique=True)
     username=models.CharField(max_length=50)
-    profile_image=models.ImageField(upload_to=get_user_directory_path,null=True,blank=True,default="picture.jpg")
+    profile_image=models.ImageField(upload_to=get_user_directory_path,null=True,blank=True,default="defaults/default.webp")
 
     USERNAME_FIELD="email"
     REQUIRED_FIELDS=['username']
