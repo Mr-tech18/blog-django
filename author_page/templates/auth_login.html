@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>auth page login</title>
+    <link rel="stylesheet" href="{% static "css/output.css" %}">
+</head>
+<body>
+    <div class="top-20 relative">
+        <form method="post" action="{% url "author_p:login" %}" class="mx-6 lg:mx-96 space-y-2">
+            <div class="flex flex-col gap-2 justify-center items-center">
+                <h1 class="text-2xl text-purple-400 font-bold">Login Page </h1>
+                <div class="w-32 h-32">
+                    <img class="rounded-full" src="{% static "assets/images/logo.webp" %}" alt="">
+                </div>
+            </div>
+            {% csrf_token %}
+            <p class="w-full">
+                <label class="text-black" for="id_email">Email</label><br>
+                <input type="email" name="email" id="id_email">
+            </p>
+            <p class="w-full">
+                <label class="text-black" for="password_id">Password</label><br>
+                <input type="password" name="password" id="password_id">
+            </p>
+            <p>Forgetten password ? <a href="{% url "userauths:password-reset" %}" class="text-purple-600 hover:text-purple-200">Rest it</a></p>
+            <div> <button class="bg-purple-400 p-2 rounded cursor-pointer  w-[100%] text-center text-white" typr="submit">Login </button>
+            <p> Not having an account ? <a class="text-purple-500 hover:text-purple-300"  href="{% url "userauths:register" %}">Register</a></p>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block title %}
+  user-profile
+{% endblock title %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <!-- Profile Header -->
+    <div class="flex items-center space-x-4">
+        <img src="profile_picture_url" alt="Profile Image" class="w-24 h-24 rounded-full">
+        <div>
+            <h1 class="text-2xl font-bold">{{ user.username }}</h1>
+            <p class="text-gray-600">Member since: {{ user.date_joined }}</p>
+        </div>
+    </div>
+
+    <!-- Personal Information -->
+    <div class="mt-6">
+        <h2 class="text-xl font-semibold">Personal Information</h2>
+        <p><strong>Full Name:</strong> {{ user.full_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Location:</strong> {{ user.location }}</p>
+    </div>
+
+    <!-- Activity Summary -->
+    <div class="mt-6">
+        <h2 class="text-xl font-semibold">Activity Summary</h2>
+        <p><strong>Posts Published:</strong> {{ user.post_count }}</p>
+        <p><strong>Followers:</strong> {{ user.followers_count }}</p>
+        <p><strong>Total Interactions:</strong> {{ user.total_interactions }}</p>
+    </div>
+
+    <!-- Settings and Actions -->
+    <div class="mt-6 flex space-x-4">
+        <a href="/edit-profile" class="px-4 py-2 bg-blue-500 text-white rounded-md">Edit Profile</a>
+        <a href="/settings" class="px-4 py-2 bg-gray-500 text-white rounded-md">Account Settings</a>
+        <a href="/delete-account" class="px-4 py-2 bg-red-500 text-white rounded-md">Delete Account</a>
+    </div>
+
+    <!-- Recent Posts -->
+    <div class="mt-6">
+        <h2 class="text-xl font-semibold">Recent Posts</h2>
+        <div class="space-y-4">
+            <!-- Loop through user's posts -->
+            {% for post in user.posts %}
+            <div class="p-4 bg-gray-100 rounded-md">
+                <h3 class="text-lg font-bold">{{ post.title }}</h3>
+                <p class="text-gray-600">{{ post.published_date }}</p>
+                <p>{{ post.excerpt }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

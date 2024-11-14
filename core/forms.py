@@ -20,6 +20,7 @@ class ContactUsForm(forms.ModelForm):
         exclude=['date']
 
 class AuthorForm(forms.ModelForm):
+    #Name=forms.CharField(max_length=250,widget=forms.TextInput(attrs={'placeholder':"enter you email or your author name"}))
     class Meta:
         model=Author
-        exclude=('agency_descript','rating','aid','author_image','status','user')
+        exclude=('agency_descript','rating','aid','author_image','status','user','is_author')

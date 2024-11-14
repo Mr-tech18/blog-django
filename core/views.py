@@ -121,37 +121,47 @@ def ajax_comment(request,post_id):
         }
     )
 
-def author_views(request,auth_id):
-    author=get_object_or_404(Author,aid=auth_id)
-    
-    posts=Post.published.filter(author__aid=author.aid)
 
-    category_ids_per_author=posts.values_list('category_id',flat=True)
-    categories=Category.objects.filter(cid__in=category_ids_per_author)
-
+def author_views(request, auth_id):
+    """
+    Display the author's profile with their posts and categories associated with those posts.
+    """
+    author = get_object_or_404(Author, aid=auth_id)
+    posts = Post.published.filter(author=author)
     
-    context={
-        'posts':posts,
-        'author':author,
-        'categories':categories,
+    # Get distinct category IDs associated with the author's posts
+    category_ids = posts.values_list('category_id', flat=True).distinct()
+    categories = Category.objects.filter(cid__in=category_ids)
+    
+    context = {
+        'posts': posts,
+        'author': author,
+        'categories': categories,
     }
 
-    return render(request,"about_authors.html",context)
+    return render(request, "about_authors.html", context)
 
-def ajax_author_views(request,auth_id):
-    author=get_object_or_404(Author,aid=auth_id)
-    posts=Post.published.filter(author__aid=author.aid)
-    categories=request.GET.getlist('category[]')
-    print('category value: '+str(categories))
-    if len(categories)>0:
-        posts=posts.filter(category__cid__in=categories)
-    else:
-        print('probelm')
-    context=render_to_string('async/posts-filter.html',{'posts':posts})
 
-    return JsonResponse({
-        'context':context,
-    })
+def ajax_author_views(request, auth_id):
+    """
+    Filter posts by selected categories via AJAX for a specific author.
+    """
+    author = get_object_or_404(Author, aid=auth_id)
+    posts = Post.published.filter(author=author)
+    
+    # Retrieve selected category IDs from the request
+    selected_categories = request.GET.getlist('category[]')
+   
+    
+    # Filter posts by selected categories, if any
+    if selected_categories:
+        posts = posts.filter(category__cid__in=selected_categories)
+    
+    # Render filtered posts to a string for AJAX response
+    context_html = render_to_string('async/posts-filter.html', {'posts': posts})
+
+    return JsonResponse({'context': context_html})
+
  
 def all_category(request):
     categories=Category.objects.all()
@@ -251,3 +261,4 @@ def search_view(request):
     }
 
     return render(request,"search.html",context)
+

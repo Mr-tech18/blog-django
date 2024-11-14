@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelectorAll('[data-filter=' + data_key + ']:checked')
                 ).map(element => element.value);
                 
-                console.log(selected_data);
+               
 
                 // Convert selected_data to URL parameters
                 let params = new URLSearchParams();
@@ -24,12 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 xhr.onreadystatechange = function() {
                     if (this.readyState === 3) {
-                        console.log('Loading response from the server...');
+                        
                     }
                     if (this.readyState === 4 && (this.status >= 200 && this.status < 204)) {
                         let data = JSON.parse(this.responseText);
-                        let productContainer = document.getElementById('post_container');
-                        productContainer.innerHTML = data.context;
+                        let postContainer = document.getElementById('post_container');
+                        postContainer.innerHTML = data.context;
                     }
                 };
                 xhr.onerror = function() {

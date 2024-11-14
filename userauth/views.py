@@ -61,3 +61,7 @@ def logout_view(request):
     logout(request)
     messages.success(request,"You're successfully logged out")
     return redirect('userauths:login')
+
+
+def user_profile_veiw(request):
+    return render(request,"user_profile.html")

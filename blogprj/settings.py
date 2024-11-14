@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'author_page.middleware.AuthorMiddleware1',
 ]
 
 ROOT_URLCONF = 'blogprj.urls'
@@ -167,3 +168,9 @@ EMAIL_HOST_USER="techgroupe18@gmail.com"
 EMAIL_HOST_PASSWORD="rzqmwukeypgejlfu"
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
+
+AUTHENTICATION_BACKENDS=[
+    'django.contrib.auth.backends.ModelBackend',
+    'author_page.authentication.AuthorAuthenticationEmail',
+    'author_page.authentication.AuthorAuthenticationName',
+]

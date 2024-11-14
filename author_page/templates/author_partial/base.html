@@ -16,33 +16,28 @@
               <img src="../../images/11.jpg" alt="" class="w-8 h-8 rounded">
               <p class="text-purple-600 text-xl font-bold text-center">Author Site</p>
             </div>
-            <button id="dashboard_btn_id" class="p-2 bg-purple-600 text-white rounded mt-5 text-center block">
+            <button id="dashboard_btn_id" class="p-2 hover:bg-purple-200  rounded mt-5  w-full text-start">
               Dashboard
             </button>
             <div class=" mt-5">
               <p class="uppercase text-sm text-gray-400">main</p>
               <ul class=" cursor-pointer">
                 <li class="">
-                  <a href="#" data-subtlistDisplayer="list-displayer" class="hover:bg-purple-200 py-2 pl-2  rounded block ">Element</a>
-                  <ul data-sublist="subtitle"  class="hidden ml-10 space-y-3 ">
-                    <li class="hover:text-purple-400">Alert</li>
-                    <li class="hover:text-purple-400">Badge</li>
-                    <li class="hover:text-purple-400">Breathcoms</li>
-                    <li class="hover:text-purple-400">Button</li>
-                  </ul>
+                  <button id="btn_edit_profile" class="hover:bg-purple-200 py-2 pl-2  rounded block w-full  text-start">Edit profile</button>
+                  
                 </li>
                 
-                  <button type="click" id='post_btn_id' class="hover:bg-gray-200 p-2 rounded">Add Post </button>
+                  <button type="click" id='btn_comment' class="hover:bg-purple-200 p-2 rounded w-full text-start">See Insight Comments</button>
                 
-                <li class="hover:bg-gray-200 p-2 rounded">Widget</li>
+                <li class="hover:bg-purple-200 p-2 rounded">Statistics</li>
               </ul>
-              <p class="uppercase text-sm text-gray-400">Table and rows</p>
+              <p class="uppercase text-gray-400 text-sm text-purple-200-400">Table and rows</p>
               <ul class=" cursor-pointer">
-                <li class="hover:bg-gray-200 p-2 rounded-md">Charts</li>
+                <button id='btn_add_post'  class="hover:bg-purple-200 p-2 rounded-md w-full text-start">Add post</button>
                 <li class=""> 
         
                 
-                  <a href="#" data-subtlistDisplayer="list-displayer" class="block hover:bg-purple-400 p-2 rounded-md">Element</a>
+                  <a href="#" data-subtlistDisplayer="list-displayer" class="block hover:bg-purple-200 p-2 rounded-md w-full text-start">Element</a>
                   <ul data-sublist="subtitle" class="hidden ml-10 space-y-3">
                     <li class="hover:text-purple-400">Alert</li>
                     <li class="hover:text-purple-400">Badge</li>
@@ -59,7 +54,7 @@
               </p>
             </div>
         </section>
-        <section class="relative top-0 pt-6 left-[288px] w-[calc(100%-288px)]">
+        <section class="relative top-0 pt-6 left-[288px] w-[calc(100%-288px)]" >
             <nav class="flex justify-between items-center mr-3">
               <div class="basis-1/5">
                 <input type="text" class="bg-gray-200 rounded  inline-block w-96 p-1" placeholder="Search...">
@@ -73,13 +68,13 @@
                   <span class="cursor-pointer z-30 right-3 top--7 absolute w-4 h-4 flex justify-center items-center bg-red-500 rounded-full p-1 ">12</span>
                   <div class="h-6 w-6 rounded-full bg-gray-500 "></div>
                 </div>
-                <img src="../../images/2.jpeg" class="cursor-pointer h-10 w-10 rounded-full" alt="">
+                <img src="{{author.author_image.url}}" title="{{author.name}}" class="cursor-pointer h-10 w-10 rounded-full" alt="">
               </div>
             </nav>
 
             {% comment %} thtat is our blog container right here {% endcomment %}
             <main class="bg-gray-200 p-6 mt-6 rounded-md" data-title="element_container">
-                {% block content %}button
+                {% block content %}
                     <div class="flex gap-5">
                         <h1 class="text-2xl font-bold text-purple-700">
                         

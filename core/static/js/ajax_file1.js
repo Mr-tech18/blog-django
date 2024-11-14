@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                         // Reset the form after adding the comment
                         myForm.reset();
                     
-                        console.log('The request was successful');
+                        
                     }
                     
                     
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 if(document.getElementById('btn_like').contains(e.target)){
                     let like=true;
                     e.preventDefault();
-                    console.log('you clicked...');
+                    
                     //-------------------------------------------- ajax code goes down here...
                     // here we we'll access the form element
                     let myForm=document.getElementById('reaction_form');
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                             console.log('connection establish pending...');
                         }
                         if(this.readyState==4 && this.status==200){
-                            console.log('sucessfull connection');
+                            
 
                             let like_container_msg=document.querySelector('.like_message');
                             let data=JSON.parse(this.responseText);
