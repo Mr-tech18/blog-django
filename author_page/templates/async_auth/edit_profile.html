@@ -7,49 +7,55 @@
       
           Edit profile
         </h1>
-        <div class="flex gap-4">
+      <!--   <div class="flex gap-4">
           <div class="text-white">
-              <button class="hover:bg-purple-500 p-1 hover:transition-all duration-100 rounded border border-purple-600 transition-all text-purple-500 hover:text-white">Save Change</button>
+              <button type="button" id="submitBtnFake" class="hover:bg-purple-500 p-1 hover:transition-all duration-100 rounded border border-purple-600 transition-all text-purple-500 hover:text-white ">Save Change</button>
           </div>
-          <div class="text-white">
-              <button class="bg-purple-500 p-1 rounded hover:translate-y-1 hover:bg-purple-900">Save and continous</button>
-          </div>
-        </div>
+          
+        </div> -->
     </div>
 
   <!-- post form creation -->
   <section class=" p-2">
   
-      <form action="" method="" class="">
-          
-          
+      <form action="{% url "author_p:edit-profile" %}" enctype="multipart/form-data" method="post" class="">
+               {% csrf_token %}
               <div class=" lg:flex gap-10 ">
                   <fieldset class="space-y-3 bg-white rounded-md p-4 basis-2/3">
                       <h3 class="text-xl text-gray-400">Post</h3>
+
                       <hr>
                           <p>
-                              <label for="title">First Name</label> <br>
-                              <input type="text" placeholder="Enetr Your first name Exp:Detagne" class="input-style">
+                              <label for="id_name">Your author name:<span class="text-red-600">*</span></label> <br>
+                              {{form.name}}
                           </p>
                           <p>
-                              <label for="slug">Last Name <span class="text-red-600">*</span></label> <br>
-                              <input type="text" placeholder="Enter your last Name Ex:Franck.." class="input-style">
+                              <label for="id_email">Your author email: <span class="text-red-600">*</span></label> <br>
+                              {{form.email}}
                           </p>
                           <p>
-                              <label for="slug">Username <span class="text-red-600">*</span></label> <br>
-                              <input type="text" placeholder="Enter your Username Ex:Franck237.." class="input-style">
+                              <label for="id_whatsapp">Whatsapp number: <span class="text-red-600">*</span></label> <br>
+                              {{form.whatsapp}}
                           </p>
                           <p>
-                              <label for="slug">Email <span class="text-red-600">*</span></label> <br>
-                              <input type="text" placeholder="Your Email Ex:francheskoleonel@gmail.com " class="input-style">
+                              <label for="id_telegram">Telegram Account URL</label> <br>
+                              {{form.telegram}}
                           </p>
                           <p>
-                              <label for="slug">Phone <span class="text-red-600">*</span></label> <br>
-                              <input type="text" placeholder="Ex: +237 692109697" class="input-style">
+                              <label for="slug">Facebook page url: </label> <br>
+                              {{form.facebook}}
                           </p>
                           <p>
-                              <label for="slug">Adress <span class="text-red-600">*</span></label> <br>
-                              <input type="" placeholder="Ex: London Avenu , street 132" class="input-style">
+                            <label for="id_facebook">Tiktok Account URL </label> <br>
+                            {{form.facebook}}
+                          </p>
+                          <p>
+                            <label for="id_x">X account link </label> <br>
+                            {{form.x}}
+                          </p>
+                          <p>
+                              <label for="id_adress">Your current address <span class="text-red-600">*</span></label> <br>
+                              {{form.address}}
                           </p>
 
                   </fieldset>
@@ -57,34 +63,32 @@
                     <div class="bg-white p-4 rounded-md">
                       <h3 class="text-xl text-gray-400">Profile Image</h3>
                       <hr>
-                      <img src="../../images/12.jpeg" class="w-20 h-20 m-auto" alt="">
+                      <img src="{{request.author.author_image.url}}" class="w-20 h-20 m-auto rounded-md" alt="">
                       <p>
-                          <input type="file">
+                          {{form.author_image}}
                       </p>
                     </div>
                     <div class="bg-white p-4 rounded-md">
-                      <p>
-                          <label for="publis_date">Birth day</label> <br>
-                          <input class="bg-gray-200 p-2 rounded-md" type="date">
-                      </p>
-                    
+                        
+                        <p>
+                            <label for="id_description">bio:</label> <br>
+                            {{form.description}}
+                        </p>
+                        <p>
+                            <label for="id_description">Your agence description</label> <br>
+                            {{form.agency_descript}}
+                        </p>
                     </div>
-                    <div class="mt-4">
-                      <label for="content">Bio<span class="text-red-700">*</span></label>
-                      <fieldset class="space-y-3 bg-white rounded-md p-6">
-                          
-                          <textarea name="post_content" id="post_content" class="bg-gray-200 w-[100%] rounded-md" rows="5" placeholder="Your post content goes here.."></textarea>
-                      </fieldset>
-                  </div>
+                    
                   </fieldset>
               </div>
               
               <div class="flex gap-4 mt-4">
+                 <!--  <div class="text-white">
+                      <button type="submit" class="hover:bg-purple-500 p-1 hover:transition-all duration-100 rounded border border-purple-600 transition-all text-purple-500 hover:text-white">Save And Continous</button>
+                  </div> -->
                   <div class="text-white">
-                      <button class="hover:bg-purple-500 p-1 hover:transition-all duration-100 rounded border border-purple-600 transition-all text-purple-500 hover:text-white">Save And Continous</button>
-                  </div>
-                  <div class="text-white">
-                      <button type="submit" class="bg-purple-500 p-1 rounded hover:translate-y-1 hover:bg-purple-900">Save Changes</button>
+                      <button type="submit" id="submitBtn" class="bg-purple-500 p-1 rounded hover:translate-y-1 hover:bg-purple-900">Save Changes</button>
                   </div>
                 </div>
       </form>

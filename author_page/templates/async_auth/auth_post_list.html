@@ -1,0 +1,118 @@
+
+{% load static %}
+
+
+
+            <secton class="">
+             
+                <!-- post list header -->
+                 <div class="lg:flex justify-between items-center">
+                        <h1 class="text-3xl font-bold capitalize">POst List</h1>
+                        <div class="text-sm text-white">
+                            
+                            <button class="border hover:opacity-50 bg-purple-500 p-1 rounded-md">Import</button>
+                           
+                        </div>
+                        
+                 </div>
+
+                 <!-- post list main section-->
+                 <section class="bg-white rounded-md p-4 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <div class="">
+                            <input id="filter" type="checkbox" value="">
+                          <span class="inline-block ml-4  bg-gray-200 p-2 rounded-md mb-4">
+                            <select  class="w-full bg-gray-200 focus:border border-purple-300 rounded mr-6" name="post_list" id="post_list">
+                                <option value="None">All categories</option>
+                                <option value="sport">Sport</option>
+                                <option value="art">Art</option>
+                                <option value="religion">Religion</option>
+                            </select>
+                          </span>
+                        </div>
+                      
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full table-auto border-collapse">
+                            <thead>
+                                <tr class="bg-purple-600 text-white text-left">
+                                    <th class="px-4 py-2">Post image</th>
+                                    <th class="px-4 py-2">title</th>
+                                    <th class="px-4 py-2">author</th>
+                                    <th class="px-4 py-2">Status</th>
+                                    <th class="px-4 py-2">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-purple-100 border-b odd:bg-gray-100">
+                                    <td class="px-4 py-2"><img src="../../images/10.jpeg" class="w-10 h-10 rounded-md" alt="Post image"></td>
+                                    <td class="px-4 py-2 text-xl font-bold"><a href="#" class="text-purple-600 hover:underline">Franck detagne</a></td>
+                                    <td class="px-4 py-2">bankaiye237@gmail.com</td>
+                                    <td class="px-4 py-2">
+                                        <input type="checkbox" name="valid" id="valid" checked>
+                                    </td>
+                                    <td class="px-4 py-2 space-x-4">
+                                        <button class="bg-purple-400 text-white px-3 py-1 text-sm rounded-md hover:bg-purple-500">Edit</button>
+                                        <button class="bg-white border border-purple-400 text-purple-400 px-3 py-1 text-sm rounded-md hover:bg-purple-50">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-purple-100 border-b odd:bg-gray-100">
+                                    <td class="px-4 py-2"><img src="../../images/10.jpeg" class="w-10 h-10 rounded-md" alt="Post image"></td>
+                                    <td class="px-4 py-2 text-xl font-bold"><a href="#" class="text-purple-600 hover:underline">Franck detagne</a></td>
+                                    <td class="px-4 py-2">bankaiye237@gmail.com</td>
+                                    <td class="px-4 py-2">
+                                        <input type="checkbox" name="valid" id="valid" checked>
+                                    </td>
+                                    <td class="px-4 py-2 space-x-4">
+                                        <button class="bg-purple-400 text-white px-3 py-1 text-sm rounded-md hover:bg-purple-500">Edit</button>
+                                        <button class="bg-white border border-purple-400 text-purple-400 px-3 py-1 text-sm rounded-md hover:bg-purple-50">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-purple-100 border-b odd:bg-gray-100">
+                                    <td class="px-4 py-2"><img src="../../images/10.jpeg" class="w-10 h-10 rounded-md" alt="Post image"></td>
+                                    <td class="px-4 py-2 text-xl font-bold"><a href="#" class="text-purple-600 hover:underline">Franck detagne</a></td>
+                                    <td class="px-4 py-2">bankaiye237@gmail.com</td>
+                                    <td class="px-4 py-2">
+                                        <input type="checkbox" name="valid" id="valid" checked>
+                                    </td>
+                                    <td class="px-4 py-2 space-x-4">
+                                        <button class="bg-purple-400 text-white px-3 py-1 text-sm rounded-md hover:bg-purple-500">Edit</button>
+                                        <button class="bg-white border border-purple-400 text-purple-400 px-3 py-1 text-sm rounded-md hover:bg-purple-50">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-purple-100 border-b odd:bg-gray-100">
+                                    <td class="px-4 py-2"><img src="../../images/10.jpeg" class="w-10 h-10 rounded-md" alt="Post image"></td>
+                                    <td class="px-4 py-2 text-xl font-bold"><a href="#" class="text-purple-600 hover:underline">Franck detagne</a></td>
+                                    <td class="px-4 py-2">bankaiye237@gmail.com</td>
+                                    <td class="px-4 py-2">
+                                        <input type="checkbox" name="valid" id="valid" checked>
+                                    </td>
+                                    <td class="px-4 py-2 space-x-4">
+                                        <button class="bg-purple-400 text-white px-3 py-1 text-sm rounded-md hover:bg-purple-500">Edit</button>
+                                        <button class="bg-white border border-purple-400 text-purple-400 px-3 py-1 text-sm rounded-md hover:bg-purple-50">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-purple-100 border-b odd:bg-gray-100">
+                                    <td class="px-4 py-2"><img src="../../images/10.jpeg" class="w-10 h-10 rounded-md" alt="Post image"></td>
+                                    <td class="px-4 py-2 text-xl font-bold"><a href="#" class="text-purple-600 hover:underline">Franck detagne</a></td>
+                                    <td class="px-4 py-2">bankaiye237@gmail.com</td>
+                                    <td class="px-4 py-2">
+                                        <input type="checkbox" name="valid" id="valid" checked>
+                                    </td>
+                                    <td class="px-4 py-2 space-x-4">
+                                        <button class="bg-purple-400 text-white px-3 py-1 text-sm rounded-md hover:bg-purple-500">Edit</button>
+                                        <button class="bg-white border border-purple-400 text-purple-400 px-3 py-1 text-sm rounded-md hover:bg-purple-50">Delete</button>
+                                    </td>
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                 </section>
+        
+             
+                </section>
+            
+          
+    

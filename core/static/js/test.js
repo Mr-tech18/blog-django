@@ -227,15 +227,6 @@ document.addEventListener('DOMContentLoaded',()=>{
         }
     }
 
-    //code to close the messages framwork
-    function closesMessage(){
-        let messageContainer=document.querySelector('.messages');
-        setTimeout(()=>{
-            messageContainer.classList.add('hidden');
-        },10000);
-        console.log('top');
-    }
-
     //this code use for the search functionnality
     (()=>{
         document.addEventListener('click',(e)=>{
@@ -253,7 +244,7 @@ document.addEventListener('DOMContentLoaded',()=>{
            
         });
     })();
-    closesMessage();
+
     popularPost();
     featureThisMonth();
     displaySubList();

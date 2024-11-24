@@ -2,8 +2,8 @@
 {% load static %}
 {% block title %}Dashboard{% endblock title %}
 
-{% block content %}
 
+{% block content %}
 <h1 class="text-2xl font-bold text-purple-700">
         
     Dashboard
@@ -14,7 +14,6 @@
  <div class="lg:flex justify-between flex-wrap max-md:space-x-4  items-center font-semibold">
   <div class="bg-white p-2 rounded-md ">
     <p class="text-2xl font-bold mb-0">100</p>
-    <p class="text-2xl font-bold mb-0">{{author.name}}</p>
     <p class="mt-0">New readers</p>
     <progress value="35" max="100"></progress>
   </div>
@@ -147,101 +146,27 @@
 <div class="bg-white rounded-md mt-5 p-2">
   <h1 class="font-bold text-2xl">Latest Posts</h1>
   <ul class="lg:flex flex-wrap items-center">
+    {% for post in posts %}
     <li class="hover:translate-y-1 w-64 max-md:text-xs flex-grow flex-col lg:w-72 mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
       <p class="btn-style">Travel</p>
-      <h2 class="text-[1.1rem] font-bold my-1">Set the video play back style with Javascript</h2>
-      <div class=" mb-4 lg:w-auto h-52 w-full"><img class="rounded-xl w-full h-full object-cover object-center " src="{% static 'assets/images/11.jpg' %}" alt="banner image 1"></div>
+      <h2 class="text-[1.1rem] font-bold my-1">{{post.title|truncatewords:4}}</h2>
+      <div class=" mb-4 lg:w-auto h-52 w-full"><img class="rounded-xl w-full h-full object-cover object-center " src="{{post.profile_image.url}}" alt="banner image 1"></div>
       <div data-title="about-author " >
           <div class="flex gap-1 items-center my-4">
               <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
               <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <h3 class="text-author"><a href="assets/html/blog/about_authors.html">Joe Doe</a></h3>
+              <h3 class="text-author"><a href="{% url "core:author" post.author.aid %}">{{post.author}}</a></h3>
               <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
+              <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-3 h-3" alt=""></p>
               <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
+              <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-3 h-3" alt=""> 3 min to read</p>
           </div>
-          <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
-              rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
+          <p class="text-sm ">{{post.description}}<span class="btn-read-more text-white">Edit<img class="inline-block w-3 h-3 " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
           </p>
       </div>
     </li>
-    <li class="hover:translate-y-1 w-64 max-md:text-xs flex-grow flex-col lg:w-72 mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
-      <p class="btn-style">Travel</p>
-      <h2 class="text-[1.1rem] font-bold my-1">Set the video play back style with Javascript</h2>
-      <div class=" mb-4 lg:w-auto h-52 w-full"><img class="rounded-xl w-full h-full object-cover object-center " src="{% static 'assets/images/11.jpg' %}" alt="banner image 1"></div>
-      <div data-title="about-author " >
-          <div class="flex gap-1 items-center my-4">
-              <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
-              <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <h3 class="text-author"><a href="assets/html/blog/about_authors.html">Joe Doe</a></h3>
-              <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
-              <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
-          </div>
-          <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
-              rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
-          </p>
-      </div>
-    </li>
-    <li class="hover:translate-y-1 w-64 max-md:text-xs flex-grow flex-col lg:w-72 mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
-      <p class="btn-style">Travel</p>
-      <h2 class="text-[1.1rem] font-bold my-1">Set the video play back style with Javascript</h2>
-      <div class=" mb-4 lg:w-auto h-52 w-full"><img class="rounded-xl w-full h-full object-cover object-center " src="{% static 'assets/images/11.jpg' %}" alt="banner image 1"></div>
-      <div data-title="about-author " >
-          <div class="flex gap-1 items-center my-4">
-              <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
-              <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <h3 class="text-author"><a href="assets/html/blog/about_authors.html">Joe Doe</a></h3>
-              <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
-              <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
-          </div>
-          <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
-              rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
-          </p>
-      </div>
-    </li>
-    <li class="hover:translate-y-1 w-64 max-md:text-xs flex-grow flex-col lg:w-72 mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
-      <p class="btn-style">Travel</p>
-      <h2 class="text-[1.1rem] font-bold my-1">Set the video play back style with Javascript</h2>
-      <div class=" mb-4 lg:w-auto h-52 w-full"><img class="rounded-xl w-full h-full object-cover object-center " src="{% static 'assets/images/11.jpg' %}" alt="banner image 1"></div>
-      <div data-title="about-author " >
-          <div class="flex gap-1 items-center my-4">
-              <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
-              <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <h3 class="text-author"><a href="assets/html/blog/about_authors.html">Joe Doe</a></h3>
-              <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
-              <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
-          </div>
-          <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
-              rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
-          </p>
-      </div>
-    </li>
-    <li class="hover:translate-y-1 w-64 max-md:text-xs flex-grow flex-col lg:w-72 mb-5 shadow shadow-[#fdf7f7] p-1 rounded">
-      <p class="btn-style">Travel</p>
-      <h2 class="text-[1.1rem] font-bold my-1">Set the video play back style with Javascript</h2>
-      <div class=" mb-4 lg:w-auto h-52 w-full"><img class="rounded-xl w-full h-full object-cover object-center " src="{% static 'assets/images/11.jpg' %}" alt="banner image 1"></div>
-      <div data-title="about-author " >
-          <div class="flex gap-1 items-center my-4">
-              <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
-              <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <h3 class="text-author"><a href="assets/html/blog/about_authors.html">Joe Doe</a></h3>
-              <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 19 August 2024</p>
-              <span class="inline-block w-px h-3 bg-slate-500"></span>
-              <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> 3 min to read</p>
-          </div>
-          <p class="text-[0.75rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ab non 
-              rerum! Vitae dolorum maiores dicta iure quae,   <span class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
-          </p>
-      </div>
-    </li>
+   
+    {% endfor %}
   </ul>
 </div>
 {% endblock content %}

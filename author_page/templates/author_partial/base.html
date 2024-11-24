@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <html>
     <head>
         <meta charset="utf-8">
@@ -9,31 +8,40 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static "css/output.css" %}">
+        <link rel="stylesheet" href="{% static "css/messages1.css" %}">
     </head>
     <body>
         <section id="sidebar" class="fixed top-0 left-0 max-h-[100vh]  max-w-72 p-6 overflow-y-auto scrollbar-width-2">
             <div class="flex gap-3">
-              <img src="../../images/11.jpg" alt="" class="w-8 h-8 rounded">
-              <p class="text-purple-600 text-xl font-bold text-center">Author Site</p>
+              <img src="{{author.author_image.url}}" alt="" class="w-8 h-8 rounded">
+              <p class="text-purple-600 text-xl font-bold text-center capitalize"><span class="font-bold">{{author.name|truncatewords:2}}</span></p>
             </div>
-            <button id="dashboard_btn_id" class="p-2 hover:bg-purple-200  rounded mt-5  w-full text-start">
+            <button data-menu="menu-item" type="button" id="dashboard_btn_id" class="p-2 hover:bg-purple-200  rounded mt-5  w-full text-start">
               Dashboard
             </button>
             <div class=" mt-5">
               <p class="uppercase text-sm text-gray-400">main</p>
               <ul class=" cursor-pointer">
                 <li class="">
-                  <button id="btn_edit_profile" class="hover:bg-purple-200 py-2 pl-2  rounded block w-full  text-start">Edit profile</button>
+                  <button data-menu="menu-item"  type="button" id="btn_edit_profile" class="hover:bg-purple-200 py-2 pl-2  rounded block w-full  text-start">Edit profile</button>
                   
                 </li>
-                
-                  <button type="click" id='btn_comment' class="hover:bg-purple-200 p-2 rounded w-full text-start">See Insight Comments</button>
-                
-                <li class="hover:bg-purple-200 p-2 rounded">Statistics</li>
+                <li>
+                  <button  data-menu="menu-item" type="button" id='btn_comment' class="hover:bg-purple-200 p-2 rounded w-full text-start">See Insight Comments</button>
+                </li>
+                <li>
+                  <button data-menu="menu-item"  type="button" id='btn_post_list' class="hover:bg-purple-200 p-2 rounded w-full text-start">All posts</button>
+                </li>
+                <li>
+                  <button type="button" data-menu="menu-item"  class="hover:bg-purple-200 p-2 rounded">Statistics</button>
+                </li>
               </ul>
               <p class="uppercase text-gray-400 text-sm text-purple-200-400">Table and rows</p>
               <ul class=" cursor-pointer">
-                <button id='btn_add_post'  class="hover:bg-purple-200 p-2 rounded-md w-full text-start">Add post</button>
+                <li>
+                  <button type="button" id='btn_add_post'  class="hover:bg-purple-200 p-2 rounded-md w-full text-start decoration">Add post</button>
+
+                </li>
                 <li class=""> 
         
                 
@@ -53,6 +61,11 @@
                 Become a pro members. And enjoy All the Features
               </p>
             </div>
+            <div>
+              {% if author.is_authenticated %}
+              <p class="mt-3"> <a href="{% url "author_p:logout" %}" class="font-bold text-xl text-start text-purple-600 hover:text-purple-500"> logout</a> </p>
+              
+              {% endif %}
         </section>
         <section class="relative top-0 pt-6 left-[288px] w-[calc(100%-288px)]" >
             <nav class="flex justify-between items-center mr-3">
@@ -73,6 +86,12 @@
             </nav>
 
             {% comment %} thtat is our blog container right here {% endcomment %}
+            <ul class="messages  relative mb-4 bg-purple-200">
+              {% for message in messages %}
+              
+              <li class="{{message.tags}} message"> {{message|safe}}</li>
+              {% endfor %}
+            </ul>
             <main class="bg-gray-200 p-6 mt-6 rounded-md" data-title="element_container">
                 {% block content %}
                     <div class="flex gap-5">
@@ -98,6 +117,7 @@
         </section>
         
         
+        <script src="{% static "js/CloseMessages.js" %}"></script>
         <script src="{% static "js/authors1.js" %}"></script>
     </body>
 </html>

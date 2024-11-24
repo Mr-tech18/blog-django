@@ -10,4 +10,5 @@ urlpatterns = [
     path('edit_post/',views.edit_post,name="edit-post"),
     path('edit_profile/',views.edit_profile,name="edit-profile"),
     path('auth-login/',views.auth_login_view,name="login"),
+    path('auth-logout/',views.logout_view,name="logout"),
 ]

@@ -43,13 +43,14 @@ class Category(models.Model):
     
 class Author(models.Model):
     aid=models.UUIDField(primary_key=True,default=uuid.uuid4,unique=True,editable=False)
-    user=models.OneToOneField(CustomUser,on_delete=models.CASCADE,blank=True)
+    user=models.OneToOneField(CustomUser,on_delete=models.CASCADE,blank=True,related_name='author_profile')
     status=models.BooleanField(default=False)
     rating=models.CharField(max_length=2,choices=RATING,default=RATING[0][0],null=True,blank=True)
     agency_descript=models.TextField(max_length=300,default='Let the world know what is in your mind')
     author_image=models.ImageField(upload_to=get_user_directory_path,default="defaults/default.webp")
     name=models.CharField(max_length=250,default="author")
     email=models.EmailField()
+    address=models.CharField(max_length=350,default="Douala,Deido Rue 1372")
     is_author=models.BooleanField(default=True)
     whatsapp=models.CharField(max_length=25,default='+237692109697')
     telegram=models.CharField(max_length=25,null=True,blank=True)
@@ -64,6 +65,10 @@ class Author(models.Model):
 
     def __str__(self):
          return "{}".format(self.user)
+    
+    @property
+    def is_authenticated(self):
+        return self.user.is_authenticated
 
     
 class Post(models.Model):
@@ -83,7 +88,7 @@ class Post(models.Model):
     description=models.CharField(max_length=150)
     slug=models.SlugField(max_length=150)
     author=models.ForeignKey(Author,on_delete=models.CASCADE)
-    profile_image=models.ImageField(upload_to="post",default="./static/assets/images/2.jpg")
+    profile_image=models.ImageField(upload_to="post",default="./static/assets/images/2.jpg",max_length=300)
     content=models.TextField(null=True,blank=True)
     status=models.CharField(max_length=2,choices=StatusChoices,default=StatusChoices.DRAFT)
     likes=models.ManyToManyField(CustomUser,related_name='post_like',blank=True)

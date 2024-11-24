@@ -5,96 +5,77 @@
       
           Add Post
         </h1>
-        <div class="flex gap-4">
-          <div class="text-white">
-              <button class="hover:bg-purple-500 p-1 hover:transition-all duration-100 rounded border border-purple-600 transition-all text-purple-500 hover:text-white">Save as Draft</button>
-          </div>
-          <div class="text-white">
-              <button class="bg-purple-500 p-1 rounded hover:translate-y-1 hover:bg-purple-900">Publish</button>
-          </div>
-        </div>
+       
     </div>
 
   <!-- post form creation -->
   <section class=" p-2">
   
-      <form action="" method="" class="">
+      <form action="{% url "author_p:add-post" %}" enctype="multipart/form-data" method="POST" class="">
           
-          
+              {% csrf_token %}
+              
               <div class="space-y-4 lg:flex gap-10 ">
+                
                   <fieldset class="space-y-3 bg-white rounded-md p-4 basis-2/3">
                       <h3 class="text-xl text-gray-400">Post</h3>
                       <hr>
                           <p>
-                              <label for="title">Post title</label> <br>
-                              <input type="text" placeholder="Title" class="input-style">
+                              <label for="id_title">Post title<span class="text-red-600">*</span></label> <br>
+                              {{form.title}}
                           </p>
                           <p>
-                              <label for="slug">Slug <span class="text-red-600">*</span></label> <br>
-                              <input type="text" placeholder="Type the post Slug field.." class="input-style">
+                            <label for="id_slug">Post sulg<span class="text-red-600">*</span></label> <br>
+                            {{form.slug}}
                           </p>
                           <p>
-                              <label for="slug">Description <span class="text-red-600">*</span></label> <br>
-                              <input type="text" placeholder="Type the Post descrpiton.." class="input-style">
+                            <label for="id_reading_time">reading time<span class="text-red-600">*</span></label> <br>
+                            {{form.reading_time}}
+                        </p>
+                          <p>
+                            
+                              <input name="author" type="hidden" placeholder="Type the estimate reading time Ex:3 min " id="id_author" class="input-style" value="{{request.author.aid}}">
                           </p>
                           <p>
-                              <label for="slug">Reading time <span class="text-red-600">*</span></label> <br>
-                              <input type="text" placeholder="Type the estimate reading time Ex:3 min " class="input-style">
+                              <label for="id_status">Status<span class="text-red-600">*</span></label> <br>
+                              {{form.status}}
                           </p>
                           <p>
-                              <label for="title">Status</label> <br>
-                              <select name="status" id="status">
-                                  <option value="none">None</option>
-                                  <option value="draf">Publish</option>
-                                  <option value="publish">Draft</option>
-                              </select>
-                          </p>
-                          <p>
-                              <label for="title">Category</label> <br>
-                              <select name="category" id="category">
-                                  <option value="None">None</option>
-                                  <option value="none">Football</option>
-                                  <option value="draf">Music</option>
-                                  <option value="publish">Art</option>
-                              </select>
+                              <label for="id_category">Category<span class="text-red-600">*</span></label> <br>
+                              {{form.category}}
                           </p>
                   </fieldset>
                   <fieldset class="space-y-3  rounded-md  basis-1/2">
                     <div class="bg-white p-4 rounded-md">
                       <h3 class="text-xl text-gray-400">Image</h3>
                       <hr>
-                      <img src="../../images/12.jpeg" class="w-20 h-20 m-auto" alt="">
+                      <img src="{{request.author.author_image.url}}" class="w-20 h-20 m-auto" alt="">
                       <p>
-                          <input type="file">
+                         {{form.profile_image}}
                       </p>
                     </div>
-                    <div class="bg-white p-4 rounded-md">
-                      <p>
-                          <label for="publis_date">Publish Date</label>
-                          <input type="date">
-                      </p>
-                      <p>
-                          <label for="publis_date">Publish time</label>
-                          <input type="time">
-                      </p>
-                    </div>
+                   
                   </fieldset>
               </div>
               <div class="mt-4">
-                  <label for="content">Text content<span class="text-red-700">*</span></label>
+                 
                   <fieldset class="space-y-3 bg-white rounded-md p-6">
-                      
-                      <textarea name="post_content" id="post_content" class="bg-gray-200 w-[100%] rounded-md" rows="10" placeholder="Your post content goes here.."></textarea>
+                      <p>
+                        <label for="id_description">post description:<span class="text-red-600">*</span></label>
+                        {{form.description}}
+                      </p>
+                      <p>
+                        <label for="id_content">Post Content:<span class="text-red-600">*</span></label>
+                        {{form.content}}
+                      </p>
                   </fieldset>
               </div>
               <div class="flex gap-4 mt-4">
-                  <div class="text-white">
-                      <button class="hover:bg-purple-500 p-1 hover:transition-all duration-100 rounded border border-purple-600 transition-all text-purple-500 hover:text-white">Save as Draft</button>
-                  </div>
+                  
                   <div class="text-white">
                       <button type="submit" class="bg-purple-500 p-1 rounded hover:translate-y-1 hover:bg-purple-900">Publish</button>
                   </div>
-                </div>
+            </div>
       </form>
   </section>
 

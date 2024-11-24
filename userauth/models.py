@@ -10,9 +10,13 @@ class CustomUser(AbstractUser):
     email=models.EmailField(unique=True)
     username=models.CharField(max_length=50)
     profile_image=models.ImageField(upload_to=get_user_directory_path,null=True,blank=True,default="defaults/default.webp")
+    is_author=models.BooleanField(default=False)
 
     USERNAME_FIELD="email"
     REQUIRED_FIELDS=['username']
+
+    def get_full_name(self) -> str:
+        return super().get_full_name()
 
     def get_profile_image(self):
         return mark_safe("<img src='{0}' width='50' height='50' />".format(self.profile_image.url))

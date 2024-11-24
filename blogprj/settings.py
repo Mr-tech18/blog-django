@@ -171,6 +171,6 @@ EMAIL_USE_TLS=True
 
 AUTHENTICATION_BACKENDS=[
     'django.contrib.auth.backends.ModelBackend',
-    'author_page.authentication.AuthorAuthenticationEmail',
-    'author_page.authentication.AuthorAuthenticationName',
+    'author_page.backend.AuthorAuthenticationEmail',
+    'author_page.backend.AuthorAuthenticationName',
 ]
