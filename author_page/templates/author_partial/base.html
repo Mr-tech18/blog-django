@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static "css/output.css" %}">
-        <link rel="stylesheet" href="{% static "css/messages1.css" %}">
+        <link rel="stylesheet" href="{% static "css/messages.css" %}">
     </head>
     <body>
         <section id="sidebar" class="fixed top-0 left-0 max-h-[100vh]  max-w-72 p-6 overflow-y-auto scrollbar-width-2">
@@ -39,7 +39,7 @@
               <p class="uppercase text-gray-400 text-sm text-purple-200-400">Table and rows</p>
               <ul class=" cursor-pointer">
                 <li>
-                  <button type="button" id='btn_add_post'  class="hover:bg-purple-200 p-2 rounded-md w-full text-start decoration">Add post</button>
+                  <button data-menu="menu-item" type="button" id='btn_add_post'  class="hover:bg-purple-200 p-2 rounded-md w-full text-start decoration">Add post</button>
 
                 </li>
                 <li class=""> 
@@ -118,6 +118,6 @@
         
         
         <script src="{% static "js/CloseMessages.js" %}"></script>
-        <script src="{% static "js/authors1.js" %}"></script>
+        <script src="{% static "js/authors.js" %}"></script>
     </body>
 </html>

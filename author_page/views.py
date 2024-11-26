@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.http import JsonResponse
-from core.models import Author,Post
+from core.models import Author,Post,Comment
 from .decorator import author_required
 from django.contrib.auth import authenticate,login,logout
 from .forms import AuthorProfileEdit,PostForm
@@ -35,7 +35,15 @@ def add_post_author(request):
 
 
 def post_comment(request):
-    data=render_to_string("async_auth/comment.html")
+    author=request.author
+    posts_ids=Post.published.filter(author=author).values_list('pid',flat=True)
+    comments=Comment.objects.filter(post__pid__in=posts_ids)
+
+    context={
+        'comments':comments,
+    }
+
+    data=render_to_string("async_auth/comment.html",context,request)
 
     return JsonResponse({
         'context':data
@@ -46,13 +54,48 @@ def dashboard(request):
     return JsonResponse({
         'context':data
     })
-def edit_post(request):
-    data=render_to_string("async_auth/edit_post.html")
+
+def post_list(request):
+    author=request.author
+    posts=Post.objects.filter(author=author).order_by("-publish","-updated")
+    context={'posts':posts}
+    data=render_to_string('async_auth/auth_post_list.html',context,request)
 
     return JsonResponse({
-        'context':data
+        'context':data,
     })
 
+def delete_post(request,post_id):
+    post=Post.objects.get(pid=post_id)
+    messages.success(request,f'{post.title}  have been successfull deleted')
+    post.delete()
+
+    return redirect('author_p:author')
+
+def edit_post(request,post_id):
+    
+    post=Post.objects.get(pid=post_id)
+    if request.method=="POST":
+        form=PostForm(data=request.POST,files=request.FILES,instance=post)
+        if form.is_valid():
+            form.save()
+            print(request.FILES)
+            messages.success(request,"Your update are saved")
+            return redirect('author_p:author')
+        else:
+            print(form.errors)
+            print('the form is not valid..')
+    else:
+        form=PostForm(instance=post)
+    context={
+        "post":post,
+        "form":form,
+    }
+    data=render_to_string("async_auth/auth_post_edit.html",context,request)
+    return JsonResponse({
+        'context':data
+        
+    })
 
 def edit_profile(request):
     print('profile edition view..')

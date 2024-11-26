@@ -37,7 +37,10 @@ document.addEventListener('DOMContentLoaded',(e)=>{
                   
                   for(let i=0;i<btns.length;i++){
                     if(i==index){
-                      btns[index].classList.toggle('decor');
+                      if(! btns[index].classList.contains('decor')){
+                        btns[index].classList.add('decor');
+                      }
+                      
                     }
                     else{
                       btns[i].classList.remove('decor');

@@ -3,7 +3,7 @@
     <div class="flex gap-5">
          <h1 class="text-2xl font-bold text-purple-700">
       
-          Add Post
+         Edit Post
         </h1>
        
     </div>
@@ -49,7 +49,7 @@
                     <div class="bg-white p-4 rounded-md">
                       <h3 class="text-xl text-gray-400">Image</h3>
                       <hr>
-                      <img src="{{request.author.author_image.url}}" class="w-20 h-20 m-auto" alt="">
+                      <img src="{{post.profile_image.url}}" class="w-20 h-20 m-auto" alt="">
                       <p>
                          {{form.profile_image}}
                       </p>
@@ -73,7 +73,7 @@
               <div class="flex gap-4 mt-4">
                   
                   <div class="text-white">
-                      <button type="submit" class="bg-purple-500 p-1 rounded hover:translate-y-1 hover:bg-purple-900">Publish</button>
+                      <button type="submit" class="bg-purple-500 p-1 rounded hover:translate-y-1 hover:bg-purple-900">Saved updates</button>
                   </div>
             </div>
       </form>

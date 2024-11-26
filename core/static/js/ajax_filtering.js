@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 Object.keys(selected_data).forEach(key => {
                     selected_data[key].forEach(value => params.append(`${key}[]`, value));
                 });
-
+                console.log(selected_data);
                 let xhr = new XMLHttpRequest();
                 xhr.open('GET', `${document.getElementById('my_form').getAttribute('action')}?${params.toString()}`, true);
                 xhr.setRequestHeader('Content-type', 'application/json');
