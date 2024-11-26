@@ -18,18 +18,25 @@
 
                  <!-- post list main section-->
                  <section class="bg-white rounded-md p-4 space-y-3">
+                    <button class="shadow shadow-gray-200 rounded-md p-2 mb-2 font-bold text-xl capitalize">filter by  <img class="w-5 h-2 inline-block"  src="{% static "assets/images/angle-small-down.png" %}" alt=""></button>
+
                     <div class="flex justify-between items-center">
-                        <!-- <div class="">
-                            <input id="filter" type="checkbox" value="">
-                          <span class="inline-block ml-4  bg-gray-200 p-2 rounded-md mb-4">
-                            <select  class="w-full bg-gray-200 focus:border border-purple-300 rounded mr-6" name="post_list" id="post_list">
-                                <option value="None">All categories</option>
-                                <option value="sport">Sport</option>
-                                <option value="art">Art</option>
-                                <option value="religion">Religion</option>
-                            </select>
-                          </span>
-                        </div> -->
+                        <div class="shadow shadow-purple-200 p-2 rounded-md space-y-2">
+                            <h3 class=" mb-2 font-bold capitalize">posts</span> </h3>
+            
+                            <form id="my_form" action="{% url "author_p:comments-filter" %}" class="space-y-1">
+                                {% for post in posts %}
+                                  
+                                      <div class="border border-gray-100 p-2 rounded-md">
+                                        <label class="  " for="{{post.pid}}">
+                                            <input data-filter="post" class="checkbox-filter inline w-10 focus:border-none focus:outline-none" type="checkbox" value="{{post.pid}}" id="{{post.pid}}" name="post">
+                                            {{post.title}}
+                                        </label><br>
+                                     </div>
+                                  
+                                {% endfor %}
+                            </form>
+                        </div>
                        <!--  <div class="space-x-6">
                             <input type="date" class="bg-gray-200 rounded-md p-2">
                             <select name="status" id="status" class="bg-gray-200 rounded-md p-2">
@@ -39,7 +46,7 @@
                             </select>
                         </div> -->
                     </div>
-                    <div class="overflow-x-auto">
+                    <div class="overflow-x-auto" id="posts_list_table">
                         <table class="w-full table-auto border-collapse">
                             <thead>
                                 <tr class="bg-purple-600 text-white text-left">

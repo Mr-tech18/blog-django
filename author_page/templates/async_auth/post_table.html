@@ -1,0 +1,29 @@
+<table class="w-full table-auto border-collapse">
+    <thead>
+        <tr class="bg-purple-600 text-white text-left">
+            <th class="px-4 py-2">User Image</th>
+            <th class="px-4 py-2">Username</th>
+            <th class="px-4 py-2">Post</th>
+            <th class="px-4 py-2">Status</th>
+            <th class="px-4 py-2">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+       {% for comment in comments %}
+       <tr class="hover:bg-purple-100 border-b odd:bg-gray-100">
+        <td class="px-4 py-2"><img src="{{comment.user.profile_image.url}}" class="w-10 h-10 rounded-md" alt="Post image"></td>
+        <td class="px-4 py-2 text-[16px] font-bold"><a href="#" class="text-purple-600 hover:underline">{{comment.user}}</a></td>
+        <td class="px-4 py-2">{{comment.post}}</td>
+        <td class="px-4 py-2">
+           {{comment.status}}
+        </td>
+        <td class="px-4 py-2 space-x-4">
+            <button class="bg-purple-400 text-white px-3 py-1 text-sm rounded-md hover:bg-purple-500">Edit</button>
+            <button class="bg-white border border-purple-400 text-purple-400 px-3 py-1 text-sm rounded-md hover:bg-purple-50">Delete</button>
+        </td>
+    </tr>
+       {% endfor %}
+     
+       
+    </tbody>
+</table>

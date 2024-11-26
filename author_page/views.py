@@ -7,6 +7,7 @@ from core.models import Author,Post,Comment
 from .decorator import author_required
 from django.contrib.auth import authenticate,login,logout
 from .forms import AuthorProfileEdit,PostForm
+from core.views import ajax_author_views
 # Create your views here.
 
 
@@ -36,11 +37,14 @@ def add_post_author(request):
 
 def post_comment(request):
     author=request.author
+    posts=Post.published.filter(author=author)
     posts_ids=Post.published.filter(author=author).values_list('pid',flat=True)
     comments=Comment.objects.filter(post__pid__in=posts_ids)
 
     context={
         'comments':comments,
+        "posts":posts,
+        "author":author,
     }
 
     data=render_to_string("async_auth/comment.html",context,request)
@@ -48,6 +52,22 @@ def post_comment(request):
     return JsonResponse({
         'context':data
     })
+
+def auth_filter_comments_view_ajax(request):
+    author=request.author
+
+    selected_posts=request.GET.getlist('post[]')#we retrieve the list of post_ids send trought ajax
+
+    comments=Comment.objects.filter(post__pid__in=selected_posts)
+    context={
+        "comments":comments,
+    }
+    data=render_to_string("async_auth/comment.html",context,request)
+
+    return JsonResponse({
+        'context':data
+    })
+
 def dashboard(request):
     data=render_to_string("async_auth/dashboard.html")
 
@@ -157,3 +177,5 @@ def logout_view(request):
     logout(request)
 
     return redirect('author_p:login')
+
+
