@@ -58,11 +58,17 @@ def auth_filter_comments_view_ajax(request):
 
     selected_posts=request.GET.getlist('post[]')#we retrieve the list of post_ids send trought ajax
 
-    comments=Comment.objects.filter(post__pid__in=selected_posts)
+    if selected_posts:
+        comments=Comment.objects.filter(post__pid__in=selected_posts)
+    else:
+        author=request.author
+        posts=Post.published.filter(author=author)
+        posts_ids=Post.published.filter(author=author).values_list('pid',flat=True)
+        comments=Comment.objects.filter(post__pid__in=posts_ids)
     context={
         "comments":comments,
     }
-    data=render_to_string("async_auth/comment.html",context,request)
+    data=render_to_string("async_auth/post_table.html",context,request)
 
     return JsonResponse({
         'context':data
