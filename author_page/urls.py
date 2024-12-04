@@ -8,6 +8,7 @@ urlpatterns = [
     path('manage_comment/',views.post_comment,name="comment"),
     path('add_post/',views.add_post_author,name="add-post"),
     path('post_list/',views.post_list,name="post-list"),
+    path('post_list_filter_ajax/',views.post_list_filter_ajax,name="category-post"),
     path('filter_comments/',views.auth_filter_comments_view_ajax,name="comments-filter"),
     path('edit_post/<post_id>/',views.edit_post,name="edit-post"),
     path('delete_post/<post_id>/',views.delete_post,name="delete-post"),

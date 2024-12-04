@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.http import JsonResponse
-from core.models import Author,Post,Comment
+from core.models import Author,Post,Comment,Category
 from .decorator import author_required
 from django.contrib.auth import authenticate,login,logout
 from .forms import AuthorProfileEdit,PostForm
@@ -34,8 +34,7 @@ def add_post_author(request):
         'context':data
     })
 
-
-def post_comment(request):
+def get_comment_per_author(request):
     author=request.author
     posts=Post.published.filter(author=author)
     posts_ids=Post.published.filter(author=author).values_list('pid',flat=True)
@@ -47,6 +46,12 @@ def post_comment(request):
         "author":author,
     }
 
+    return context
+
+def post_comment(request):
+    
+    context=get_comment_per_author(request)
+
     data=render_to_string("async_auth/comment.html",context,request)
 
     return JsonResponse({
@@ -54,21 +59,70 @@ def post_comment(request):
     })
 
 def auth_filter_comments_view_ajax(request):
-    author=request.author
+    
 
     selected_posts=request.GET.getlist('post[]')#we retrieve the list of post_ids send trought ajax
 
     if selected_posts:
         comments=Comment.objects.filter(post__pid__in=selected_posts)
-    else:
-        author=request.author
-        posts=Post.published.filter(author=author)
-        posts_ids=Post.published.filter(author=author).values_list('pid',flat=True)
-        comments=Comment.objects.filter(post__pid__in=posts_ids)
-    context={
+        context={
         "comments":comments,
     }
+    else:
+       context=get_comment_per_author(request)
+    
     data=render_to_string("async_auth/post_table.html",context,request)
+
+    return JsonResponse({
+        'context':data
+    })
+
+def get_posts_by_author(request):
+    """
+        author:franck detagne
+        we use this function to retrieve all post write by an author ,
+        this view also retrieve all the category of posts written by the current logged in author
+    """
+    author=request.author
+    posts=Post.objects.filter(author=author).order_by("-publish","-updated")
+    post_category_ids=posts.values_list('category_id',flat=True)
+    categories=Category.objects.filter(cid__in=post_category_ids)
+    context={
+        'posts':posts,
+        'categories':categories
+        }
+    return context
+
+
+def post_list(request):
+    """
+        this function just retrieve the value of the get_posts_by_author()
+        and pass it to the render_to_string() who use the context dictionnary to render a html page 
+        and then convert the result as a string , asign it variable , this variable is then used by js to render the content dynamically 
+        the function responsable to send data to 'js' is jsonResponse()
+    """
+    context=get_posts_by_author(request)
+    data=render_to_string('async_auth/auth_post_list.html',context,request)
+
+    return JsonResponse({
+        'context':data,
+    })
+
+def post_list_filter_ajax(request):
+    selected_category=request.GET.getlist('category[]')#we retrieve the list of post_ids send trought ajax
+
+    if selected_category:
+        author=request.author
+        posts=Post.objects.filter(author=author,category__cid__in=selected_category)
+        context={
+        "posts":posts,
+    }
+        data=render_to_string("async_auth/table_post_ajax.html",context,request)
+
+    else:
+       print('nohting...')
+       context=get_posts_by_author(request)
+       data=render_to_string("async_auth/table_post_ajax.html",context,request)
 
     return JsonResponse({
         'context':data
@@ -81,15 +135,6 @@ def dashboard(request):
         'context':data
     })
 
-def post_list(request):
-    author=request.author
-    posts=Post.objects.filter(author=author).order_by("-publish","-updated")
-    context={'posts':posts}
-    data=render_to_string('async_auth/auth_post_list.html',context,request)
-
-    return JsonResponse({
-        'context':data,
-    })
 
 def delete_post(request,post_id):
     post=Post.objects.get(pid=post_id)

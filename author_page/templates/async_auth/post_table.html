@@ -13,9 +13,9 @@
        <tr class="hover:bg-purple-100 border-b odd:bg-gray-100">
             <td class="px-4 py-2"><img src="{{comment.user.profile_image.url}}" class="w-10 h-10 rounded-md" alt="Post image"></td>
             <td class="px-4 py-2 text-[16px] font-bold"><a href="{% url "author_p:edit-post" comment.post.pid %}" class="text-purple-600 hover:underline post_edit_view">{{comment.name}}</a></td>
-            <td class="px-4 py-2">{{comment.name}}</td>
+            <td class="px-4 py-2">{{comment.post.title}}</td>
             <td class="px-4 py-2">
-                <input type="checkbox" name="valid" id="valid" checked>
+                {{comment.status}}
             </td>
             <td class="px-4 py-2 space-x-4">
                 

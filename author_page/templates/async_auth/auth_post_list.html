@@ -7,7 +7,7 @@
              
                 <!-- post list header -->
                  <div class="lg:flex justify-between items-center">
-                        <h1 class="text-3xl font-bold capitalize">POst List</h1>
+                        <h1 class="text-3xl font-bold capitalize">post List</h1>
                         <div class="text-sm text-white">
                             
                             <button class="border hover:opacity-50 bg-purple-500 p-1 rounded-md">Import</button>
@@ -18,25 +18,39 @@
 
                  <!-- post list main section-->
                  <section class="bg-white rounded-md p-4 space-y-3">
+                    <button id="btn_open_menu_id" class="shadow shadow-gray-200 rounded-md p-2 mb-2 font-bold text-xl capitalize">filter by  <img class="w-5 h-2 inline-block"  src="{% static "assets/images/angle-small-down.png" %}" alt=""></button>
+
                     <div class="flex justify-between items-center">
-                        <div class="">
-                            <input id="filter" type="checkbox" value="">
-                          <span class="inline-block ml-4  bg-gray-200 p-2 rounded-md mb-4">
-                            <select  class="w-full bg-gray-200 focus:border border-purple-300 rounded mr-6" name="post_list" id="post_list">
-                                <option value="None">All categories</option>
-                                <option value="sport">Sport</option>
-                                <option value="art">Art</option>
-                                <option value="religion">Religion</option>
-                            </select>
-                          </span>
+                        <div id="menu_checkbox_items" class="shadow shadow-purple-400 p-2 rounded-md space-y-2 hidden" >
+                            <h3 class=" mb-2 font-bold capitalize">post</span> </h3>
+            
+                            <form id="my_form" action="{% url "author_p:category-post" %}" class="space-y-1">
+                                 {% for category in categories %}
+                                  
+                                      <div class="border border-gray-200 p-2 rounded-md">
+                                        <label class="  " for="{{category.cid}}">
+                                            <input data-filter="category" class="checkbox-filter inline w-10 focus:border-none focus:outline-none" type="checkbox" value="{{category.cid}}" id="{{category.cid}}">
+                                            {{category.title}}
+                                        </label><br>
+                                     </div>
+                                  
+                                {% endfor %}
+                            </form>
                         </div>
-                      
+                       <!--  <div class="space-x-6">
+                            <input type="date" class="bg-gray-200 rounded-md p-2">
+                            <select name="status" id="status" class="bg-gray-200 rounded-md p-2">
+                                <option value="">Publish</option>
+                                <option value="">Draf</option>
+                                <option value="">Valid</option>
+                            </select>
+                        </div> -->
                     </div>
-                    <div class="overflow-x-auto">
+                    <div class="overflow-x-auto" id="posts_list_table">
                         <table class="w-full table-auto border-collapse">
                             <thead>
                                 <tr class="bg-purple-600 text-white text-left">
-                                    <th class="px-4 py-2">Post image</th>
+                                    <th class="px-4 py-2">post image</th>
                                     <th class="px-4 py-2">title</th>
                                     <th class="px-4 py-2">category</th>
                                     <th class="px-4 py-2">Status</th>
@@ -46,11 +60,11 @@
                             <tbody>
                                 {% for post in posts %}
                                 <tr class="hover:bg-purple-100 border-b odd:bg-gray-100">
-                                    <td class="px-4 py-2"><img src="{{post.profile_image.url}}" class="w-10 h-10 rounded-md" alt="Post image"></td>
+                                    <td class="px-4 py-2"><img src="{{post.profile_image.url}}" class="w-10 h-10 rounded-md" alt="post image"></td>
                                     <td class="px-4 py-2 text-[16px] font-bold"><a href="{% url "author_p:edit-post" post.pid %}" class="text-purple-600 hover:underline post_edit_view">{{post.title|truncatewords:7}}</a></td>
                                     <td class="px-4 py-2">{{post.category}}</td>
                                     <td class="px-4 py-2">
-                                        <input type="checkbox" name="valid" id="valid" checked>
+                                        {{post.status}}
                                     </td>
                                     <td class="px-4 py-2 space-x-4">
                                         

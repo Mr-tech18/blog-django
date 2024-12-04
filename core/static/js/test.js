@@ -1,43 +1,10 @@
+import { openCloseElement } from "./openCloseMenu.js";
+
 
 document.addEventListener('DOMContentLoaded',()=>{
     
     console.log("test");
-    function openCloseElement(menu,btns){
-        //keep in mind that the menu is the html element we want to display or not and the btn is the clikable element for displaying the menu
-       
-        let menuArray=Array.from(menu);
     
-        btns.forEach((btn,index)=>{
-            btn.addEventListener('click',(event)=>{
-                event.stopPropagation();
-                for(let i=0;i<menuArray.length;i++){
-                    if(i==index){
-                        menuArray[i].classList.toggle('hidden');
-                    }
-                    else{
-                        menuArray[i].classList.add('hidden')
-                    }
-                }
-            })
-        })
-    
-        /* 
-            this script above is used to close a code block whenever the user click on the any part of the document 
-            1. we add an event listener to the document to "check" if there is a "click" event that occur
-            2. when a "click event occur" , we loop to all of our button who have a class "show-description" 
-            3. within this loor for each "btn" we check if the "click event" come from the direct child of our "btn" or "the description block with class #shown"
-            4. if the "click event" was comming from a direct child of our two elemeent with classname know as ".shown-description and .description" nothing is done due to "!" operator
-            5. when the click come from any other part of the document ! we add a display("hidden") to the current block of (description)
-        */
-        document.addEventListener('click',(event)=>{
-            btns.forEach((btn,index)=>{
-                if((!btn.contains(event.target))&&(!menu[index].contains(event.target))){
-                    menu[index].classList.add('hidden');
-                }
-            })
-        });
-      
-     }
     function slider(container,listArray,itemsPerPage,currentPage,btnConatiner){
         function renderPagination(){
         
@@ -84,43 +51,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         renderData();
      } 
     
-    /*     function slider(container, listArray, itemsPerPage, currentPage, btnConatiner) {
-            function renderPagination() {
-                btnConatiner.innerHTML = '';
-                for (let i = 1; i <= Math.ceil(listArray.length / itemsPerPage); i++) {
-                    const buttonElement = document.createElement('button');
-                    buttonElement.textContent = i;
-                    buttonElement.className = 'w-10 border m-1 border-purple-300 rounded p-2 hover:bg-purple-200 text-gray-400 text-xs';
-        
-                    buttonElement.addEventListener('click', () => {
-                        currentPage = i;
-                        renderData();
-                    });
-                    btnConatiner.appendChild(buttonElement);
-                }
-            }
-        
-            function renderData() {
-                let start = (currentPage - 1) * itemsPerPage;
-                let end = start + itemsPerPage;
-        
-                // Ensure start and end are within bounds
-                start = Math.max(0, start);
-                end = Math.min(listArray.length, end);
-        
-                for (let i = 0; i < listArray.length; i++) {  // Start loop from 0
-                    if (i >= start && i < end) {
-                        listArray[i].style.display = 'block';
-                    } else {
-                        listArray[i].style.display = 'none';
-                    }
-                }
-            }
-        
-            renderPagination();
-            renderData();
-        }
-         */
+    
         let product=()=>{
         let filter=document.getElementById('dropdownSort1');
         let btn1=document.getElementById('sortDropdownButton1');
@@ -232,10 +163,10 @@ document.addEventListener('DOMContentLoaded',()=>{
         document.addEventListener('click',(e)=>{
             document.querySelectorAll('.search_box').forEach((btn,index)=>{
                 if(btn.contains(e.target)){
-                    let menu=document.getElementById('Search-tags');
-                    menu.classList.toggle('hidden');
+                    let btn_search=document.getElementById('Search-tags');
+                    btn_search.classList.toggle('hidden');
                     document.querySelector('.close_menu').addEventListener('click',(e)=>{
-                        menu.classList.add('hidden');
+                        btn_search.classList.add('hidden');
                     });
                     console.log('it work well..');
                 }

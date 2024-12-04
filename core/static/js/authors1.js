@@ -1,4 +1,5 @@
 import { filtering } from "./ajax_filtering.js";
+import { openCloseElement } from "./openCloseMenu.js";
 
 document.addEventListener('DOMContentLoaded',(e)=>{
   
@@ -105,6 +106,10 @@ document.addEventListener('DOMContentLoaded',(e)=>{
     }
     xhr.send();
   }
+  //open submenu
+  function openSubMenu(btn,subMenu){
+
+  }
 
   //this function will help to return the pid of the current post
   function getPidFromHref(element){
@@ -131,6 +136,12 @@ document.addEventListener('DOMContentLoaded',(e)=>{
       }
       else if(event.target.classList.contains('checkbox-filter')){
         filtering(".checkbox-filter",'my_form','posts_list_table');
+      }
+      else if(event.target.id==='btn_open_menu_id'){
+        
+        let menu=document.getElementById('menu_checkbox_items');
+        menu.classList.toggle('hidden');
+       
       }
       else{
         

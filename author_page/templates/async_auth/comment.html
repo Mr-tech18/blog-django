@@ -18,10 +18,10 @@
 
                  <!-- post list main section-->
                  <section class="bg-white rounded-md p-4 space-y-3">
-                    <button class="shadow shadow-gray-200 rounded-md p-2 mb-2 font-bold text-xl capitalize">filter by  <img class="w-5 h-2 inline-block"  src="{% static "assets/images/angle-small-down.png" %}" alt=""></button>
+                    <button id="btn_open_menu_id" class="shadow shadow-gray-200 rounded-md p-2 mb-2 font-bold text-xl capitalize">filter by  <img class="w-5 h-2 inline-block"  src="{% static "assets/images/angle-small-down.png" %}" alt=""></button>
 
                     <div class="flex justify-between items-center">
-                        <div class="shadow shadow-purple-200 p-2 rounded-md space-y-2">
+                        <div id="menu_checkbox_items" class="shadow shadow-purple-200 p-2 rounded-md space-y-2 hidden" >
                             <h3 class=" mb-2 font-bold capitalize">posts</span> </h3>
             
                             <form id="my_form" action="{% url "author_p:comments-filter" %}" class="space-y-1">
@@ -29,7 +29,7 @@
                                   
                                       <div class="border border-gray-100 p-2 rounded-md">
                                         <label class="  " for="{{post.pid}}">
-                                            <input data-filter="post" class="checkbox-filter inline w-10 focus:border-none focus:outline-none" type="checkbox" value="{{post.pid}}" id="{{post.pid}}" name="post">
+                                            <input data-filter="post" class="checkbox-filter inline w-10 focus:border-none focus:outline-none" type="checkbox" value="{{post.pid}}" id="{{post.pid}}">
                                             {{post.title}} <span class="text-purple-400 ">({{post.comment.count}} comment{{post.comment.count|pluralize}})</span>
                                         </label><br>
                                      </div>
@@ -62,9 +62,9 @@
                                <tr class="hover:bg-purple-100 border-b odd:bg-gray-100">
                                     <td class="px-4 py-2"><img src="{{comment.user.profile_image.url}}" class="w-10 h-10 rounded-md" alt="Post image"></td>
                                     <td class="px-4 py-2 text-[16px] font-bold"><a href="{% url "author_p:edit-post" comment.post.pid %}" class="text-purple-600 hover:underline post_edit_view">{{comment.name}}</a></td>
-                                    <td class="px-4 py-2">{{comment.name}}</td>
+                                    <td class="px-4 py-2">{{comment.post.title}}</td>
                                     <td class="px-4 py-2">
-                                        <input type="checkbox" name="valid" id="valid" checked>
+                                        {{comment.status}}
                                     </td>
                                     <td class="px-4 py-2 space-x-4">
                                         
