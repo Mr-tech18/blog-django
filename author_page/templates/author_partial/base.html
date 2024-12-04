@@ -7,14 +7,20 @@
         <title>{% block title %}{% endblock title %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="{% static "css/output.css" %}">
         <link rel="stylesheet" href="{% static "css/messages.css" %}">
     </head>
     <body>
-        <section id="sidebar" class="fixed top-0 left-0 max-h-[100vh]  max-w-72 p-6 overflow-y-auto scrollbar-width-2">
-            <div class="flex gap-3">
-              <img src="{{author.author_image.url}}" alt="" class="w-8 h-8 rounded">
-              <p class="text-purple-600 text-xl font-bold text-center capitalize"><span class="font-bold">{{author.name|truncatewords:2}}</span></p>
+        <section id="sidebar" class="fixed z-50 top-0 hidden lg:block left-0 max-h-[100vh] bg-white  transition-all  max-w-72 p-6 overflow-y-auto scrollbar-width-2">
+            <div class="flex gap-3 justify-between">
+              <div class="flex gap-1">
+                <img src="{{author.author_image.url}}" alt="" class="w-8 h-8 rounded">
+                <p class="text-purple-600 text-xl font-bold text-center capitalize"><span class="font-bold">{{author.name|truncatewords:2}}</span></p>
+              </div>
+              <button class="lg:hidden show-menu"  type="button">
+                <i class="bi bi-menu-button-fill"></i>
+              </button>
             </div>
             <button data-menu="menu-item" type="button" id="dashboard_btn_id" class="p-2 hover:bg-purple-200  rounded mt-5  w-full text-start">
               Dashboard
@@ -67,10 +73,15 @@
               
               {% endif %}
         </section>
-        <section class="relative top-0 pt-6 left-[288px] w-[calc(100%-288px)]" >
-            <nav class="flex justify-between items-center mr-3">
-              <div class="basis-1/5">
-                <input type="text" class="bg-gray-200 rounded  inline-block w-96 p-1" placeholder="Search...">
+        <section class="relative top-0 lg:pt-6 max-md:left-0 left-[288px] max-md:w-full  w-[calc(100%-288px)]" >
+            
+          <nav class="flex justify-between hi items-center mr-3 p-4">
+            <div class="basis-1/5 inline-flex justify-between">
+              <button class="lg:hidden show-menu" type="button">
+                <i class="bi bi-menu-button-wide"></i>
+              </button>
+              <i class="bi bi-search lg:hidden"></i>
+                <input type="text" class="bg-gray-200 rounded hidden lg:block inline-block w-44 xl:w-96 p-1" placeholder="Search...">
               </div>
               <div class="flex space-x-4 text-[10px] text-white justify-center items-center">
                 <div class="relative ">
@@ -118,6 +129,8 @@
         
         
         <script src="{% static "js/CloseMessages.js" %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="{% static "js/chart.js" %}"></script>
         <script type="module" src="{% static "js/ajax_filtering.js" %}"></script>
         <script type="module"  src="{% static "js/authors1.js" %}"></script>
     </body>

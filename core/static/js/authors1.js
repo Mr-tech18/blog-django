@@ -1,5 +1,5 @@
 import { filtering } from "./ajax_filtering.js";
-import { openCloseElement } from "./openCloseMenu.js";
+
 
 document.addEventListener('DOMContentLoaded',(e)=>{
   
@@ -34,7 +34,9 @@ document.addEventListener('DOMContentLoaded',(e)=>{
                 
                   // now we will display the page using ajax... there's is function in the back-end who load the page as a html 
                   // we we'll just retrieve it here a display it...
-                  ajax_callback(tableLinks[index]);
+                
+                    ajax_callback(tableLinks[index]);
+                  
                   
                   
                   for(let i=0;i<btns.length;i++){
@@ -80,6 +82,7 @@ document.addEventListener('DOMContentLoaded',(e)=>{
       if(delete_post){
         if (this.readyState===4 && (this.status>=200 && this.status<204)){
           console.log('post deleted');
+          
         }
       }
       else{
@@ -150,7 +153,22 @@ document.addEventListener('DOMContentLoaded',(e)=>{
     });
     
   }
-  //callback function section
+  //menu_author site
+  function callbackMenuOpenNav(){
+    let btns=document.querySelectorAll('.show-menu');
+    let menu=document.getElementById('sidebar');
+    btns.forEach(item=>{
+      item.addEventListener('click',()=>{
+        console.log('it work')
+        menu.classList.toggle('hidden');
+      })
+    });
+
+   
+   
+}
+//callback function section
+  callbackMenuOpenNav();
   displayer();
   eventDelegationFunc();
   

@@ -1,5 +1,14 @@
 import { openCloseElement } from "./openCloseMenu.js";
 
+export function closeNaveOpenMenu (btn,menu){
+    
+
+    btn.addEventListener('click',()=>{
+        menu.classList.toggle('hidden');
+        console.log('click...');
+    });
+    
+}
 
 document.addEventListener('DOMContentLoaded',()=>{
     
@@ -65,17 +74,15 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
     
     
-    function closeNaveOpenMenu (){
-        let menu=document.querySelector('[data-name="menu"]');
-        let hamMenuContainer=document.getElementById('hamburger-menu');
     
-        menu.addEventListener('click',()=>{
-            hamMenuContainer.classList.toggle('hidden');
-        });
-        
+    
+    function callbackMenuOpenNav(){
+        let btn=document.querySelector('[data-name="menu"]');
+        let menu=document.getElementById('hamburger-menu');
+
+       closeNaveOpenMenu(btn,menu);
     }
-    
-    closeNaveOpenMenu();
+    callbackMenuOpenNav();
     
     function openCloseFaq(){
         let btns=document.querySelectorAll('.btn-up');
