@@ -5,11 +5,12 @@
     <div>
         <h1 class="my-6 text-2xl font-bold"><span class="bg-purple-600 p-1 text-white text-2xl font-bold">Recently</span> Posted</h1>
     </div>
-    <div  class="max-tablet:grid flex-grow  ">
+    <ul id="recent_post_container"  class="max-tablet:grid flex-grow  ">
         {% for post in posts %}
-        <article class="mb-8 shadow shadow-[#8f8080] p-4">
-            <div class="flex gap-1  flex-wrap tablet:flex-nowrap">
-                <div class=" h-36 w-full  lg:basis-1/5"><img class="rounded object-cover object-center h-full w-full" src="{{post.profile_image.url}}" alt=""></div>
+        
+        <li class="mb-4 shadow shadow-[#8f8080]">
+            <article class="flex gap-1  flex-wrap tablet:flex-nowrap">
+                <div class=" h-36 w-full max-lg:hidden lg:basis-1/5"><img class=" object-cover object-center h-full w-full " src="{{post.profile_image.url}}" alt=""></div>
                 <div class=" p-1 rounded lg:self-center basis-4/5">
                     <p class="btn-style">Travel</p>
                     <h2 class="font-bold">{{post.title}}</h2>
@@ -28,11 +29,11 @@
                         </p>
                     </div>
                 </div>
-            </div>
-        </article>
+            </article>
+        </li>
         {% endfor %}
-    </div>
-    <div data-title="pagination">
+    </ul>
+    <div data-pagination>
         <button class=" text-center m-1 border border-purple-400 rounded hover:bg-purple-300 hover:text-yellow-50 p-1">
             <img src="{% static 'assets/images/arrow-right.png' %}" alt="" class=" w-1 h-1 inline "> Prev
         </button>

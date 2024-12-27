@@ -164,6 +164,17 @@ document.addEventListener('DOMContentLoaded',()=>{
             slider(ul,liElements,2,1,btnConatinercontainer);
         }
     }
+    function recentPosts(){
+        let btnConatinercontainer=document.querySelector('[data-pagination]');
+        console.log(btnConatinercontainer);
+        console.log('recent post in working...');
+        const container=document.querySelector('#recent_post_container');
+        console.log(container);
+        if(container){
+            const listArray=container.children; 
+            slider(container,listArray,10,1,btnConatinercontainer);
+        }
+    }
 
     //this code use for the search functionnality
     (()=>{
@@ -184,6 +195,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     })();
 
     popularPost();
+    recentPosts();
     featureThisMonth();
     displaySubList();
     

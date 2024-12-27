@@ -1,26 +1,35 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Post,Author,Category,Comment
+from .models import Post,Author,Category,Comment,PostView
 from .forms import CommentForm,ContactUsForm,AuthorForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.sessions.models import Session
 from django.contrib import messages
 from django.db.models import Count,Value
+from django.db.models import Q
+from datetime import datetime
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.contrib.postgres.search import SearchVector,SearchQuery,SearchRank,TrigramSimilarity
 
 def home(request):
-    posts=Post.published.all()
-    #p_posts=Post.published.annotate(total_likes=Count('likes')).order_by('-total_likes',"-publish")
-    """    num_author=Author.objects.count()
-    num_visits=request.session.get("num_visits",0)
-    num_visits+=1
-    request.session['num_visits']=num_visits """
+    current_date=datetime.now()
+    current_month=current_date.month
+    current_year=current_date.year
 
+    current_posts=Post.published.filter(Q(publish__year=current_year)&Q(publish__month=current_month))
+    if len(current_posts)>0:
+        posts=current_posts
+    else:
+        posts=Post.published.all().order_by('-publish')
+    print(f"there's {len(current_posts)} post for the month {current_year}")
+    
+    
     context={
         'posts':posts,
         #'num_visits':num_visits,
     }
     return render(request,'index.html',context)
+
 def index2(request):
     posts=Post.published.all()
     """  num_author=Author.objects.count()
@@ -41,6 +50,32 @@ def post_details(request, post_id, slug):
     
     msg=False
     similar_posts=Post.published.filter(category=post.category).annotate(post_count=Count('likes')).order_by('-post_count','-publish').exclude(pid=post_id)[:5]
+    
+
+    if request.user.is_authenticated:
+        #use the authenticated user id to track the view
+        if not PostView.objects.filter(post=post,user=request.user).exists():
+            PostView.objects.create(post=post,user=request.user)
+    else:
+        session_id=request.session.session_key
+        if not PostView.objects.filter(post=post,session_id=session_id):
+            PostView.objects.create(post=post,session_id=session_id)
+
+    #we request the session
+    #session=request.session
+
+    #if "post_views" not in session:
+    #    session['post_views']={}
+    #
+    ##check if post have been viewed before
+    #
+    #if post_id not in session:
+    #    post.view_num+=1
+    #    post.save() 
+    #    #add the 'pk' to the session 'post_veiws'
+    #    #this part ensure that a num view can only be update one time
+    #    session['post_views'][post_id]=True
+    #
     if request.method=="GET":
         if request.user.is_authenticated:
             user=request.user
@@ -56,6 +91,14 @@ def post_details(request, post_id, slug):
 
     return render(request, 'single.html', context)
 
+def faq_view(request):
+    return render(request,'Faq.html')
+
+def term_view(request):
+    return render(request,'term.html')
+
+def privacy_view(request):
+    return render(request,"privacy.html")
 
 def category_posts(request,cid):
     """
@@ -97,14 +140,14 @@ def ajax_comment(request,post_id):
              username=name
              user_val=None
              profile_image_value="data:image/jpeg;base64,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"
-         # Save the comment
-         
-             comment=Comment.objects.create(
-             user=user_val,
-             name=username,
-             email=email,
-             content=content,
-             post=post
+        # Save the comment
+    
+         Comment.objects.create(
+         user=user_val,
+         name=username,
+         email=email,
+         content=content,
+         post=post
                 )
     comments_count = Comment.objects.filter(post=post).count()
     context = {

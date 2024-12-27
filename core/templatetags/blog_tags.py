@@ -7,7 +7,7 @@ register=template.Library()
 
 @register.inclusion_tag("templates_tags/latest_post.html")
 def show_latest_post(count=10):
-    posts=Post.published.all().order_by('-publish')[:count]
+    posts=Post.published.annotate(views=Count('total_view'),total_likes=Count('likes')).order_by('-views','-total_likes')
     
     return {
         "posts": posts,
@@ -26,7 +26,7 @@ def show_author(count=3):
 
 @register.simple_tag
 def popular_post(count=10):
-    posts=Post.published.annotate(total_likes=Count('likes'),comment_count=models.Count('comment')).order_by('-total_likes','-comment_count',"-publish")[:count]
+    posts=Post.published.annotate(total_likes=Count('likes'),comment_count=Count('comment')).order_by('-total_likes','-comment_count',"-publish")[:count]
     
     print("total posts",posts.count())
     return posts

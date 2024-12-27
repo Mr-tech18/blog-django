@@ -5,30 +5,34 @@
 <main class="lg:mx-20 m-5 lg:my-10">
     <h1 class="text-xl font-bold  text-black mb-4">Result for <span class="bg-purple-500 text-white p-1">{{post.category.title}}</span></h1>
     <section class="md:grid-cols-2 grid grid-cols-1 gap-2 text-gray-500 text-xs lg:text-sm">  
-        {% for post in posts %}
-        
-        <article class="rounded-xl flex gap-2 items-center p-2 flex-wrap lg:flex-nowrap shadow shadow-purple-400 max-md:p-2">  
-            <div class="max-lg:hidden w-40"><img src="{% static '../../images/7.jpg' %}" alt="main image for the search of travel"></div>
-            <div class="self-center">
-                <p class="tag">Travel</p>
-                <h1 class="lg:text-sm text-black font-bold capitalize"> {{post.title}}</h1>
-                <div class="flex gap-1 items-center my-2">
-                    <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/images/3.jpeg' %}" alt="author profile image"></div>
-                    <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                    <h3 class="text-author"><a href="../../html/blog/about_authors.html">{{{post.author.name}}}</a></h3>
-                    <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                    <p class="text-author"> <img src="{% static 'assets/images/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt="">{{post.publish|date:'D M Y'}}</p>
-                    <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
-                    <p class="text-author"><img src="{% static 'assets/images/images/fi-rr-clock-two-thirty.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt="">{{post.reading_time}}</p>
-                    
-                </div>
-                <p class="text-[0.75rem]">{{post.description}}
-                    .<a href="{% url "core:details" post.slug post.pid %}" class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static '../../images/arrow-right.png' %}" alt=""></a>
-                </p>
-            </div>
-        </article>
-        
-        {% endfor %}
+        <ul id="recent_post_container"  class="max-tablet:grid flex-grow  ">
+            {% for post in posts %}
+            
+            <li class="mb-4 shadow shadow-[#8f8080]">
+                <article class="flex gap-1  flex-wrap tablet:flex-nowrap">
+                    <div class=" h-36 w-full max-lg:hidden lg:basis-1/5"><img class=" object-cover object-center h-full w-full " src="{{post.profile_image.url}}" alt=""></div>
+                    <div class=" p-1 rounded lg:self-center basis-4/5">
+                        <p class="btn-style">Travel</p>
+                        <h2 class="font-bold">{{post.title}}</h2>
+                        <div data-title="about-article " >
+                            <div class="flex gap-1 items-center">
+                                <div class="w-5 h-5"><img class="rounded-full" src="{{post.author.author_image.url}}" alt="author profile image"></div>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <h3 class="text-author">{{post.author.user}}</h3>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"> <img src="{% static 'assets/images/fi-rr-calendar.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.publish|date:"D M Y"}}</p>
+                                <span class="inline-block w-px h-3 bg-slate-500"></span>
+                                <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.reading_time}} to read</p>
+                            </div>
+                            <p class="text-[8px] lg:text-sm">{{post.description}}
+                                .<a href="{% url "core:details" post.slug post.pid %}" class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </li>
+            {% endfor %}
+        </ul>
     </section>
 </main>
 

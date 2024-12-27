@@ -15,6 +15,9 @@ urlpatterns = [
     path('login-reauired/',views.redirection_page,name="redirection"),
     path('Become-writer/',views.become_author_view,name="author-register-form"),
     path('Search-result/s/',views.search_view,name="search"),
+    path('FAQ/',views.faq_view,name='faq'),
+    path('privacy/',views.privacy_view,name='privacy'),
+    path('term and condition/',views.term_view,name='term'),
 
     #ajax
     path('reaxtion/<post_id>/',views.post_reaction_views_ajax,name="reaction_view"),

@@ -139,3 +139,11 @@ class ContactUs(models.Model):
 
     def __str__(self):
         return "message from %s" %(self.name)
+    
+class PostView(models.Model):
+    user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True,blank=True)
+    session_id=models.CharField(max_length=255,blank=True,null=True)
+    post=models.ForeignKey(Post,on_delete=models.CASCADE,related_name="total_view")
+
+    def __str__(self):
+        return f'view on {self.post.title}'

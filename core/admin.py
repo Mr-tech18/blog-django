@@ -41,11 +41,16 @@ class CommentAdmin(admin.ModelAdmin):
 class AdminContactUs(admin.ModelAdmin):
     list_display=['name','subject','date']
 
+
+class PostViewAdmin(admin.ModelAdmin):
+    list_display=['post','user','session_id']
+
 admin.site.register(Comment,CommentAdmin)
 admin.site.register(Post,PostAdmin)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Author,AuthorAdmin)
 admin.site.register(ContactUs,AdminContactUs)
+admin.site.register(PostView,PostViewAdmin)
 
 
 # admin.py

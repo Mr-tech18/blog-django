@@ -12,12 +12,12 @@
             {% for post in posts %}
             
             <article class="rounded-xl lg:flex gap-2 items-center p-2  shadow shadow-purple-400 max-md:p-2">  
-                <div class="max-lg:hidden lg:w-2/5"><img src="{{post.profile_image.url}}" alt="main image for the search of travel"></div>
+                <div class="max-lg:hidden lg:w-2/5 h-36"><img class="object-cover w-full h-full" src="{{post.profile_image.url}}" alt="main image for the search of travel"></div>
                 <div class="self-center lg:w-3/5">
                     <p class="tag">Travel</p>
                     <h1 class="lg:text-sm text-black font-bold capitalize"> {{post.title}}</h1>
                     <div class="flex gap-1 items-center my-2">
-                        <div class="w-5 h-5"><img class="rounded-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
+                        <div class="w-5 h-5"><img class="rounded-full object-cover w-full h-full" src="{% static 'assets/images/3.jpeg' %}" alt="author profile image"></div>
                         <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
                         <h3 class="text-author"><a href="../../html/blog/about_authors.html">{{post.author.user}}</a></h3>
                         <span class="inline-block w-[1px] h-3 bg-slate-500"></span>
