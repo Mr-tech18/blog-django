@@ -18,6 +18,7 @@ urlpatterns = [
     path('FAQ/',views.faq_view,name='faq'),
     path('privacy/',views.privacy_view,name='privacy'),
     path('term and condition/',views.term_view,name='term'),
+    path('user-profile/<str:username>',views.user_profile,name='profile_user'),
 
     #ajax
     path('reaxtion/<post_id>/',views.post_reaction_views_ajax,name="reaction_view"),

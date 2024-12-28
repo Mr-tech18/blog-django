@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'userauth',
     'taggit',
     'author_page',
+    'otp',
 ]
 
 MIDDLEWARE = [
@@ -174,3 +175,10 @@ AUTHENTICATION_BACKENDS=[
     'author_page.backend.AuthorAuthenticationEmail',
     'author_page.backend.AuthorAuthenticationName',
 ]
+
+
+ACCOUNT_SID='AC9d5396db7a6ace39b5773e30ec68aeaf'
+AUTH_TOKEN='3a81d9c28e7b42b7e419eab1685d7f9d'
+COUNTRY_CODE='+237'
+TWILIO_WHATSAPP_NUMBER='+14155238886'
+TWILIO_PHONE_NUMBER='+12316254727'

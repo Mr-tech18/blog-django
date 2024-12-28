@@ -7,7 +7,7 @@ def get_user_directory_path(instance,filename):
     return "{0}/{1}".format(instance.username,filename)
 
 class CustomUser(AbstractUser):
-    email=models.EmailField(unique=True)
+    email=models.EmailField(unique=True,blank=True,null=True)
     username=models.CharField(max_length=50)
     profile_image=models.ImageField(upload_to=get_user_directory_path,null=True,blank=True,default="defaults/default.webp")
     is_author=models.BooleanField(default=False)

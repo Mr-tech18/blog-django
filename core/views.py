@@ -100,6 +100,11 @@ def term_view(request):
 def privacy_view(request):
     return render(request,"privacy.html")
 
+def user_profile(request,username):
+    context={
+        'user':request.user
+    }
+    return render(request,"user_profile.html",context)
 def category_posts(request,cid):
     """
         description:this class is used to retrieve all posts related to a single category
