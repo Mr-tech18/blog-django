@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-      "build-css": "npx tailwindcss -i ./core/static/css/input.css -o ./core/static/css/output1.css --watch"
-    },
+    "build-css": "npx tailwindcss -i ./core/static/css/input.css -o ./core/static/css/output1.css --watch",
+    "minify":"cleancss ./core/static/css/output1.css -o ./core/static/css/output1.min.css"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -13,8 +14,7 @@
     "css": "^3.0.0",
     "tailwind": "^4.0.0"
   },
-  
-    
-  
-  
+  "dependencies": {
+    "clean-css-cli": "^5.6.3"
+  }
 }

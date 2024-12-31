@@ -60,7 +60,9 @@ document.addEventListener('DOMContentLoaded',(e)=>{
 
   
   function ajax_callback(view_name=null,post_id=null,delete_post=null){
-    let url_link=`http://localhost:8000/author-site/${view_name}/`;
+    let host_name=window.location.hostname;
+    console.log(host_name);
+    let url_link=`${host_name+':8000'}/author-site/${view_name}/`;
     let xhr=new XMLHttpRequest();
     if(post_id){
       let url=url_link+post_id+'/';
