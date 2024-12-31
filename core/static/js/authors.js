@@ -125,8 +125,18 @@ document.addEventListener('DOMContentLoaded',(e)=>{
       if(event.target.classList.contains('post_edit_view')){
           event.preventDefault();
           let element=event.target;
-          let post_id_value=getPidFromHref(element);
-          ajax_callback('edit_post',post_id_value);
+          let id_value=getPidFromHref(element);
+          //we will retrieve the data-filter="value" of the current element
+          let dataFilterValue=element.dataset.filter;
+          console.log("the value of datafilter is",dataFilterValue);
+          console.log(element);
+          //here have to check the value , and perform some action based on the result
+          /* 
+           -- we have to different page data-filter="comment" //for the comment page
+           data-filter="post" for the post list page
+          */
+          dataFilterValue=="comment"?ajax_callback('edit_comment',id_value):ajax_callback('edit_post',id_value);
+          
       }
       else if(event.target.classList.contains('post_delete_view')){
          event.preventDefault();

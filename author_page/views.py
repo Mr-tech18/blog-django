@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from core.models import Author,Post,Comment,Category
 from .decorator import author_required
 from django.contrib.auth import authenticate,login,logout
-from .forms import AuthorProfileEdit,PostForm
+from .forms import AuthorProfileEdit,PostForm,CommentForm
 from core.views import ajax_author_views
 # Create your views here.
 
@@ -163,6 +163,32 @@ def edit_post(request,post_id):
         "form":form,
     }
     data=render_to_string("async_auth/auth_post_edit.html",context,request)
+    return JsonResponse({
+        'context':data
+        
+    })
+
+def edit_comment(request,comment_id):
+    
+    comment=Comment.objects.get(id=comment_id)
+    if request.method=="POST":
+        form=CommentForm(data=request.POST,files=request.FILES,instance=comment)
+        if form.is_valid():
+            
+            form.save()
+            print(request.FILES)
+            messages.success(request,"Your update are saved")
+            return redirect('author_p:author')
+        else:
+            print(form.errors)
+            print('the form is not valid..')
+    else:
+        form=CommentForm(instance=comment)
+    context={
+        "comment":comment,
+        "form":form,
+    }
+    data=render_to_string("async_auth/edit_comment.html",context,request)
     return JsonResponse({
         'context':data
         

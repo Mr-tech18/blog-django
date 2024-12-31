@@ -18,6 +18,10 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
+from core.sitemaps import PostSiteMap
+from django.contrib.sitemaps.views import sitemap
+
+sitemaps={"posts":PostSiteMap}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,10 +30,15 @@ urlpatterns = [
     path('author-site/',include('author_page.urls')),
     path('account/', include('django.contrib.auth.urls')),  # Adds the authentication views
     path('otp/', include('otp.urls')),  # Adds the authentication views
-
+    path('sitemaps.xml',sitemap,{'sitemaps':sitemaps},name='django.contrib.sitemaps')
 ]
+
 
 if settings.DEBUG:
     urlpatterns+=static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
     urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+
+
+
 

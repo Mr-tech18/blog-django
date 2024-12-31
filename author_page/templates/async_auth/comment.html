@@ -61,15 +61,15 @@
                                {% for comment in comments %}
                                <tr class="hover:bg-purple-100 border-b odd:bg-gray-100">
                                     <td class="px-4 py-2"><img src="{{comment.user.profile_image.url}}" class="w-10 h-10 rounded-md" alt="Post image"></td>
-                                    <td class="px-4 py-2 text-[16px] font-bold"><a href="{% url "author_p:edit-post" comment.post.pid %}" class="text-purple-600 hover:underline post_edit_view">{{comment.name}}</a></td>
+                                    <td class="px-4 py-2 text-[16px] font-bold"><a data-filter="comment" href="{% url "author_p:edit-comment" comment.id %}" class="text-purple-600 hover:underline post_edit_view">{{comment.name}}</a></td>
                                     <td class="px-4 py-2">{{comment.post.title}}</td>
                                     <td class="px-4 py-2">
                                         {{comment.status}}
                                     </td>
                                     <td class="px-4 py-2 space-x-4">
                                         
-                                        <a href="{% url "author_p:edit-post" comment.post.pid %}" class="bg-purple-400 text-white px-3 py-1 text-sm rounded-md hover:bg-purple-500 post_edit_view">Edit</a>
-                                        <a href="{% url "author_p:edit-post" comment.post.pid %}" class="bg-white border border-purple-400 text-purple-400 px-3 py-1 text-sm rounded-md hover:bg-purple-50 post_delete_view">Delete</a>
+                                        <a  href="{% url "author_p:edit-comment" comment.id %}" class="bg-purple-400 text-white px-3 py-1 text-sm rounded-md hover:bg-purple-500 post_edit_view">Disable</a>
+                                        <a href="{% url "author_p:edit-comment" comment.id %}" class="bg-white border border-purple-400 text-purple-400 px-3 py-1 text-sm rounded-md hover:bg-purple-50 post_delete_view">Delete</a>
                                         
                                     </td>
                                 </tr>

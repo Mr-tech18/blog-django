@@ -145,7 +145,7 @@
               <span class="inline-block w-px h-3 bg-slate-500"></span>
               <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-3 h-3" alt=""> 3 min to read</p>
           </div>
-          <p class="text-sm ">{{post.description}}<span class="btn-read-more text-white">Edit<img class="inline-block w-3 h-3 " src="{% static 'assets/images/arrow-right.png' %}" alt=""></span>
+          <p class="text-sm ">{{post.description}}<a href="{% url "core:details" post.slug post.pid %}" class="btn-read-more text-white">Read in Site<img class="inline-block w-3 h-3 " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
           </p>
       </div>
     </li>

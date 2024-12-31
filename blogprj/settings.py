@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 
     #custom app
     'core',
@@ -182,3 +184,5 @@ AUTH_TOKEN='3a81d9c28e7b42b7e419eab1685d7f9d'
 COUNTRY_CODE='+237'
 TWILIO_WHATSAPP_NUMBER='+14155238886'
 TWILIO_PHONE_NUMBER='+12316254727'
+
+SITE_ID=1

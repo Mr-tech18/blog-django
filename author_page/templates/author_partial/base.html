@@ -7,6 +7,7 @@
         <title>{% block title %}ATAIN blogging{% endblock title %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="{% static "assets/images/atain2.jpeg" %}" type="image/jpeg">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="{% static "css/output.css" %}">
         <link rel="stylesheet" href="{% static "css/messages.css" %}">
@@ -22,9 +23,9 @@
                 <i class="bi bi-menu-button-fill"></i>
               </button>
             </div>
-            <button data-menu="menu-item" type="button" id="dashboard_btn_id" class="p-2 hover:bg-purple-200  rounded mt-5  w-full text-start">
+            <a href="{% url "author_p:author" %}" data-menu="menu-item" type="button" id="dashboard_btn_id" class="p-2 hover:bg-purple-200 decor inline-block rounded mt-5  w-full text-start">
               Dashboard
-            </button>
+            </a>
             <div class=" mt-5">
               <p class="uppercase text-sm text-gray-400">main</p>
               <ul class=" cursor-pointer">
@@ -132,6 +133,6 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="{% static "js/chart.js" %}"></script>
         <script type="module" src="{% static "js/ajax_filtering.js" %}"></script>
-        <script type="module"  src="{% static "js/authors1.js" %}"></script>
+        <script type="module"  src="{% static "js/authors.js" %}"></script>
     </body>
 </html>

@@ -1,12 +1,13 @@
 from django.urls import path
 from . import views
+from .feeds import LatestPostsFeed
 
 app_name='core'
 
 urlpatterns = [
     path('',views.home,name='home'),
     path('home/',views.index2,name='home2'),
-    path('single/<slug:slug>/<post_id>/',views.post_details,name='details'),
+    path('details/<slug:slug_val>/<post_id>/',views.post_details,name='details'),
     path('contact/',views.contact_us_view,name="contact"),
     path('category/',views.all_category,name="categories"),
     path('category/<cid>/',views.category_posts,name="posts_per_category"),
@@ -19,6 +20,7 @@ urlpatterns = [
     path('privacy/',views.privacy_view,name='privacy'),
     path('term and condition/',views.term_view,name='term'),
     path('user-profile/<str:username>',views.user_profile,name='profile_user'),
+    path('feeds/',LatestPostsFeed(),name='posts_feed'),
 
     #ajax
     path('reaxtion/<post_id>/',views.post_reaction_views_ajax,name="reaction_view"),

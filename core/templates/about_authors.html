@@ -89,7 +89,7 @@
                                     <span class="inline-block w-px h-3 bg-slate-500"></span>
                                     <p class="text-author"><img src="{% static '../../images/fi-rr-clock-two-thirty.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.reading_time}}</p>
                             </div>
-                            <p class="text-[0.75rem]">{{post.description}}  <a href="{% url "core:details" post.slug post.pid %}" class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static '../../images/arrow-right.png' %}" alt=""></a>
+                            <p class="text-[0.75rem]">{{post.description}}  <a href="{{post.get_absolute_url}}" class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static '../../images/arrow-right.png' %}" alt=""></a>
                             </p>
                             
                         </div>

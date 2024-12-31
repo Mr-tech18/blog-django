@@ -27,7 +27,7 @@
                         
                     </div>
                     <p class="text-[0.75rem] ">{{post.description}}
-                        .<a href="{% url "core:details" post.slug post.pid %}" class="btn-read-more text-white">Read More <img class="inline-block w-3 h-3 " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
+                        .<a href="{{post.get_absolute_url}}" class="btn-read-more text-white">Read More <img class="inline-block w-3 h-3 " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
                     </p>
                 </div>
             </article>

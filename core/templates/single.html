@@ -1,7 +1,19 @@
 {% extends "partials/base.html" %}
 {% load static %}
 
-{% block title %}{{post.title}}{% endblock title %}
+{% block header %}
+    <meta name="keywords" content="blogging agency,blog writing services,content marketing services">
+    <meta property="og:title" content="{{post.title}}">
+    <meta property="og:description" content="{{post.description}}">
+    <meta property="og:image" content="{{post.profile_image.url}}">
+    <meta name="twitter:card" content="summarize">
+    <meta name="twitter:site" content="twiter.com">
+    <meta name="twitter:image" content="{{post.profile_image.url}}">
+    <meta name="twitter:title" content="{{post.title}}">
+    <meta name="twiter:description" content="{{post.description}}">
+    <meta rel="cannonical" href="{{complete_uri}}">
+    <title>{{post.title}}</title>
+{% endblock header %}
 {% block content %}
 <main class="relative top-16">
     <!-- single blog post section -->
@@ -250,10 +262,10 @@
     </div>
     <article class="lg:px-32 lg:py-5 p-5">
         <h1 class="my-6 text-2xl font-bold"><span class="bg-purple-600 p-1 text-white text-2xl font-bold">Similar</span> Post</h1>
-        <div class="lg:flex gap-3 flex-wrap">
+        <div class="lg:flex gap-1 flex-wrap">
             {% for post in similar_posts %}
             
-            <article class="basis-1/4 max-lg:shadow shadow-purple-500 inline-flex h-auto  max-md:text-xs  flex-col  mb-5 shadow  p-5 rounded">
+            <article class="basis-1/4 max-lg:shadow shadow-purple-500 inline-flex h-auto  max-md:text-xs  flex-col  mb-5 shadow  p-2 rounded">
                 <p class="btn-style order-2 my-1">Travel</p>
                 <h2 class="text-[1.1rem] font-bold order-3">{{post.title}}</h2>
                 <div class="max-lg:hidden block self-center w-full h-40   mb-2 order-1"><img class=" object-center object-cover w-full h-full rounded-xl " src="{{post.profile_image.url}}" alt="banner image 1"></div>
@@ -267,7 +279,7 @@
                         <span class="inline-block w-px h-3 bg-slate-500"></span>
                         <p class="text-author"><img src="{% static 'assets/images/fi-rr-clock-two-thirty.svg' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt="">{{post.reading_time}}</p>
                     </div>
-                    <p class="text-[0.75rem]">{{post.description}} <a href="{% url "core:details" post.slug post.pid %}" class="btn-read-more">Read More <img class="inline-block w-3 h-3 " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
+                    <p class="text-[0.75rem]">{{post.description}} <a href="{{post.get_absolute_url}}" class="btn-read-more">Read More <img class="inline-block w-3 h-3 " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
                     </p>
                 </div>
             </article>

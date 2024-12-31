@@ -3,6 +3,7 @@ from userauth.models import CustomUser
 import uuid
 from django.utils import timezone
 from django.utils.safestring import mark_safe
+from django.urls import reverse
 # Create your models here.
 
 #choices
@@ -111,9 +112,16 @@ class Post(models.Model):
      
     def get_post_image(self):
         return mark_safe(f"<img src='{self.profile_image.url}' width='50px' height='50px'/>")
+    
+    def get_absolute_url(self):
+        return reverse('core:details', args=[ 
+            self.slug,
+            self.pid,]
+            ,current_app="core")
+    
          
 class Comment(models.Model):
-    user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True,blank=True)
+    user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True,blank=True,editable=False)
     post=models.ForeignKey(Post,on_delete=models.CASCADE,related_name="comment",editable=False)
     name=models.CharField(max_length=90,null=False,blank=True)
     email=models.EmailField(null=False,blank=True)

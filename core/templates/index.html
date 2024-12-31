@@ -10,10 +10,10 @@
         <!-- feature this month section -->
         <div class="p-1" class="bg-purple-100 p-5 lg:p-0 lg:flex lg:px-[60px]">
             <h1 class="my-6 text-black text-2xl font-bold"><span class="bg-purple-600 p-1 text-white">Featured</span> this month</h1>
-            <div data-container-1 class=" flex flex-wrap lg:flex-nowrap gap-3">
+            <ul data-container-1 class=" flex flex-wrap lg:flex-nowrap gap-3">
                 
                 {% for post in posts %}
-                <article class=" w-64 max-md:text-xs flex-col lg:w-72 mb-5 shadow flex-grow shadow-[#fdf7f7] p-1 rounded">
+                <li class=" w-64 max-md:text-xs flex-col lg:w-72 mb-5 shadow flex-grow shadow-[#fdf7f7] p-1 rounded">
                     <p class="btn-style">Travel</p>
                     <h2 class="text-[1.1rem] font-bold my-4 cursor-pointer" title="{{post.title}}">{{post.title|truncatewords:4}}</h2>
                     <div class=" mb-4 lg:w-auto h-52 w-full"><img class="rounded-xl w-full h-full object-cover object-center " src="{{post.profile_image.url}}" alt="banner image 1"></div>
@@ -27,15 +27,15 @@
                             <span class="inline-block w-px h-3 bg-slate-500"></span>
                             <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.reading_time}} to read</p>
                         </div>
-                        <p class="text-[0.75rem] font-semibold">{{post.description|truncatechars:50|safe}}  <a class="text-purple-400 hover:text-purple-500 cursor-pointer" href="{% url "core:details" post.slug post.pid %}" >Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
+                        <p class="text-[0.75rem] font-semibold">{{post.description|truncatechars:50|safe}}  <a class="text-purple-400 hover:text-purple-500 cursor-pointer" href="{{post.get_absolute_url}}" >Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
                         </p>
                     </div>
-                </article>
+                </li>
                 
                 {% endfor %}
               
                 
-            </div>
+            </ul>
             <div data-btn-container-feature>
 
             </div>
@@ -64,7 +64,7 @@
                                 <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.reading_time}} to read</p>
                             </div>
                             <p class="text-[0.75rem]">{{post.description}}
-                                .<a href="{% url "core:details" post.slug post.pid %}" class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
+                                .<a href="{{post.get_absolute_url}}" class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
                             </p>
                         </div>
                     </li>

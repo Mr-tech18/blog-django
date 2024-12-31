@@ -44,10 +44,10 @@ def index2(request):
     return render(request,'index2.html',context)
 
 
-def post_details(request, post_id, slug):
-    post = get_object_or_404(Post, pid=post_id)
-    comments= Comment.objects.filter(post=post)
-    
+def post_details(request, post_id, slug_val):
+    post = get_object_or_404(Post, pid=post_id,slug=slug_val)
+    comments= Comment.objects.filter(post=post,status=True)
+    complete_uri=request.build_absolute_uri()
     msg=False
     similar_posts=Post.published.filter(category=post.category).annotate(post_count=Count('likes')).order_by('-post_count','-publish').exclude(pid=post_id)[:5]
     
@@ -83,6 +83,7 @@ def post_details(request, post_id, slug):
                 msg=True
                 print(msg)
     context={
+        "complete_uri":complete_uri,
         "post":post,
         "comments":comments,
         "msg":msg,

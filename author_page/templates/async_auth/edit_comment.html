@@ -1,0 +1,53 @@
+
+{% load static %}
+
+  <section class="bg-gray-200  rounded-md">
+    <div class="flex gap-5">
+         <h1 class="text-2xl font-bold text-purple-700">
+      
+          Edit Comment
+        </h1>
+      <!--   <div class="flex gap-4">
+          <div class="text-white">
+              <button type="button" id="submitBtnFake" class="hover:bg-purple-500 p-1 hover:transition-all duration-100 rounded border border-purple-600 transition-all text-purple-500 hover:text-white ">Save Change</button>
+          </div>
+          
+        </div> -->
+    </div>
+
+  <!-- post form creation -->
+  <section class=" p-2 space-y-2">
+    <div>
+      <span class="font-bold">User Email:</span>
+      <p class="p-2 border border-purple-400 rounded">
+          {{comment.email}}
+      </p>
+    </div>
+    <div>
+      <span class="font-bold">Comment Content:</span>
+      <p class="p-2 border rounded border-purple-400">
+          {{comment.content}}
+      </p>
+    </div>
+      <form action="{% url "author_p:edit-comment" comment.id %}" enctype="multipart/form-data" method="post" class="">
+               {% csrf_token %}
+               <p>
+                    <label for="slug">Comment status</label> <br>
+                    {{form.status}}
+               </p>
+              
+              <div class="flex gap-4 mt-4">
+                 <!--  <div class="text-white">
+                      <button type="submit" class="hover:bg-purple-500 p-1 hover:transition-all duration-100 rounded border border-purple-600 transition-all text-purple-500 hover:text-white">Save And Continous</button>
+                  </div> -->
+                  <div class="text-white">
+                      <button type="submit" id="submitBtn" class="bg-purple-500 p-1 rounded hover:translate-y-1 hover:bg-purple-900">Save Changes</button>
+                  </div>
+                </div>
+      </form>
+  </section>
+
+   
+  </section>
+  
+

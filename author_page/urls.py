@@ -13,6 +13,7 @@ urlpatterns = [
     path('edit_post/<post_id>/',views.edit_post,name="edit-post"),
     path('delete_post/<post_id>/',views.delete_post,name="delete-post"),
     path('edit_profile/',views.edit_profile,name="edit-profile"),
+    path('edit_comment/<int:comment_id>/',views.edit_comment,name="edit-comment"),
     path('auth-login/',views.auth_login_view,name="login"),
     path('auth-logout/',views.logout_view,name="logout"),
 ]
