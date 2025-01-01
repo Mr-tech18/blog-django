@@ -186,3 +186,7 @@ TWILIO_WHATSAPP_NUMBER='+14155238886'
 TWILIO_PHONE_NUMBER='+12316254727'
 
 SITE_ID=1
+
+import django_heroku
+
+django_heroku.settings(locals())
