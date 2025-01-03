@@ -75,7 +75,7 @@ class Author(models.Model):
 class Post(models.Model):
      
     class StatusChoices(models.TextChoices):
-        DRAFT='DB','DRAFT'
+        DRAFT='DF','DRAFT'
         PUBLISH="PB","Published"
 
     class PublishedManager(models.Manager):

@@ -98,9 +98,9 @@ DATABASES = {
   'default': {
   'ENGINE': 'django.db.backends.postgresql_psycopg2',
   'NAME': 'my_db',
-  'USER' : 'hero',
-  'PASSWORD' : '@bkking237',
-  'HOST' : 'localhost',
+  'USER' : 'atain',
+  'PASSWORD' : 'Bkking237mr_tech',
+  'HOST' : 'database-1.cz26gy0cqzk9.eu-west-1.rds.amazonaws.com',
   'PORT' : '5432',
   }
 }
@@ -187,6 +187,3 @@ TWILIO_PHONE_NUMBER='+12316254727'
 
 SITE_ID=1
 
-import django_heroku
-
-django_heroku.settings(locals())

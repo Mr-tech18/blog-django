@@ -218,7 +218,7 @@ def edit_profile(request):
 def author_page(request):
     author=request.author
     if author.is_authenticated:
-        posts=Post.published.filter(author=author)
+        posts=Post.objects.filter(author=author)
         context={
             'posts':posts,
             'author':author
