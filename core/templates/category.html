@@ -10,7 +10,7 @@
         <div class="flex justify-center content-center flex-wrap max-md:text-sm">
             {% for category in categories %}
             <button class="btn  m-4 hover:bg-purple-500 hover:text-white w-28 h-20 lg:w-44 lg:h-32 gap-2 rounded border bg-purple-50 border-purple-500  inline-flex flex-col justify-center items-center" >
-                <a href="{{post.get_absolute_url}}" class="order-2">{{category.title}}</a>
+                <a href="{% url "core:posts_per_category" category.cid %}" class="order-2">{{category.title}}</a>
                 <div class="inline-block w-10 max-md:w-6 order-0"><img class="inline" src="{{category.category_image.url}}" alt="{{category.title}}"> </div>
             </button>
             

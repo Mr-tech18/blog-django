@@ -25,7 +25,7 @@
                             <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.reading_time}} to read</p>
                         </div>
                         <p class="text-[8px] lg:text-sm">{{post.description}}
-                            .<a href="{% url "core:details" post.slug post.pid %}" class="btn-read-more">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
+                            .<a href="{% url "core:details" post.slug post.pid %}" class="btn-read-more text-white">Read More <img class="inline-block w-[12px] h-[12px] " src="{% static 'assets/images/arrow-right.png' %}" alt=""></a>
                         </p>
                     </div>
                 </div>
