@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'taggit',
     'author_page',
     'otp',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -139,7 +140,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-STATICFILES_STORAGE='django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+#STATICFILES_STORAGE='django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 STATIC_URL = 'static/'
 STATIC_ROOT=os.path.join(BASE_DIR,'static')
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'core/static')]
@@ -187,3 +188,15 @@ TWILIO_PHONE_NUMBER='+12316254727'
 
 SITE_ID=1
 
+
+AWS_ACCESS_KEY_ID = 'AKIAQXUIXR237CGEUJ7I'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'atainsite'
+AWS_S3_SIGNATURE_NAME = 's3v4',
+AWS_S3_REGION_NAME = 'eu-west-1'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL =  None
+AWS_S3_VERIFY = True
+AWS_S3_FILE_OVERWRITE=False
+AWS_QUERYSTRING_AUTH=False
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
