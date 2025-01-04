@@ -9,8 +9,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env=Env()
 Env.read_env(os.path.join(BASE_DIR,'.env'))
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =env('SECRET_KEY')
-print(SECRET_KEY)
+SECRET_KEY=env('SECRET_KEY_NEW')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
