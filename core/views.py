@@ -1,15 +1,20 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Post,Author,Category,Comment,PostView
-from .forms import CommentForm,ContactUsForm,AuthorForm
+from .forms import CommentForm,ContactUsForm,AuthorForm,NewsLetterForm
+from .models import Newsletter
 from django.contrib.auth.decorators import login_required
 from django.contrib.sessions.models import Session
 from django.contrib import messages
+from userauth.forms import EditProfileForm
+from userauth.models import CustomUser
 from django.db.models import Count,Value
 from django.db.models import Q
 from datetime import datetime
+from django.urls import reverse
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.contrib.postgres.search import SearchVector,SearchQuery,SearchRank,TrigramSimilarity
+from taggit.models import Tag
 
 def home(request):
     current_date=datetime.now()
@@ -17,6 +22,8 @@ def home(request):
     current_year=current_date.year
 
     current_posts=Post.published.filter(Q(publish__year=current_year)&Q(publish__month=current_month))
+    tags=Tag.objects.all()
+    
     if len(current_posts)>0:
         posts=current_posts
     else:
@@ -26,6 +33,7 @@ def home(request):
     
     context={
         'posts':posts,
+        "tags":tags
         #'num_visits':num_visits,
     }
     return render(request,'index.html',context)
@@ -36,10 +44,10 @@ def index2(request):
     num_visits=request.session.get("num_visits",0)
     num_visits+=1
     request.session['num_visits']=num_visits """
-
+    tags=Tag.objects.all()
     context={
         'posts':posts,
-        #'num_visits':num_visits,
+        "tags":tags
     }
     return render(request,'index2.html',context)
 
@@ -311,3 +319,57 @@ def search_view(request):
 
     return render(request,"search.html",context)
 
+def edit_profile(request,user_id,username):
+    user = request.user  
+    if request.method == "POST":
+        form = EditProfileForm(data=request.POST, files=request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request,f'you profile have been successfully update {user.username}')
+            return redirect(reverse('core:edit-profile', args=[user.id,user.username]))
+    else:
+        form = EditProfileForm(instance=user)
+
+   
+    return render(request, 'edit_profile.html', {'form': form})
+
+
+
+def newsletter_view(request):
+    if request.method == "POST":
+        form = NewsLetterForm(data=request.POST)
+        email = request.POST.get('email')
+        if form.is_valid():
+            if Newsletter.objects.filter(email=email).exists():
+              messages.error(request, "This email is already subscribed to our newsletter.")
+              return redirect('core:home')
+            form.save()
+            messages.success(request, "You have successfully subscribed to our newsletter.")
+        else:
+            for error in form.errors.values():
+                messages.error(request, error)
+    return redirect('core:home')
+
+def post_with_tags(request,tag_slug):
+    """
+        description:this class is used to retrieve all posts related to a single tags
+        author:Mr_tech18@gmail.com
+    """
+    tag=get_object_or_404(Tag,slug=tag_slug)
+    posts=Post.published.filter(tags__in=[tag])
+    context={
+        "posts":posts,
+        "tag_name":tag.name
+
+    }
+
+    return render(request,"tags_result.html",context)
+
+
+
+
+def custom_403_view(request, exception=None):
+    return render(request, 'errors/403.html', status=403)
+
+def custom_404_view(request, exception=None):
+    return render(request, '404.html', status=404)

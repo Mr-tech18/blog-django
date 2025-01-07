@@ -27,8 +27,7 @@ def show_author(count=3):
 @register.simple_tag
 def popular_post(count=10):
     posts=Post.published.annotate(total_likes=Count('likes'),comment_count=Count('comment')).order_by('-total_likes','-comment_count',"-publish")[:count]
-    
-    print("total posts",posts.count())
+  
     return posts
 
 

@@ -4,6 +4,8 @@ import uuid
 from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.urls import reverse
+from taggit.models import TaggedItemBase
+from taggit.managers import TaggableManager
 # Create your models here.
 
 #choices
@@ -103,7 +105,7 @@ class Post(models.Model):
 
     objects=models.Manager()
     published=PublishedManager()
-
+    tags=TaggableManager(through='TaggedItem',blank=True)
     class Meta:
         ordering=["-publish","-created"]
 
@@ -113,13 +115,9 @@ class Post(models.Model):
     def get_post_image(self):
         return mark_safe(f"<img src='{self.profile_image.url}' width='50px' height='50px'/>")
     
-    def get_absolute_url(self):
-        return reverse('core:details', args=[ 
-            self.slug,
-            self.pid,]
-            ,current_app="core")
-    
-         
+class TaggedItem(TaggedItemBase):
+    content_object=models.ForeignKey('Post',on_delete=models.CASCADE)
+
 class Comment(models.Model):
     user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True,blank=True,editable=False)
     post=models.ForeignKey(Post,on_delete=models.CASCADE,related_name="comment",editable=False)
@@ -155,3 +153,19 @@ class PostView(models.Model):
 
     def __str__(self):
         return f'view on {self.post.title}'
+
+
+class Newsletter(models.Model):
+    email=models.EmailField()
+    date=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.email}'
+    
+
+class Ads(models.Model):
+    title=models.CharField(max_length=150)
+    content=models.TextField()
+
+    def __str__(self):
+        return f'{self.title}'

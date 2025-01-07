@@ -6,11 +6,13 @@
     {% show_author %}
     <div data-title="add"  class=" bg-purple-700 w-auto lg:w-96 p-10 rounded-xl text-white relative">
         <h3 class="mb-3 font-bold text-xl ">Want to visit Cameroun?</h3> <span class="absolute right-0 mr-3 top-4">Ad</span>
-        <p class="mb-3 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod praesentium tempore,
-            
+        <p class="mb-3 text-sm">
+            Discover the beauty and diversity of Cameroon, a country known for its rich culture, stunning landscapes, 
+            and warm hospitality. From the lush rainforests and majestic mountains to the vibrant cities and serene beaches,
+             Cameroon offers a unique and unforgettable experience for every traveler. 
         </p>
         <div>
-            <span class="bg-white text-purple-600 p-2 rounded"><a href="../blog/contact.html">Contact Us</a></span>
+            <span class="bg-white text-purple-600 p-2 rounded"><a href="{% url "core:contact" %}l">Contact Us</a></span>
         </div>
 
     </div>
@@ -50,7 +52,7 @@
            
         </div>
     </div>
-    <div data-title="insta-post" class="">
+    <!-- <div data-title="insta-post" class="">
         <h3 class="my-6 text-2xl font-bold"><span class="bg-purple-600 p-1 text-white text-2xl font-bold">Instagram</span> Posts</h3>
         <div  class="grid grid-cols-4 gap-3">
             <div class="w-16 lg:w-24 bg-green-200 inline-grid rounded"><img src="{% static 'assets/images/11.jpg' %}" class="rounded" alt=""></div>
@@ -63,20 +65,13 @@
             <div class="w-16 lg:w-24 bg-green-200 inline-grid rounded"><img src="{% static 'assets/images/11.jpg' %}" class="rounded" alt=""></div>
             <div class="w-16 lg:w-24 bg-green-200 inline-grid rounded"><img src="{% static 'assets/images/11.jpg' %}" class="rounded" alt=""></div>
         </div>
-    </div>
+    </div> -->
     <div class="Search-tags">
         <h3 class="my-6 text-2xl font-bold capitalize"><span class="bg-purple-600 p-1 text-white text-2xl font-bold">search</span> With Tags</h3>
         <div>
-            <button class="border m-1 border-purple-300 rounded p-2 transition ease-in-out delay-[0.2s] hover:bg-purple-200 text-gray-400 text-xs">Fashion</button>
-            <button class="border m-1 border-purple-300 rounded p-2 transition ease-in-out delay-[0.2s] hover:bg-purple-200 text-gray-400 text-xs">Travel</button>
-            <button class="border m-1 border-purple-300 rounded p-2 transition ease-in-out delay-[0.2s] hover:bg-purple-200 text-gray-400 text-xs">Lifestyle</button>
-            <button class="border m-1 border-purple-300 rounded p-2 transition ease-in-out delay-[0.2s] hover:bg-purple-200 text-gray-400 text-xs">Technology</button>
-            <button class="border m-1 border-purple-300 rounded p-2 transition ease-in-out delay-[0.2s] hover:bg-purple-200 text-gray-400 text-xs">Business</button>
-            <br>
-            <button class="border m-1 border-purple-300 rounded  transition ease-in-out delay-[0.2s] p-2 hover:bg-purple-200  text-gray-400 text-xs">Design</button>
-            <button class="border m-1 border-purple-300 rounded  transition ease-in-out delay-[0.2s] p-2 hover:bg-purple-200  text-gray-400 text-xs">Art</button>
-            <button class="border m-1 border-purple-300 rounded  transition ease-in-out delay-[0.2s] p-2 hover:bg-purple-200  text-gray-400 text-xs">Healt</button>
-            <button class="border m-1 border-purple-300 rounded  transition ease-in-out delay-[0.2s] p-2 hover:bg-purple-200  text-gray-400 text-xs">Sport</button>
+            {% for tag  in tags %}
+            <a href="{% url "core:tag" tag.slug %}" class="border m-1 border-purple-300 rounded p-2 transition ease-in-out delay-[0.2s] hover:bg-purple-200 text-gray-400 text-xs">{{tag.name}}</a>
+            {% endfor %}           
         </div>
     </div>
 </aside>

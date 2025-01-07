@@ -1,4 +1,4 @@
-from .models import Comment,ContactUs,Author
+from .models import Comment,ContactUs,Author,Newsletter
 from django import forms
 
 class CommentForm(forms.ModelForm):
@@ -24,3 +24,10 @@ class AuthorForm(forms.ModelForm):
     class Meta:
         model=Author
         exclude=('agency_descript','rating','aid','author_image','status','user','is_author')
+
+class NewsLetterForm(forms.ModelForm):
+    email=forms.EmailField(widget=forms.EmailInput(attrs={'placeholder':"Enter your email"}))
+
+    class Meta:
+        model=Newsletter
+        fields=['email']

@@ -12,3 +12,9 @@ class RegisterForm(forms.Form):
 class LoginForm(forms.Form):
     email=forms.CharField(max_length=50,widget=forms.EmailInput(attrs={"placeholder":"Email"}),help_text="Your email")
     password=forms.CharField(max_length=50,widget=forms.PasswordInput(attrs={"placeholder":"password"}),help_text="Your password")
+
+
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['email', 'username', 'profile_image']

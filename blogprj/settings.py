@@ -14,7 +14,8 @@ SECRET_KEY=env('SECRET_KEY_NEW')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['yourdomain.com', 'www.yourdomain.com', '127.0.0.1', 'localhost']
+
 
 
 # Application definition
@@ -182,7 +183,7 @@ SITE_ID=1
 
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'atainsite'
+AWS_STORAGE_BUCKET_NAME = 'atainsite' 
 AWS_S3_SIGNATURE_NAME = 's3v4',
 AWS_S3_REGION_NAME = 'eu-west-1'
 AWS_S3_FILE_OVERWRITE = False

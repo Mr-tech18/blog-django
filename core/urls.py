@@ -1,6 +1,12 @@
 from django.urls import path
 from . import views
 from .feeds import LatestPostsFeed
+# urls.py
+from core.views import custom_403_view, custom_404_view
+from django.conf.urls import handler403, handler404
+
+handler403 = custom_403_view
+handler404 = custom_404_view
 
 app_name='core'
 
@@ -21,6 +27,10 @@ urlpatterns = [
     path('term and condition/',views.term_view,name='term'),
     path('user-profile/<str:username>',views.user_profile,name='profile_user'),
     path('feeds/',LatestPostsFeed(),name='posts_feed'),
+    path('edit-profile/<user_id>/<username>',views.edit_profile,name='edit-profile'),
+    path('newsletter/',views.newsletter_view,name='newsletter'),
+    path('Search-result/tags/<tag_slug>/',views.post_with_tags,name="tag"),
+
 
     #ajax
     path('reaxtion/<post_id>/',views.post_reaction_views_ajax,name="reaction_view"),
