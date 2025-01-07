@@ -14,7 +14,7 @@ SECRET_KEY=env('SECRET_KEY_NEW')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['yourdomain.com', 'www.yourdomain.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ["*"]
 
 
 
