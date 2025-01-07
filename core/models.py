@@ -115,6 +115,12 @@ class Post(models.Model):
     def get_post_image(self):
         return mark_safe(f"<img src='{self.profile_image.url}' width='50px' height='50px'/>")
     
+    def get_absolute_url(self):
+        return reverse('core:details', args=[ 
+            self.slug,
+            self.pid,]
+            ,current_app="core")
+    
 class TaggedItem(TaggedItemBase):
     content_object=models.ForeignKey('Post',on_delete=models.CASCADE)
 

@@ -27,7 +27,8 @@
                             <span class="inline-block w-px h-3 bg-slate-500"></span>
                             <p class="text-author"><img src="{% static 'assets/images/face.png' %}" class=" bg-[#ccc] inline w-[12px] h-[12px]" alt=""> {{post.reading_time}} to read</p>
                         </div>
-                        <p class="text-[0.75rem] font-semibold">{{post.description|truncatechars:50|safe}}  <a class="text-purple-400 hover:text-purple-500 cursor-pointer" href="{{post.get_absolute_url}}" >Read More <i class="bi bi-arrow-right"></i></a>
+                        <p 
+                            class="text-[0.75rem] font-semibold">{{post.description|truncatechars:50|safe}}  <a class="text-purple-400 hover:text-purple-500 cursor-pointer" href="{{post.get_absolute_url}}" >Read More <i class="bi bi-arrow-right"></i></a>
                         </p>
                     </div>
                 </li>
